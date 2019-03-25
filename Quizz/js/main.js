@@ -1,5 +1,6 @@
 const add_user = document.getElementById("add-user");
 const questions = getAllQuestions();
+const users = getAllUsers();
 const questionTag = document.getElementById("questionTag");
 const answer1 = document.getElementById("answer1");
 const answer2 = document.getElementById("answer2");
@@ -7,6 +8,8 @@ let next_btn = document.getElementById("next-btn");
 const quizz_container = document.getElementById("quizz-container");
 const modal_user = document.getElementById("modal-user");
 const newQuizz = document.getElementById("newGame");
+
+const user_list = document.getElementById('users-list');
 
 add_user.addEventListener("click", () => {
   const user_name = document.getElementById("user-name");
@@ -31,17 +34,18 @@ function getQuizz(name) {
   answer2.innerHTML = questions[0].second;
 
   next_btn.addEventListener("click", () => {
-    if (index <= questions.length - 2) {
+    if (index < questions.length - 1) {
       if (validateQuestion(questions[index])) {
+        index++;
         newUser.incrementScore();
         updateScore(userScore, newUser.score);
-        index++;
         nextQuestion(questions, index);
       } else {
-        nextQuestion(questions, index);
         index++;
+        nextQuestion(questions, index);
       }
-    } else if (index <= questions.length - 1) {
+      
+    } else if (index === questions.length - 1) {
       next_btn.innerHTML = "Finish Quizz";
       if (validateQuestion(questions[index])) {
         newUser.incrementScore();
@@ -49,6 +53,17 @@ function getQuizz(name) {
         newUser.addUser(newUser);
         quizz_container.style.visibility = "hidden";
         modal_user.style.display = "block";
+        newQuizz.addEventListener("click", newGame);
+      } else {
+        newUser.addUser(newUser);
+        quizz_container.style.visibility = "hidden";
+        modal_user.style.display = "block";
+          for(let user of users){
+            console.log(user);
+            const li = document.createElement('li');
+            li.innerHTML = user.name;
+            user_list.appendChild(li);
+          }
         newQuizz.addEventListener("click", newGame);
       }
     }
@@ -66,6 +81,18 @@ function getAllQuestions() {
   }
 
   return questions;
+}
+
+function getAllUsers(){
+  let users;
+  const usersLS = localStorage.getItem('user');
+  if(usersLS === null){
+    users = [];
+  } else{
+    users = JSON.parse(usersLS);
+  }
+
+  return users;
 }
 
 function validateQuestion(question) {
