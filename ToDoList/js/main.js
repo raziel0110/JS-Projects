@@ -12,15 +12,12 @@ $("input[name=newItem]").on("focus", () => {
 });
 
 $(document).on("click", ".removeElement", function() {
-  //   console.log(
-  //     $(this)
-  //       .parent()
-  //       .text()
-  //   );
   const valueItem = $(this)
     .parent()
     .text();
-  console.log(valueItem);
+  const newValue = removeFinalLetter(valueItem);
+  removeFromLocalStorage(newValue);
+
   $(this)
     .parent()
     .remove();
@@ -61,4 +58,24 @@ function addNewItem(item) {
   listElement.html(item);
   listElement.append(span);
   $("#list-group").append(listElement);
+}
+
+function removeFinalLetter(value) {
+  let string = "";
+  const arr = value.toString().split("");
+  arr.pop();
+  for (let i = 0; i < arr.length; i++) {
+    string += arr[i];
+  }
+  return string;
+}
+
+function removeFromLocalStorage(item) {
+  let items = getFromLocalStorage();
+  for (let i = 0; i < items.length; i++) {
+    if (item === items[i]) {
+      items.splice(i, 1);
+    }
+  }
+  localStorage.setItem("items", JSON.stringify(items));
 }
