@@ -23,6 +23,13 @@ $(document).on("click", ".removeElement", function() {
     .remove();
 });
 
+$(document).on("dblclick", ".list-element", function() {
+  const valueItem = $(this).text();
+  const newValue = removeFinalLetter(valueItem);
+  removeFromLocalStorage(newValue);
+  $(this).remove();
+});
+
 function getFromLocalStorage() {
   let items;
   const itemLs = localStorage.getItem("items");
