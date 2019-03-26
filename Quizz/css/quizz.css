@@ -122,12 +122,13 @@ body {
 
 .next_question {
   display: flex;
-  margin: 0 auto;
+
   width: 20%;
 }
 
-/* .next-btn {
-} */
+.next-btn {
+  margin: 0 auto;
+}
 
 .modal-users {
   position: fixed;
@@ -148,4 +149,39 @@ body {
   height: 50%;
   width: 70%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+}
+
+.users-header {
+  margin: 1em 0;
+  padding: 1%;
+  display: block;
+  width: 100%;
+  font-family: "Righteous", cursive;
+  font-size: 1.5em;
+  color: rgba(53, 119, 224, 0.5);
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+}
+
+.users-header {
+  text-align: center;
+}
+
+.list-users-container {
+  width: 100%;
+  font-family: "Righteous", cursive;
+  font-size: 1em;
+  color: rgba(53, 119, 224, 0.5);
+  text-align: center;
+}
+
+.list {
+  list-style: none;
+}
+
+.new-quizz {
+  display: flex;
+}
+
+.newGame {
+  margin: 0 auto;
 }
