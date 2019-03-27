@@ -133,11 +133,11 @@ function checkIfIsEmpty(){
 
 function checkifExists(val) {
   const items = getFromLocalStorage();
-  let eq = function(el){
-    return el === val;
-  }
+  // let eq = function(el){
+  //   return el === val;
+  // }
 
-  return items.some(eq);
+  return items.some(itemVal => val === itemVal);
 
 }
 function addTolocalStorage(item) {
@@ -174,6 +174,8 @@ function removeFinalLetter(value) {
     string += arr[i];
   }
   return string;
+  
+  // return value.substring(0,value.length);
 }
 
 function removeFromLocalStorage(item) {
