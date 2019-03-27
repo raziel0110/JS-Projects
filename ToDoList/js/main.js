@@ -1,15 +1,72 @@
-let values = [];
 $(document).ready(function() {
   populateList();
   $("#button-addon2").click(function() {
     const newItem = $("#newItem").val();
-    addNewItem(newItem);
-    addTolocalStorage(newItem);
-  });
-});
 
-$("input[name=newItem]").on("focus", () => {
-  $("input[name=newItem]").val("");
+    if (newItem.trim() !== "") {
+      if (checkifExists(newItem)) {
+        $("#errorMessageModal").show();
+        $("#retry").click(function() {
+          $("#errorMessageModal").hide();
+        });
+        $(".input-group").addClass("error");
+        setInterval(function() {
+          $(".input-group").removeClass("error");
+        }, 3000);
+      } else {
+        addNewItem(newItem);
+        addTolocalStorage(newItem);
+      }
+    }
+  });
+
+  $("input[name=newItem]").on("focus", function() {
+    $(this).val("");
+  });
+
+  $(document).on("keyup", "input[name=newItem]", function(event) {
+    if (event.keyCode == 13) {
+      $("#button-addon2").click();
+    }
+  });
+
+  $(document).on("dblclick", ".list-element", function() {
+    const valueItem = $(this).text();
+    const newValue = removeFinalLetter(valueItem);
+    $(this).html("");
+    $(event.target)
+      .children()
+      .remove();
+    const newTag = $('<div class="input-group list-input-group"></div>');
+    const input = $(
+      '<input type="text" name="inputItem" class="form-control inputValue" aria-description="replace" />'
+    );
+    input.val(newValue);
+    const replace_btn_holder = $('<div class="input-group-append"></div>');
+    const replace_btn = $(
+      '<button class="btn btn-outline-warning replace-btn" type="button">Replace</button>'
+    );
+    replace_btn_holder.append(replace_btn);
+    newTag.append(input);
+    newTag.append(replace_btn_holder);
+    $(this).append(newTag);
+
+    $(".replace-btn").click(function() {
+      const newVal = $("input[name=inputItem]").val();
+      const li = $(".list-input-group").parent(".list-element");
+      $(".list-input-group")
+        .parent()
+        .html(newVal);
+      const span = $(
+        '<span class="badge badge-danger badge-pill removeElement"></span>'
+      );
+      span.html("x");
+      li.append(span);
+      $(".list-input-group").remove();
+      updateLocalStorage(newValue, newVal);
+      values = [];
+    });
+  });
 });
 
 $(document).on("click", ".removeElement", function() {
@@ -25,35 +82,6 @@ $(document).on("click", ".removeElement", function() {
   $("#no").click(function() {
     $("#areyousure").hide();
   });
-});
-
-$(document).on("dblclick", ".list-element", function() {
-  const valueItem = $(this).text();
-  const newValue = removeFinalLetter(valueItem);
-  values.push(newValue);
-  const newTag = $('<div class="input-group list-input-group"></div>');
-  const input = $(
-    '<input type="text" name="inputItem" class="form-control inputValue" aria-description="replace" />'
-  );
-  input.val(newValue);
-  const replace_btn_holder = $('<div class="input-group-append"></div>');
-  const replace_btn = $(
-    '<button class="btn btn-outline-warning replace-btn" type="button">Replace</button>'
-  );
-  replace_btn_holder.append(replace_btn);
-  newTag.append(input);
-  newTag.append(replace_btn_holder);
-  $(this).replaceWith(newTag);
-});
-
-$(document).on("click", ".replace-btn", function() {
-  const newVal = $("input[name=inputItem]").val();
-  const oldVal = values[0];
-  console.log(newVal);
-  console.log(oldVal);
-  $(".list-input-group").replaceWith(replaceValue(newVal));
-  updateLocalStorage(oldVal, newVal);
-  values = [];
 });
 
 function replaceValue(value) {
@@ -82,14 +110,33 @@ function getFromLocalStorage() {
 
 function updateLocalStorage(oldVal, newVal) {
   let items = getFromLocalStorage();
-  for (let i = 0; i < items.length; i++) {
-    if (oldVal === items[i]) {
-      items[i] = newVal;
+  const newItems = [];
+  // for (let i = 0; i < items.length; i++) {
+  //   if (oldVal === items[i]) {
+  //     items[i] = newVal;
+  //   }
+  // }
+  items.forEach(item => {
+    if (item === oldVal) {
+      item = newVal;
     }
-  }
-  localStorage.setItem("items", JSON.stringify(items));
+    newItems.push(item);
+  });
+  console.log(newItems);
+  localStorage.setItem("items", JSON.stringify(newItems));
 }
+function checkifExists(item) {
+  const items = getFromLocalStorage();
+  if (items.length === 0) {
+    return false;
+  }
 
+  items.forEach(el => {
+    if (el.toLowerCase() === item.toLowerCase()) {
+      return true;
+    }
+  });
+}
 function addTolocalStorage(item) {
   const items = getFromLocalStorage();
   items.push(item);
@@ -98,9 +145,9 @@ function addTolocalStorage(item) {
 
 function populateList() {
   const items = getFromLocalStorage();
-  for (let item of items) {
+  items.forEach(item => {
     addNewItem(item);
-  }
+  });
 }
 
 function addNewItem(item) {

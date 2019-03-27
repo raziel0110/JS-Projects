@@ -70,9 +70,13 @@ input[name="newItem"]:focus {
   margin: 2% auto;
 }
 
+.answerQuestion > h3 {
+  text-align: center;
+}
+
 .dialog {
   width: 100%;
-  margin-top: 10%;
+  margin-top: 5%;
   display: flex;
   justify-content: space-around;
 }
@@ -80,8 +84,52 @@ input[name="newItem"]:focus {
 .no {
   width: 100%;
   display: flex;
+  justify-content: space-around;
 }
 .choiseBtn {
   margin: 0 auto;
   width: 70%;
+}
+.error {
+  border: 1px solid rgba(230, 73, 73, 0.26);
+}
+
+.errorMessageModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 0.5em;
+  display: none;
+}
+
+.errorMessageBox {
+  /* display: flex;
+  flex-direction: column; */
+  width: 40%;
+  height: 10%;
+  margin: 40% auto;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+}
+
+.textMessage > h3 {
+  font-size: 2em;
+  text-align: center;
+  margin: 2%;
+}
+
+.textMessage {
+  width: 100%;
+  height: 40%;
+  border: 1px solid white;
+  margin-top: 5px;
+}
+
+.textMessageBtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
