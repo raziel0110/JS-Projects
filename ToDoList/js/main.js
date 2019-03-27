@@ -2,7 +2,7 @@ $(document).ready(function() {
   populateList();
   $("#button-addon2").click(function() {
     const newItem = $("#newItem").val();
-
+    
     if (newItem.trim() !== "") {
       if (checkifExists(newItem)) {
         $("#errorMessageModal").show();
@@ -12,11 +12,13 @@ $(document).ready(function() {
         $(".input-group").addClass("error");
         setInterval(function() {
           $(".input-group").removeClass("error");
-        }, 3000);
-      } else {
+        }, 3000);;
+      }else {
         addNewItem(newItem);
         addTolocalStorage(newItem);
-      }
+      
+     
+      } 
     }
   });
 
@@ -111,11 +113,6 @@ function getFromLocalStorage() {
 function updateLocalStorage(oldVal, newVal) {
   let items = getFromLocalStorage();
   const newItems = [];
-  // for (let i = 0; i < items.length; i++) {
-  //   if (oldVal === items[i]) {
-  //     items[i] = newVal;
-  //   }
-  // }
   items.forEach(item => {
     if (item === oldVal) {
       item = newVal;
@@ -125,17 +122,23 @@ function updateLocalStorage(oldVal, newVal) {
   console.log(newItems);
   localStorage.setItem("items", JSON.stringify(newItems));
 }
-function checkifExists(item) {
+function checkIfIsEmpty(){
   const items = getFromLocalStorage();
-  if (items.length === 0) {
+  if(items.length == 0){
+    return true;
+  } else {
     return false;
   }
+}
 
-  items.forEach(el => {
-    if (el.toLowerCase() === item.toLowerCase()) {
-      return true;
-    }
-  });
+function checkifExists(val) {
+  const items = getFromLocalStorage();
+  let eq = function(el){
+    return el === val;
+  }
+
+  return items.some(eq);
+
 }
 function addTolocalStorage(item) {
   const items = getFromLocalStorage();
