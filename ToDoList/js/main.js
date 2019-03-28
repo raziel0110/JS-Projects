@@ -2,7 +2,7 @@ $(document).ready(function() {
   populateList();
   $("#button-addon2").click(function() {
     const newItem = $("#newItem").val();
-    
+
     if (newItem.trim() !== "") {
       if (checkifExists(newItem)) {
         $("#errorMessageModal").show();
@@ -12,13 +12,11 @@ $(document).ready(function() {
         $(".input-group").addClass("error");
         setInterval(function() {
           $(".input-group").removeClass("error");
-        }, 3000);;
-      }else {
+        }, 3000);
+      } else {
         addNewItem(newItem);
         addTolocalStorage(newItem);
-      
-     
-      } 
+      }
     }
   });
 
@@ -55,18 +53,20 @@ $(document).ready(function() {
 
     $(".replace-btn").click(function() {
       const newVal = $("input[name=inputItem]").val();
-      const li = $(".list-input-group").parent(".list-element");
-      $(".list-input-group")
-        .parent()
-        .html(newVal);
-      const span = $(
-        '<span class="badge badge-danger badge-pill removeElement"></span>'
-      );
-      span.html("x");
-      li.append(span);
-      $(".list-input-group").remove();
-      updateLocalStorage(newValue, newVal);
-      values = [];
+      if (newValue !== newVal) {
+        const li = $(".list-input-group").parent(".list-element");
+
+        $(".list-input-group")
+          .parent()
+          .html(newVal);
+        const span = $(
+          '<span class="badge badge-danger badge-pill removeElement"></span>'
+        );
+        span.html("x");
+        li.append(span);
+        $(".list-input-group").remove();
+        updateLocalStorage(newValue, newVal);
+      }
     });
   });
 });
@@ -119,12 +119,11 @@ function updateLocalStorage(oldVal, newVal) {
     }
     newItems.push(item);
   });
-  console.log(newItems);
   localStorage.setItem("items", JSON.stringify(newItems));
 }
-function checkIfIsEmpty(){
+function checkIfIsEmpty() {
   const items = getFromLocalStorage();
-  if(items.length == 0){
+  if (items.length == 0) {
     return true;
   } else {
     return false;
@@ -133,12 +132,8 @@ function checkIfIsEmpty(){
 
 function checkifExists(val) {
   const items = getFromLocalStorage();
-  // let eq = function(el){
-  //   return el === val;
-  // }
 
   return items.some(itemVal => val === itemVal);
-
 }
 function addTolocalStorage(item) {
   const items = getFromLocalStorage();
@@ -167,17 +162,8 @@ function addNewItem(item) {
 }
 
 function removeFinalLetter(value) {
-  let string = "";
-  const arr = value.toString().split("");
-  arr.pop();
-  for (let i = 0; i < arr.length; i++) {
-    string += arr[i];
-  }
-  return string;
-  
-  // return value.substring(0,value.length);
+  return value.substring(0, value.length - 1);
 }
-
 function removeFromLocalStorage(item) {
   let items = getFromLocalStorage();
   for (let i = 0; i < items.length; i++) {
