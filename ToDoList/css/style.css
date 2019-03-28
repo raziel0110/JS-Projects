@@ -133,3 +133,19 @@ input[name="newItem"]:focus {
   display: flex;
   justify-content: center;
 }
+
+.users {
+  margin: 0;
+  padding: 0;
+  width: 40%;
+  float: right;
+}
+
+.users > p {
+  display: flex;
+  justify-content: right;
+}
+
+.users > p > span {
+  margin: 0 1em;
+}

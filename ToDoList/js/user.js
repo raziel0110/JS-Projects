@@ -10,11 +10,21 @@ User.prototype.addUserDB = function(user) {
   localStorage.setItem("users", JSON.stringify(users));
 };
 
-User.prototype.getUsersFormDB = function(user) {
+User.prototype.getUsersFormDB = function() {
   const userLS = localStorage.getItem("users");
   let users = [];
   if (userLS !== null) {
     users = JSON.parse(userLS);
   }
   return users;
+};
+
+User.prototype.updateUserFromDB = function(user) {
+  let users = this.getUsersFormDB();
+  users.forEach(element => {
+    if (element.name == user.name && element.pass == user.pass) {
+      element.isLogged = true;
+    }
+  });
+  localStorage.setItem("users", JSON.stringify(users));
 };

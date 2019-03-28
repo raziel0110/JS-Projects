@@ -12,7 +12,9 @@ function login() {
   const users = getAllUsers();
   if (username.trim() !== "" && password.trim() !== "") {
     if (existUser(username, password, users)) {
-      userLogged.isLogged = true;
+      userLogged.isLogged = false;
+      userLogged.updateUserFromDB(userLogged);
+      console.log(userLogged);
       window.location.href = "index.html";
     } else {
       console.log("user not found");

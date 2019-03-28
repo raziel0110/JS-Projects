@@ -1,5 +1,6 @@
 $(document).ready(function() {
   populateList();
+  findUserLogged();
   $("#button-addon2").click(function() {
     const newItem = $("#newItem").val();
 
@@ -99,7 +100,7 @@ function replaceValue(value) {
   $("#list-group").append(listElement);
 }
 
-function getFromLocalStorage() {
+function getItemsFromLocalStorage() {
   let items;
   const itemLs = localStorage.getItem("items");
   if (itemLs === null) {
@@ -111,7 +112,7 @@ function getFromLocalStorage() {
 }
 
 function updateLocalStorage(oldVal, newVal) {
-  let items = getFromLocalStorage();
+  let items = getItemsFromLocalStorage();
   const newItems = [];
   items.forEach(item => {
     if (item === oldVal) {
@@ -122,7 +123,7 @@ function updateLocalStorage(oldVal, newVal) {
   localStorage.setItem("items", JSON.stringify(newItems));
 }
 function checkIfIsEmpty() {
-  const items = getFromLocalStorage();
+  const items = getItemsFromLocalStorage();
   if (items.length == 0) {
     return true;
   } else {
@@ -131,18 +132,18 @@ function checkIfIsEmpty() {
 }
 
 function checkifExists(val) {
-  const items = getFromLocalStorage();
+  const items = getItemsFromLocalStorage();
 
   return items.some(itemVal => val === itemVal);
 }
 function addTolocalStorage(item) {
-  const items = getFromLocalStorage();
+  const items = getItemsFromLocalStorage();
   items.push(item);
   localStorage.setItem("items", JSON.stringify(items));
 }
 
 function populateList() {
-  const items = getFromLocalStorage();
+  const items = getItemsFromLocalStorage();
   items.forEach(item => {
     addNewItem(item);
   });
@@ -165,11 +166,17 @@ function removeFinalLetter(value) {
   return value.substring(0, value.length - 1);
 }
 function removeFromLocalStorage(item) {
-  let items = getFromLocalStorage();
+  let items = getItemsFromLocalStorage();
   for (let i = 0; i < items.length; i++) {
     if (item === items[i]) {
       items.splice(i, 1);
     }
   }
   localStorage.setItem("items", JSON.stringify(items));
+}
+
+function findUserLogged() {
+  const users = getFromLocalStorage("users");
+  // return users.filter(user => user.isLogged === true);
+  console.log(users);
 }
