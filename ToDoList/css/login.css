@@ -46,3 +46,9 @@ form {
   box-shadow: 0 5px 7px 0 rgba(102, 102, 102, 0.5),
     0 10px 20px 0 rgba(0, 0, 0, 0.17);
 }
+
+.submitButton > p {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
