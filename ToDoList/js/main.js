@@ -1,11 +1,13 @@
 let user = isUserLoggedIn();
-console.log(user);
 $(document).ready(function() {
   populateList();
   console.log(user);
   if (user[0].isLogged === true) {
     $("#username").text("Username: " + user[0].name);
     console.log(user[0].isLogged);
+  } else {
+    user = [];
+    $("#username").text("");
   }
   $("#button-addon2").click(function() {
     const newItem = $("#newItem").val();
@@ -31,9 +33,16 @@ $(document).ready(function() {
     $(this).val("");
   });
 
-  $(document).on("click", "#logout", function() {
+  $(document).on("click", "#logout", function(e) {
+    e.preventDefault();
     updateUserState(user[0]);
-    window.location.href = "login.html";
+    $("#logout").css("display", "none");
+    $("#login").css("display", "block");
+    $("#username").text("");
+  });
+
+  $(document).on("click", "#login", function(e) {
+    window.location.replace("login.html");
   });
 
   $(document).on("keyup", "input[name=newItem]", function(event) {
@@ -87,10 +96,10 @@ $(document).on("click", ".removeElement", function() {
   $("#areyousure").show("fast");
   const that = $(this);
   $("#yes").click(function() {
-    const valueItem = that.parent().text();
+    const valueItem = that.parents(".list-element").text();
     const newValue = removeFinalLetter(valueItem);
     removeFromLocalStorage(newValue);
-    that.parent().remove();
+    that.parents(".list-element").remove();
     $("#areyousure").hide();
   });
   $("#no").click(function() {
@@ -111,19 +120,8 @@ function replaceValue(value) {
   $("#list-group").append(listElement);
 }
 
-function getItemsFromLocalStorage() {
-  let items;
-  const itemLs = localStorage.getItem("items");
-  if (itemLs === null) {
-    items = [];
-  } else {
-    items = JSON.parse(itemLs);
-  }
-  return items;
-}
-
 function updateLocalStorage(oldVal, newVal) {
-  let items = getItemsFromLocalStorage();
+  let items = getFromLocalStorage("items");
   const newItems = [];
   items.forEach(item => {
     if (item === oldVal) {
@@ -134,7 +132,7 @@ function updateLocalStorage(oldVal, newVal) {
   localStorage.setItem("items", JSON.stringify(newItems));
 }
 function checkIfIsEmpty() {
-  const items = getItemsFromLocalStorage();
+  const items = getFromLocalStorage("items");
   if (items.length == 0) {
     return true;
   } else {
@@ -142,19 +140,14 @@ function checkIfIsEmpty() {
   }
 }
 
-function checkifExists(val) {
-  const items = getItemsFromLocalStorage();
-
-  return items.some(itemVal => val === itemVal);
-}
 function addTolocalStorage(item) {
-  const items = getItemsFromLocalStorage();
+  const items = getFromLocalStorage("items");
   items.push(item);
   localStorage.setItem("items", JSON.stringify(items));
 }
 
 function populateList() {
-  const items = getItemsFromLocalStorage();
+  const items = getFromLocalStorage("items");
   items.forEach(item => {
     addNewItem(item);
   });
@@ -172,12 +165,11 @@ function addNewItem(item) {
   listElement.append(span);
   $("#list-group").append(listElement);
 }
-
 function removeFinalLetter(value) {
   return value.substring(0, value.length - 1);
 }
 function removeFromLocalStorage(item) {
-  let items = getItemsFromLocalStorage();
+  let items = getFromLocalStorage("items");
   for (let i = 0; i < items.length; i++) {
     if (item === items[i]) {
       items.splice(i, 1);

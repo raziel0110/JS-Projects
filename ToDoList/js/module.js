@@ -26,3 +26,12 @@ function updateUserState(user) {
   });
   localStorage.setItem("users", JSON.stringify(users));
 }
+
+function checkifExists(val) {
+  const items = getFromLocalStorage("items");
+  return items.some(itemVal => val === itemVal);
+}
+
+function checkIfUserExist(user, list) {
+  return list.some(listItem => user === listItem.name);
+}

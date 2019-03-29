@@ -145,6 +145,7 @@ input[name="newItem"]:focus {
   text-align: center;
   margin-right: 3em;
   font-size: 10px;
+  display: flex;
 }
 
 .users > p > span {
@@ -164,4 +165,13 @@ input[name="newItem"]:focus {
   color: #c6c6af;
   border: none;
   background-color: white;
+}
+#login {
+  position: relative;
+  top: 0;
+  right: -50px;
+  color: #c6c6af;
+  border: none;
+  background-color: white;
+  display: none;
 }

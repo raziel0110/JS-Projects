@@ -185,3 +185,6 @@ body {
 .newGame {
   margin: 0 auto;
 }
+#login {
+  display: none;
+}
