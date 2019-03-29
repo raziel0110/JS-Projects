@@ -12,12 +12,16 @@ function login() {
   const users = getAllUsers();
   if (username.trim() !== "" && password.trim() !== "") {
     if (existUser(username, password, users)) {
-      userLogged.isLogged = false;
+      userLogged.isLogged = true;
       userLogged.updateUserFromDB(userLogged);
       console.log(userLogged);
       window.location.href = "index.html";
     } else {
       console.log("user not found");
+      $(".error").css("visibility", "visible");
+      setInterval(function() {
+        $(".error").css("visibility", "hidden");
+      }, 5000);
     }
   }
 }

@@ -1,6 +1,12 @@
+let user = isUserLoggedIn();
+console.log(user);
 $(document).ready(function() {
   populateList();
-  findUserLogged();
+  console.log(user);
+  if (user[0].isLogged === true) {
+    $("#username").text("Username: " + user[0].name);
+    console.log(user[0].isLogged);
+  }
   $("#button-addon2").click(function() {
     const newItem = $("#newItem").val();
 
@@ -23,6 +29,11 @@ $(document).ready(function() {
 
   $("input[name=newItem]").on("focus", function() {
     $(this).val("");
+  });
+
+  $(document).on("click", "#logout", function() {
+    updateUserState(user[0]);
+    window.location.href = "login.html";
   });
 
   $(document).on("keyup", "input[name=newItem]", function(event) {
@@ -175,8 +186,7 @@ function removeFromLocalStorage(item) {
   localStorage.setItem("items", JSON.stringify(items));
 }
 
-function findUserLogged() {
+function isUserLoggedIn() {
   const users = getFromLocalStorage("users");
-  // return users.filter(user => user.isLogged === true);
-  console.log(users);
+  return users.filter(user => user.isLogged === true);
 }

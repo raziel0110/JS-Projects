@@ -136,16 +136,32 @@ input[name="newItem"]:focus {
 
 .users {
   margin: 0;
-  padding: 0;
+  padding: 10px;
   width: 40%;
   float: right;
 }
 
 .users > p {
-  display: flex;
-  justify-content: right;
+  text-align: center;
+  margin-right: 3em;
+  font-size: 10px;
 }
 
 .users > p > span {
-  margin: 0 1em;
+  margin: 0 10px;
+}
+.credentials {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 10px;
+  color: #c6c6af;
+}
+
+#username :after {
+  content: "/";
+  font-weight: bold;
+}
+#logout {
+  color: #c6c6af;
+  border: none;
+  background-color: white;
 }

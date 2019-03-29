@@ -34,7 +34,8 @@ form {
 
 .login {
   width: 70%;
-  margin: 5% auto;
+  height: 15%;
+  margin: 2% auto;
   text-align: center;
   padding: 1.5em;
   border-radius: 10%;
@@ -51,4 +52,16 @@ form {
   width: 50%;
   margin: 0 auto;
   text-align: center;
+}
+
+.error {
+  padding: 2%;
+  margin: 0;
+  background-color: rgba(234, 147, 147, 0.5);
+  color: red;
+  width: 70%;
+  height: 10%;
+  margin: 0 auto;
+  text-align: center;
+  visibility: hidden;
 }
