@@ -5,7 +5,7 @@ class BeerList {
 
   showBeerList() {
     return $.ajax("https://api.punkapi.com/v2/beers", {
-      methid: "GET",
+      method: "GET",
       succes: beers => {
         beers.forEach(beer => {
           const newBeer = new Beer();
@@ -15,7 +15,6 @@ class BeerList {
           newBeer.description = beer.description;
           newBeer.food_pairing = beer.food_pairing;
           newBeer.first_brewed = beer.first_brewed;
-
           this.beers.push(newBeer);
         });
       },
