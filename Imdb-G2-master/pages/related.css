@@ -1,0 +1,32 @@
+body {
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('http://backgroundcheckall.com/wp-content/uploads/2017/12/cinema-film-roll-background-14.jpg');
+    background-size: 33.3%;
+}
+.links {
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+    background-color:rgba(0, 0, 0, 0.9);
+    overflow: auto;
+    border-radius: 5px;
+}
+
+a {
+    color: white;
+}
+a:hover{
+    color: darkorange;
+}
+h1, h3 {
+    font-size: x-large;
+    font-style: oblique;
+    color: white;
+}
+p {
+    font-size: larger;
+    font-style: italic;
+    color: white;
+}
+

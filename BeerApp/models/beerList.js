@@ -9,7 +9,7 @@ class BeerList {
       succes: beers => {
         beers.forEach(beer => {
           const newBeer = new Beer();
-          newBeer.id = beer.id;
+          newBeer.id = beer._id;
           newBeer.name = beer.name;
           newBeer.image_url = beer.image_url;
           newBeer.description = beer.description;

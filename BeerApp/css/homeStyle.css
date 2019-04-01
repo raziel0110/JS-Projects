@@ -61,8 +61,31 @@
 
 .descriptions h3 {
   width: 70%;
-  margin: 2em auto;
+  margin: 1em auto;
   text-align: center;
   font-family: "Great Vibes", cursive;
   font-size: 2em;
+}
+
+.descriptions > p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2 em;
+  width: 80%;
+  margin: 2em auto;
+  line-height: 1.5em;
+}
+
+.show-more {
+  width: 15%;
+  height: 30px;
+  margin: 0 auto;
+  border: none;
+  background-image: linear-gradient(to left, #b59336, #e9c051);
+  border-color: 5px solid rgba(124, 108, 64, 0.5);
+  color: white;
+}
+
+.buttonWrapper {
+  display: flex;
+  width: 100%;
 }

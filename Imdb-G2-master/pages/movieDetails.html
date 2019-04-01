@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet", type="text/css" href="../css/detail.page-style.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/edit.modal-style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="../models/Movie.js"></script>
+    <script src="../models/MovieList.js"></script>
+    <script src="../views/movieDetails.js"></script>
+    <script src="../views/home.js"></script>
+    <title>Movie</title>
+</head>
+<body id="body" class="col-12">
+    <header id="header">
+        <nav id="nav">
+            <div id="homeLogo">
+                <a class="home" href="home.html"></a>
+            </div>
+        <div id="navAndSearch">
+            <div id="inlineNav">
+                <a href="about.html">About Us</a>
+                <a id="top-rated-movies" href="related.html">Related website</a>
+                <div id="log-reg">
+                    <a id="login-anch" href="login.html">Login</a>
+                    <a id="register-anch" href="register.html">Register</a>
+                </div>
+            </div>
+            <div id="nav-backgroud-div"></div>
+        </div>
+        </nav>
+    </header>
+    <section id="movie-details-container" class="col-xs-12 col-sm-11 col-md-9 col-lg-7">
+        <h4 id="movie-title-detPage"></h4>
+        <div id="poster-details-container">
+            <div id="movie-poster-container"></div>
+            <div id="details-buttons-container">
+                <div id="all-movie-details">
+                    <div class="div-container-for-parags-and-spans">
+                        <p class="det-parags">Year</p>
+                        <p id="year-span" class="det-spans"></p>
+                    </div>
+                    <div class="div-container-for-parags-and-spans">
+                        <p class="det-parags">Runtime</p>
+                        <p id="runtime-span" class="det-spans"></p>
+                    </div>
+                    <div class="div-container-for-parags-and-spans">
+                        <p class="det-parags">Genre</p>
+                        <p id="genre-span" class="det-spans"></p>
+                    </div>
+                    <div class="div-container-for-parags-and-spans">
+                        <p class="det-parags">Language</p>
+                        <p id="language-span" class="det-spans"></p>
+                    </div>
+                    <div class="div-container-for-parags-and-spans">
+                        <p class="det-parags">Country</p>
+                        <p id="country-span" class="det-spans"></p>
+                    </div>
+                    <div class="div-container-for-parags-and-spans">
+                        <p class="det-parags">imdb Rating</p>
+                        <p id="imdbRating-span" class="det-spans"></p>
+                    </div>
+                    <div class="div-container-for-parags-and-spans">
+                        <p class="det-parags">imdb Votes</p>
+                        <p id="imdbVotes-span" class="det-spans"></p>
+                    </div>
+                    <div class="div-container-for-parags-and-spans">
+                        <p class="det-parags">imdb ID</p>
+                        <p id="imdbId-span" class="det-spans"></p>
+                    </div>
+                    <div class="div-container-for-parags-and-spans">
+                        <p class="det-parags">Type</p>
+                        <p id="type-span" class="det-spans"></p>
+                    </div>
+                </div>
+                <div id="buttons-container"></div>
+            </div>
+        </div>
+    </section>
+    <section id="edit-modal-container">
+        <div id="close-container">
+            <span id="close-modal">Close X</span>
+        </div>
+        <form id="edit-modal" class="modal-content">
+            <p id="edit-modal-title">Edit movie details</p>
+            <input type="hidden" placeholder="id" title="movie-id" value="" id="movie-id">
+            <p>Title <input type="text" placeholder="Title" pattern="[a-z]" title="movie-title" value="" id="movie-title"></p>
+            <p>Year <input type="number" placeholder="Year" title="year" value="" id="movie-year"></p>
+            <p>Runtime <input type="text" placeholder="Runtime" title="runtime" value="" id="movie-runtime"></p>
+            <p>Genre <input type="text" placeholder="Genre" title="genre" value="" id="movie-genre"></p>
+            <p>Language <input type="text" placeholder="Language" title="language" value="" id="movie-language"></p>
+            <p>Country <input type="text" placeholder="Country" title="country" value="" id="movie-country"></p>
+            <p>Poster <input type="url" placeholder="Poster(image url adress)" title="poster" value="" id="movie-poster"></p>
+            <p>imdb Rating <input type="number" placeholder="imdb Rating" title="imdb-rating" value="" id="movie-imdb-rating"></p>
+            <p>imdb Votes <input type="text" placeholder="imdb Votes" title="imdb-votes" value="" id="movie-imdb-votes"></p>
+            <p>imdb ID <input type="text" placeholder="imdb ID" title="imdb-id" value="" id="movie-imdb-id"></p>
+            <p>Type <input type="text" placeholder="Type" title="type" value="" id="movie-type"></p>
+            <input type="submit" value="save changes" id="updateChanges">
+        </form>
+    </section>
+    <footer class="footer">
+        <div class="copyright">©Wild Turkeys Team
+            <a href="https://www.facebook.com/">
+                <img src="http://nataliamalova.com/bitrix/templates/books/images/facebook-xxl.png" class="facebook"></a>
+            <a href="https://twitter.com/twitter">
+                <img src="http://www.jackmazzoni.com/wp-content/uploads/1418895483_social-003_twitter.png" class="twitter"></a>
+        </div> 
+    </footer>
+</body>
+</html>

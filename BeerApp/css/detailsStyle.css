@@ -1,0 +1,31 @@
+.container {
+  margin: 0;
+  padding: 0;
+}
+.wrapHeader {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+}
+.head-photo {
+  margin-left: 5%;
+  width: 30%;
+  height: auto;
+}
+.headLogo {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.headLogo h3 {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-family: "Great Vibes", cursive;
+  font-size: 5em;
+  text-align: center;
+  vertical-align: middle;
+  align-self: center;
+}

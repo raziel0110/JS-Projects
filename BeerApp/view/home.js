@@ -18,4 +18,9 @@ const ulList = document.getElementById("list");
 const beerList = new BeerList();
 beerList.loadBeerList().then(function(data) {
   showBeers(data);
+
+  $(".show-more").click(function() {
+    const id = $(this).attr("data-id");
+    window.location.href = "../pages/beerDetails.html?beerId=" + id;
+  });
 });
