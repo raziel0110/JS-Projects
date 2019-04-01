@@ -3,7 +3,7 @@ class BeerList {
     this.beers = [];
   }
 
-  showBeerList() {
+  loadBeerList() {
     return $.ajax("https://api.punkapi.com/v2/beers", {
       method: "GET",
       succes: beers => {

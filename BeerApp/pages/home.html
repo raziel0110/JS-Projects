@@ -4,10 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Great+Vibes"
+      rel="stylesheet"
+    />
+    <link href="../css/homeStyle.css" rel="stylesheet" />
     <title>Beers</title>
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="wrapHeader">
+        <div class="head-photo">
+          <img src="../assets/img/stella.jpeg" alt="logo" />
+        </div>
+        <div class="headLogo">
+          <h3><q>She is a thing of beauty</q></h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="beer-list" id="beersList">
+      <ul class="list" id="list"></ul>
+    </div>
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.js"
@@ -16,6 +34,7 @@
     ></script>
     <script src="../models/beer.js"></script>
     <script src="../models/beerList.js"></script>
+    <script src="../view/ui.js"></script>
     <script src="../view/home.js"></script>
   </body>
 </html>

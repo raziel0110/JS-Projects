@@ -1,20 +1,21 @@
-const beerList = new BeerList();
-beerList.showBeerList().then(function(data) {
-  data.forEach(element => {
-    console.log(element.id);
-    console.log(element.name);
-    console.log(element.first_brewed);
-    console.log(element.description);
-    console.log("=====================================");
-  });
-});
-
-// const beers = fetch("https://api.punkapi.com/v2/beers?page=1&per_page=80")
-//   .then(function(response) {
-//     return response.json();
-//   })
-//   .then(data => {
-//     data.forEach(element => {
-//       console.log(element);
+// async function getBeer() {
+//   try {
+//     const resp = await fetch("https://api.punkapi.com/v2/beers");
+//     return new Promise((resolve, reject) => {
+//       resolve(resp.json());
 //     });
-//   });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+// const beers = getBeer().then(data => {
+//   console.log(data);
+// });
+const beersList = document.getElementById("beersList");
+const ulList = document.getElementById("list");
+
+const beerList = new BeerList();
+beerList.loadBeerList().then(function(data) {
+  showBeers(data);
+});
