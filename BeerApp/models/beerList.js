@@ -15,6 +15,8 @@ class BeerList {
           newBeer.description = beer.description;
           newBeer.food_pairing = beer.food_pairing;
           newBeer.first_brewed = beer.first_brewed;
+          newBeer.brewers_tips = beer.brewers_tips;
+          newBeer.ingredients = beer.ingredients;
           this.beers.push(newBeer);
         });
       },

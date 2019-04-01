@@ -29,3 +29,29 @@ function showBeers(elements) {
     ul.appendChild(li);
   });
 }
+
+function displayBeerDetails(data) {
+  const image = document.getElementById("image-wrapper");
+  const beer_desc = document.getElementById("beer-description");
+
+  const img = document.createElement("img");
+  img.setAttribute("href", data[0].image_url);
+  image.appendChild(img);
+
+  const name = document.createElement("p");
+  name.setAttribute("id", "beer-name");
+  name.innerHTML = data[0].name;
+  beer_desc.appendChild(name);
+  const ingredients = document.createElement("div");
+  ingredients.setAttribute("class", "ingredients");
+  const ingredients_hops = document.createElement("ul");
+  ingredients_hops.setAttribute("class", "ingredients-ul");
+
+  data[0].ingredients.hops.forEach(ingredient => {
+    console.log(ingredient.name);
+    const ingredientTag = document.createElement("li");
+    ingredientTag.innerHTML = ingredient.name;
+    ingredients.appendChild(ingredientTag);
+  });
+  beer_desc.appendChild(ingredients);
+}
