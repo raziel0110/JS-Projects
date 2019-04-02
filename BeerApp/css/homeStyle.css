@@ -86,6 +86,7 @@
 }
 
 .buttonWrapper {
+  padding: 10px;
   display: flex;
   width: 100%;
 }

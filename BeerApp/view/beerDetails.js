@@ -8,9 +8,7 @@ function getUrlParameter(name) {
 }
 
 const current_id = getUrlParameter("beerId");
-console.log(current_id);
 const current_beer = new Beer();
 current_beer.beerFetchData(current_id).then(data => {
-  console.log(data);
   displayBeerDetails(data);
 });
