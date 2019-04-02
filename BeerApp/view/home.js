@@ -14,7 +14,7 @@
 // });
 const beersList = document.getElementById("beersList");
 const ulList = document.getElementById("list");
-
+const search = new Search();
 const beerList = new BeerList();
 let currentPage = 1;
 console.log(currentPage);
@@ -23,6 +23,24 @@ beerList.loadBeerList(currentPage).then(function(data) {
   $(".show-more").click(function() {
     goTo(this);
   });
+});
+$(document).on("click", "#search-btn", function() {
+  const input = document.getElementById("searchName").value;
+  console.log(input);
+  if (input !== "") {
+    search.searchBeer(input).then(beers => {
+      console.log(beers);
+      removeContainerListBeer();
+      if (beers === null) {
+        console.log("no beer");
+      } else {
+        showBeers(beers);
+        $(".show-more").click(function() {
+          goTo(this);
+        });
+      }
+    });
+  }
 });
 const pagination = document.createElement("div");
 pagination.setAttribute("class", "pagination");

@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
       href="https://fonts.googleapis.com/css?family=Great+Vibes"
       rel="stylesheet"
     />
@@ -22,8 +28,31 @@
         </div>
       </div>
     </div>
-
+    <br />
     <div class="beer-list" id="beersList">
+      <div class="search">
+        <form>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="search-btn"
+              >
+                Search
+              </button>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              aria-label="Example text with button addon"
+              aria-describedby="button-addon1"
+              id="searchName"
+            />
+          </div>
+        </form>
+      </div>
       <div class="list" id="list"></div>
     </div>
 
@@ -34,6 +63,7 @@
     ></script>
     <script src="../models/beer.js"></script>
     <script src="../models/beerList.js"></script>
+    <script src="../models/search.js"></script>
     <script src="../view/ui.js"></script>
     <script src="../view/home.js"></script>
   </body>

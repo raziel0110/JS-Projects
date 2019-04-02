@@ -113,3 +113,9 @@ function updateBeerList(currentPage) {
     });
   });
 }
+
+// function searchBear(name) {
+//   search.searchBeer(name).then(items => {
+//     console.log(items);
+//   });
+// }
