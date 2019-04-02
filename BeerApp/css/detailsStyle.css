@@ -105,8 +105,25 @@
   font-family: "Indie Flower", cursive;
   font-size: 1em;
   font-weight: 600;
+  padding: 10px;
 }
 
 .food-pairing ul li:nth-child(odd) {
   background-color: #eee;
+}
+
+.back {
+  width: 100%;
+  display: flex;
+  margin: 2em auto;
+}
+
+.back-btn {
+  width: 15%;
+  height: 30px;
+  margin: 0 auto;
+  border: none;
+  background-image: linear-gradient(to left, #b59336, #e9c051);
+  border-color: 5px solid rgba(124, 108, 64, 0.5);
+  color: white;
 }

@@ -90,3 +90,29 @@
   display: flex;
   width: 100%;
 }
+
+.pagination {
+  width: 40%;
+  margin: 2em auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#next-btn {
+  width: 15%;
+  height: 30px;
+  margin: 0 auto;
+  border: none;
+  background-image: linear-gradient(to left, #b59336, #e9c051);
+  border-color: 5px solid rgba(124, 108, 64, 0.5);
+  color: white;
+}
+#prev-btn {
+  width: 15%;
+  height: 30px;
+  margin: 0 auto;
+  border: none;
+  background-image: linear-gradient(to left, #b59336, #e9c051);
+  border-color: 5px solid rgba(124, 108, 64, 0.5);
+  color: white;
+}

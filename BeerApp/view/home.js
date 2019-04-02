@@ -20,14 +20,12 @@ let currentPage = 1;
 console.log(currentPage);
 beerList.loadBeerList(currentPage).then(function(data) {
   showBeers(data);
-
   $(".show-more").click(function() {
-    // const id = $(this).attr("data-id");
-    // window.location.href = "../pages/beerDetails.html?beerId=" + id;
     goTo(this);
   });
 });
 const pagination = document.createElement("div");
+pagination.setAttribute("class", "pagination");
 const next = document.createElement("button");
 next.setAttribute("id", "next-btn");
 next.innerHTML = "Next Page";
@@ -39,7 +37,11 @@ pagination.appendChild(next);
 beersList.appendChild(pagination);
 
 $(document).on("click", "#next-btn", function() {
-  currentPage++;
+  if (currentPage > 12) {
+    currentPage = 13;
+  } else {
+    currentPage++;
+  }
   console.log(currentPage);
   beerList.loadBeerList(currentPage).then(function(data) {
     if (data === []) {
