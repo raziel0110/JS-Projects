@@ -12,11 +12,14 @@
 // const beers = getBeer().then(data => {
 //   console.log(data);
 // });
+let mainUrl = "";
+let currentPage = 1;
+
 const beersList = document.getElementById("beersList");
 const ulList = document.getElementById("list");
 const search = new Search();
 const beerList = new BeerList();
-let currentPage = 1;
+
 console.log(currentPage);
 beerList.loadBeerList(currentPage).then(function(data) {
   showBeers(data);
@@ -59,6 +62,8 @@ $(document).on("click", "#next-btn", function() {
     currentPage = 13;
   } else {
     currentPage++;
+    url = "page" + currentPage + ".html";
+    history.pushState(mainUrl, "random", url);
   }
   console.log(currentPage);
   beerList.loadBeerList(currentPage).then(function(data) {
@@ -79,6 +84,8 @@ $(document).on("click", "#prev-btn", function() {
     currentPage = 1;
   } else {
     currentPage--;
+    url = "page" + currentPage + ".html";
+    history.pushState(mainUrl, "random", url);
   }
   updateBeerList(currentPage);
 });

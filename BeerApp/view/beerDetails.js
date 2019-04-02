@@ -8,6 +8,9 @@ function getUrlParameter(name) {
 }
 
 const current_id = getUrlParameter("beerId");
+console.log(history.state);
+history.pushState("page", "random", "/page8.html/beerDetails=" + current_id);
+
 const current_beer = new Beer();
 current_beer.beerFetchData(current_id).then(data => {
   displayBeerDetails(data);
@@ -22,6 +25,6 @@ $(document).on("click", ".back-btn", function() {
     page = Math.ceil(current_id / 25);
   }
 
-  window.location.href = "../pages/home.html";
+  history.go(-1);
   // updateBeerList(page);
 });
