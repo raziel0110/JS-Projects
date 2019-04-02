@@ -1,6 +1,8 @@
 function showBeers(elements) {
+  const div_ul = document.getElementById("list");
+  const ul = document.createElement("ul");
+  ul.setAttribute("id", "list_beer");
   elements.forEach(element => {
-    const ul = document.getElementById("list");
     const li = document.createElement("li");
     const imgWrapper = document.createElement("div");
     const img = document.createElement("img");
@@ -28,6 +30,7 @@ function showBeers(elements) {
     li.appendChild(descWrapper);
     ul.appendChild(li);
   });
+  div_ul.appendChild(ul);
 }
 
 function displayBeerDetails(data) {
@@ -60,8 +63,11 @@ function displayBeerDetails(data) {
     ingredientTag.innerHTML = element.name;
     ingredients_malts.appendChild(ingredientTag);
   });
-  ingredients.appendChild(ingredients_hops);
-  ingredients.appendChild(ingredients_malts);
+  const ul_container = document.createElement("div");
+  ul_container.setAttribute("class", "ingredients-container");
+  ul_container.appendChild(ingredients_hops);
+  ul_container.appendChild(ingredients_malts);
+  ingredients.appendChild(ul_container);
   const desc = document.createElement("div");
   desc.setAttribute("class", "description");
   const h3_desc = document.createElement("h3");
@@ -85,4 +91,25 @@ function displayBeerDetails(data) {
   beer_desc.appendChild(ingredients);
   beer_desc.appendChild(desc);
   beer_desc.appendChild(food_pairing);
+}
+
+function removeContainerListBeer() {
+  const list_container = document.getElementById("list");
+  const list_beer = document.getElementById("list_beer");
+  list_container.removeChild(list_beer);
+}
+
+function goTo(el) {
+  const id = $(el).attr("data-id");
+  window.location.href = "../pages/beerDetails.html?beerId=" + id;
+}
+
+function updateBeerList(currentPage) {
+  beerList.loadBeerList(currentPage).then(function(data) {
+    removeContainerListBeer();
+    showBeers(data);
+    $(".show-more").click(function() {
+      goTo(this);
+    });
+  });
 }

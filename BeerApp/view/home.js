@@ -16,11 +16,49 @@ const beersList = document.getElementById("beersList");
 const ulList = document.getElementById("list");
 
 const beerList = new BeerList();
-beerList.loadBeerList().then(function(data) {
+let currentPage = 1;
+console.log(currentPage);
+beerList.loadBeerList(currentPage).then(function(data) {
   showBeers(data);
 
   $(".show-more").click(function() {
-    const id = $(this).attr("data-id");
-    window.location.href = "../pages/beerDetails.html?beerId=" + id;
+    // const id = $(this).attr("data-id");
+    // window.location.href = "../pages/beerDetails.html?beerId=" + id;
+    goTo(this);
   });
+});
+const pagination = document.createElement("div");
+const next = document.createElement("button");
+next.setAttribute("id", "next-btn");
+next.innerHTML = "Next Page";
+const prev = document.createElement("button");
+prev.setAttribute("id", "prev-btn");
+prev.innerHTML = "Prev Page";
+pagination.appendChild(prev);
+pagination.appendChild(next);
+beersList.appendChild(pagination);
+
+$(document).on("click", "#next-btn", function() {
+  currentPage++;
+  console.log(currentPage);
+  beerList.loadBeerList(currentPage).then(function(data) {
+    if (data === []) {
+      currentPage = currentPage - 1;
+    }
+    console.log(data);
+    removeContainerListBeer();
+    showBeers(data);
+    $(".show-more").click(function() {
+      goTo(this);
+    });
+  });
+});
+
+$(document).on("click", "#prev-btn", function() {
+  if (currentPage < 2) {
+    currentPage = 1;
+  } else {
+    currentPage--;
+  }
+  updateBeerList(currentPage);
 });
