@@ -12,9 +12,14 @@
 // const beers = getBeer().then(data => {
 //   console.log(data);
 // });
-let mainUrl = "";
+let url = "http://127.0.0.1:5500/pages/home.html#";
+window.location.replace(url);
 let currentPage = 1;
-
+history.replaceState(
+  { page: currentPage },
+  "",
+  url + "/page" + currentPage + ".html"
+);
 const beersList = document.getElementById("beersList");
 const ulList = document.getElementById("list");
 const search = new Search();
@@ -23,7 +28,8 @@ const beerList = new BeerList();
 console.log(currentPage);
 beerList.loadBeerList(currentPage).then(function(data) {
   showBeers(data);
-  $(".show-more").click(function() {
+  $(".show-more").click(function(e) {
+    e.preventDefault();
     goTo(this);
   });
 });
@@ -57,26 +63,20 @@ pagination.appendChild(prev);
 pagination.appendChild(next);
 beersList.appendChild(pagination);
 
-$(document).on("click", "#next-btn", function() {
+$(document).on("click", "#next-btn", function(e) {
+  e.preventDefault();
   if (currentPage > 12) {
     currentPage = 13;
   } else {
     currentPage++;
-    url = "page" + currentPage + ".html";
-    history.pushState(mainUrl, "random", url);
+    history.pushState(
+      { page: currentPage },
+      "random",
+      url + "/page" + currentPage + ".html"
+    );
   }
-  console.log(currentPage);
-  beerList.loadBeerList(currentPage).then(function(data) {
-    if (data === []) {
-      currentPage = currentPage - 1;
-    }
-    console.log(data);
-    removeContainerListBeer();
-    showBeers(data);
-    $(".show-more").click(function() {
-      goTo(this);
-    });
-  });
+  console.log(history.state);
+  displayPage(beerList, currentPage);
 });
 
 $(document).on("click", "#prev-btn", function() {
@@ -84,8 +84,20 @@ $(document).on("click", "#prev-btn", function() {
     currentPage = 1;
   } else {
     currentPage--;
-    url = "page" + currentPage + ".html";
-    history.pushState(mainUrl, "random", url);
+    history.pushState(
+      { page: currentPage },
+      "random",
+      url + "/page" + currentPage + ".html"
+    );
   }
-  updateBeerList(currentPage);
+  console.log(history.state);
+  displayPage(beerList, currentPage);
+});
+window.addEventListener("popstate", function(e) {
+  const page = e.state;
+  console.log(page);
+
+  if (page !== null) {
+    displayPage(beerList, parseInt(page.page));
+  }
 });

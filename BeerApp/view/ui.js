@@ -114,8 +114,25 @@ function updateBeerList(currentPage) {
   });
 }
 
-// function searchBear(name) {
-//   search.searchBeer(name).then(items => {
-//     console.log(items);
-//   });
-// }
+function displayPage(obj, page) {
+  obj.loadBeerList(page).then(function(data) {
+    if (data === []) {
+      currentPage = currentPage - 1;
+    }
+    removeContainerListBeer();
+    showBeers(data);
+    $(".show-more").click(function() {
+      goTo(this);
+    });
+  });
+}
+
+function whatPageIs(id) {
+  let page;
+  if (id <= 25) {
+    page = 1;
+  } else {
+    page = Math.ceil(id / 25);
+  }
+  return page;
+}
