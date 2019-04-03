@@ -136,3 +136,14 @@ function whatPageIs(id) {
   }
   return page;
 }
+
+function getPageNumber(url) {
+  const urlSplit = url.toString().split("#");
+  const page = urlSplit[1].split(".");
+  const page_number = page[0].split("").pop();
+  return page_number;
+}
+
+function getUrl() {
+  return window.location.href;
+}

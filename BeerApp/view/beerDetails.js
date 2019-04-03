@@ -18,10 +18,8 @@ current_beer.beerFetchData(current_id).then(data => {
 
   $(".back-btn").click(function(e) {
     e.preventDefault();
-
-    history.pushState({ page: page }, "random", "page" + page + ".html");
-    displayPage(beerList, page);
-    // updateBeerList(page);
+    window.location.href =
+      "http://127.0.0.1:5500/pages/home.html#/page" + page + ".html";
   });
 });
 

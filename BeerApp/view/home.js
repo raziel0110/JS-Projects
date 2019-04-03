@@ -12,14 +12,19 @@
 // const beers = getBeer().then(data => {
 //   console.log(data);
 // });
-let url = "http://127.0.0.1:5500/pages/home.html#";
-window.location.replace(url);
+
 let currentPage = 1;
-history.replaceState(
-  { page: currentPage },
-  "",
-  url + "/page" + currentPage + ".html"
-);
+let url = getUrl();
+if (getPageNumber(getUrl()) < 14) {
+  currentPage = getPageNumber(getUrl());
+  url = "http://127.0.0.1:5500/pages/home.html#/page" + currentPage + ".html";
+  history.replaceState({ page: currentPage }, "", url);
+} else {
+  currentPage = 1;
+  url = "http://127.0.0.1:5500/pages/home.html#/page" + currentPage + ".html";
+  history.replaceState({ page: currentPage }, "", url);
+}
+window.location.replace(url);
 const beersList = document.getElementById("beersList");
 const ulList = document.getElementById("list");
 const search = new Search();
