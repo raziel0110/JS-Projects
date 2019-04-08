@@ -9,6 +9,7 @@ function getUrlParameter(name) {
 
 const current_id = getUrlParameter("beerId");
 const page = whatPageIs(current_id);
+console.log(page);
 const beerList = new BeerList();
 
 const current_beer = new Beer();

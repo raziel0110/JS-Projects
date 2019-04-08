@@ -23,11 +23,29 @@ class Grid {
       let cols = rows[x].children;
       for (let y = 0; y < cols.length; y++) {
         el = cols[y];
-        console.log(el);
+
         const cell = new Cell(x, y, el);
         this.gridArray[x].push(cell);
       }
     }
-    console.log(this.gridArray);
+  }
+
+  retriveCell() {
+    let cell;
+    for (let x = 0; x < this.gridArray.length; x++) {
+      let rows = this.gridArray[x];
+      for (let y = 0; y < rows.length; y++) {
+        cell = rows[y];
+        return cell;
+      }
+    }
+  }
+
+  getCellValue(x, y) {
+    return this.gridArray[x][y].getValue();
+  }
+
+  setCellValue(x, y, value) {
+    return this.gridArray[x][y].setValue(value);
   }
 }

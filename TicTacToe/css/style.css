@@ -42,3 +42,11 @@
   font-size: 2em;
   color: rgba(193, 101, 40, 0.5);
 }
+
+.xClass {
+  content: "x";
+  font-family: "Courier New", Courier, monospace;
+  font-size: 5.5em;
+  text-align: center;
+  color: red;
+}

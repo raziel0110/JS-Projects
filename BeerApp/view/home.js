@@ -14,7 +14,10 @@
 // });
 
 let currentPage = 1;
+const baseUrl = "http://127.0.0.1:5500/pages/home.html#";
+location.replace(`${baseUrl}/page1.html`);
 let url = getUrl();
+console.log(url);
 if (getPageNumber(getUrl()) < 14) {
   currentPage = getPageNumber(getUrl());
   url = "http://127.0.0.1:5500/pages/home.html#/page" + currentPage + ".html";
@@ -77,7 +80,7 @@ $(document).on("click", "#next-btn", function(e) {
     history.pushState(
       { page: currentPage },
       "random",
-      url + "/page" + currentPage + ".html"
+      baseUrl + "/page" + currentPage + ".html"
     );
   }
   console.log(history.state);
@@ -92,7 +95,7 @@ $(document).on("click", "#prev-btn", function() {
     history.pushState(
       { page: currentPage },
       "random",
-      url + "/page" + currentPage + ".html"
+      baseUrl + "/page" + currentPage + ".html"
     );
   }
   console.log(history.state);

@@ -6,11 +6,11 @@ class Cell {
     this.value = "";
   }
 
-  getCellValue() {
+  getValue() {
     return this.value;
   }
 
-  setCellValue(value) {
+  setValue(value) {
     this.value = value;
   }
 }
