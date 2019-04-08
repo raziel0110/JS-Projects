@@ -26,4 +26,4 @@ function stopClock(interval) {
   clearInterval(interval);
 }
 
-export { setup, updateTime };
+// export { setup, updateTime };
