@@ -23,7 +23,8 @@ describe("setup function", () => {
   });
   it("time at begining", function() {
     let time = 1;
-    setup(time);
-    expect(setup(time)).toBe("01 : 00");
+    let s = setup(time);
+    console.log(s);
+    expect().toBe("01 : 00");
   });
 });
