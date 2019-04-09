@@ -5,6 +5,10 @@ const player2 = "O";
 let lastMove;
 let nextPlayer = player2;
 let currentPlayer;
+
+let playOneCheck = [];
+let playTwoCheck = [];
+
 function init() {
   currentPlayer = player1;
 }
@@ -28,6 +32,8 @@ function putValueCell() {
   for (let cell of cells) {
     const el = retriveElement(cell.x, cell.y);
     el.addEventListener("click", function() {
+      const coord_cell = cellCoords(cells);
+      console.log(coord_cell);
       const currentPlayer = changePlayer();
       if (cell.isLock === true) {
         return;
@@ -50,5 +56,7 @@ function putValueCell() {
     });
   }
 }
-
+function cellCoords(cell) {
+  coord = { x: cell.x, y: cell.y };
+}
 start();

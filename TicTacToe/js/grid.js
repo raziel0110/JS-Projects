@@ -39,7 +39,6 @@ class Grid {
         cells.push(cell);
       }
     }
-
     return cells;
   }
 
