@@ -4,6 +4,7 @@ class Cell {
     this.y = y;
     this.element = element;
     this.value = "";
+    this.isLock = false;
   }
 
   getValue() {

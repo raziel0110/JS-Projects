@@ -23,7 +23,6 @@ class Grid {
       let cols = rows[x].children;
       for (let y = 0; y < cols.length; y++) {
         el = cols[y];
-
         const cell = new Cell(x, y, el);
         this.gridArray[x].push(cell);
       }
@@ -31,14 +30,17 @@ class Grid {
   }
 
   retriveCell() {
-    let cell;
+    const cells = [];
+
     for (let x = 0; x < this.gridArray.length; x++) {
       let rows = this.gridArray[x];
       for (let y = 0; y < rows.length; y++) {
-        cell = rows[y];
-        return cell;
+        let cell = rows[y];
+        cells.push(cell);
       }
     }
+
+    return cells;
   }
 
   getCellValue(x, y) {
