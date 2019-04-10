@@ -1,5 +1,8 @@
 const grid = new Grid();
 let cells = grid.retriveCell();
+const win_message = document.getElementById("win-text");
+const modal = document.querySelector(".modal");
+const newBtn = document.getElementById("new-game");
 const player1 = "X";
 const player2 = "O";
 let lastMove;
@@ -43,7 +46,6 @@ function putValueCell() {
     const el = retriveElement(cell.x, cell.y);
     el.addEventListener("click", function() {
       const coord_cell = cellCoords(cell);
-      console.log(coord_cell);
       const currentPlayer = changePlayer();
       if (cell.isLock === true) {
         return;
@@ -65,9 +67,12 @@ function putValueCell() {
           lastMove = currentPlayer;
         }
         if (checkWin(playOneCheck) === true) {
-          console.log(`Player One win!`);
+          console.log(checkWin(playOneCheck));
+          modal.style.display = "block";
+          win_message.textContent = "Player One Wins!";
         } else if (checkWin(playTwoCheck) === true) {
-          console.log(`Player Two win!`);
+          modal.style.display = "block";
+          win_message.textContent = "Player Two Wins!";
         } else {
           return;
         }
@@ -77,3 +82,9 @@ function putValueCell() {
 }
 
 start();
+
+newBtn.addEventListener("click", function() {
+  modal.style.display = "none";
+  grid.resetGrid();
+  resetGridElements();
+});

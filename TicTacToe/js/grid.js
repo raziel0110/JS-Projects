@@ -49,4 +49,17 @@ class Grid {
   setCellValue(x, y, value) {
     return this.gridArray[x][y].setValue(value);
   }
+
+  resetGrid() {
+    for (let x = 0; x < this.gridArray.length; x++) {
+      let rows = this.gridArray[x];
+      for (let y = 0; y < rows.length; y++) {
+        let cell = rows[y];
+        if (cell.isLock === true) {
+          cell.isLock = false;
+          cell.value = "";
+        }
+      }
+    }
+  }
 }

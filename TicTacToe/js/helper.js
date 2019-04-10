@@ -3,10 +3,10 @@ const win_array = [
   [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 1 }],
   [{ x: 0, y: 2 }, { x: 1, y: 2 }, { x: 2, y: 2 }],
   [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }],
-  [{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }],
+  [{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 1, y: 2 }],
   [{ x: 2, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 2 }],
   [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }],
-  [{ x: 3, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 3 }]
+  [{ x: 2, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }]
 ];
 
 // win_array.forEach(win => {});
@@ -48,5 +48,15 @@ function checkWin(arr) {
     return row.every(item => {
       return arr.find(el => item.x === el.x && item.y === el.y);
     });
+  });
+}
+function resetGridElements() {
+  const gridElements = document.querySelectorAll(".cell");
+  gridElements.forEach(el => {
+    if (el.classList.contains("xClass") || el.classList.contains("oClass")) {
+      el.classList.remove("xClass");
+      el.classList.remove("oClass");
+      el.textContent = "";
+    }
   });
 }
