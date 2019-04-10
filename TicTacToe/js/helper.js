@@ -9,9 +9,7 @@ const win_array = [
   [{ x: 3, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 3 }]
 ];
 
-win_array.forEach(win => {
-  console.log(win);
-});
+// win_array.forEach(win => {});
 function getMatrix() {
   let grid = [];
   let el;
@@ -37,18 +35,18 @@ function retriveElement(x, y) {
   }
 }
 
-const wins = [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }];
-const ps = [{ x: 0, y: 1 }, { x: 0, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 1 }];
-
-function contains() {
-  for (let i = 0; i < win_array.length; i++) {
-    for (let j = 0; j < ps.length; j++) {
-      if (wins[i].x == ps[j].x && wins[i].y == ps[j].y) {
-        return true;
-      }
-    }
-  }
-  return false;
+function cellCoords(cell) {
+  coord = { x: cell.x, y: cell.y };
+  return coord;
 }
 
-console.log(contains());
+const wins = [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }];
+const ps = [{ x: 0, y: 1 }];
+
+function checkWin(arr) {
+  return win_array.some(row => {
+    return row.every(item => {
+      return arr.find(el => item.x === el.x && item.y === el.y);
+    });
+  });
+}

@@ -28,17 +28,29 @@ function changePlayer() {
   return currentPlayer;
 }
 
+function playerGridValue(currentPlayer, coord_cell) {
+  if (currentPlayer === player1) {
+    playOneCheck.push(coord_cell);
+  } else if (currentPlayer === player2) {
+    playTwoCheck.push(coord_cell);
+  } else {
+    return;
+  }
+}
+
 function putValueCell() {
   for (let cell of cells) {
     const el = retriveElement(cell.x, cell.y);
     el.addEventListener("click", function() {
-      const coord_cell = cellCoords(cells);
+      const coord_cell = cellCoords(cell);
       console.log(coord_cell);
       const currentPlayer = changePlayer();
       if (cell.isLock === true) {
         return;
       }
       if (!cell.isLock) {
+        playerGridValue(currentPlayer, coord_cell);
+
         if (currentPlayer === player1) {
           el.innerHTML = currentPlayer;
           cell.value = currentPlayer;
@@ -52,11 +64,16 @@ function putValueCell() {
           cell.isLock = true;
           lastMove = currentPlayer;
         }
+        if (checkWin(playOneCheck) === true) {
+          console.log(`Player One win!`);
+        } else if (checkWin(playTwoCheck) === true) {
+          console.log(`Player Two win!`);
+        } else {
+          return;
+        }
       }
     });
   }
 }
-function cellCoords(cell) {
-  coord = { x: cell.x, y: cell.y };
-}
+
 start();
