@@ -60,3 +60,10 @@ function resetGridElements() {
     }
   });
 }
+
+function draw(grid) {
+  if (!grid.gridCheckCellIsEmpty()) {
+    modal.style.display = "block";
+    win_message.textContent = "Its a draw";
+  }
+}

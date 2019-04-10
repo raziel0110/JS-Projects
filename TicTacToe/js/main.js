@@ -59,12 +59,15 @@ function putValueCell() {
           el.classList.add("xClass");
           cell.isLock = true;
           lastMove = currentPlayer;
+          grid.gridCheckCellIsEmpty();
+          draw(grid);
         } else {
           el.innerHTML = currentPlayer;
           cell.value = currentPlayer;
           el.classList.add("oClass");
           cell.isLock = true;
           lastMove = currentPlayer;
+          draw(grid);
         }
         if (checkWin(playOneCheck) === true) {
           console.log(checkWin(playOneCheck));

@@ -61,7 +61,13 @@ class Grid {
         }
       }
     }
+  }
 
-    // this.gridArray = [];
+  gridCheckCellIsEmpty() {
+    return this.gridArray.some(row => {
+      return row.some(cell => {
+        return cell.isLock === false;
+      });
+    });
   }
 }
