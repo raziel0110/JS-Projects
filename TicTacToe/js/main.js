@@ -87,4 +87,7 @@ newBtn.addEventListener("click", function() {
   modal.style.display = "none";
   grid.resetGrid();
   resetGridElements();
+  playOneCheck = [];
+  playTwoCheck = [];
+  currentPlayer = player1;
 });

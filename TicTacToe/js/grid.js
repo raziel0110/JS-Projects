@@ -61,5 +61,7 @@ class Grid {
         }
       }
     }
+
+    // this.gridArray = [];
   }
 }

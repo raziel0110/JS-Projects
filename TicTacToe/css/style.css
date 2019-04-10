@@ -87,7 +87,10 @@
   color: #6d6d13;
   font-weight: 700;
   text-align: center;
-  padding: 20px;
+}
+
+.container-modal p span {
+  font-size: 20px;
 }
 
 .container-modal button {
