@@ -5,7 +5,7 @@
 
 .board {
   width: 70%;
-  margin: 10% auto;
+  margin: 5% auto;
   height: auto;
   display: flex;
 }
@@ -104,4 +104,61 @@
   font-size: 15px;
   font-weight: 600;
   margin: 10% auto;
+}
+
+.score {
+  width: 40%;
+  height: 15%;
+  background-color: #fff;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.player-name {
+  width: 40%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.playerName {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+  font-size: 1.2em;
+  color: rgb(204, 134, 149);
+}
+
+.player {
+  display: block;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  padding: 15px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 2em;
+  box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.2),
+    0 7px 20px 0px rgba(0, 0, 0, 0.15);
+  color: rgb(204, 134, 149);
+}
+.player-animation {
+  animation-name: score;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes score {
+  0% {
+    background-color: #fff;
+  }
+  50% {
+    background-color: rgb(204, 134, 149);
+    color: black;
+  }
+
+  100% {
+    background-color: #fff;
+    color: rgb(204, 134, 149);
+  }
 }

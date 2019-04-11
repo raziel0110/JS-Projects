@@ -1,12 +1,16 @@
 const grid = new Grid();
+const player1 = new Player("Player One", "X");
+const player2 = new Player("Player Two", "O");
 let cells = grid.retriveCell();
+
 const win_message = document.getElementById("win-text");
 const modal = document.querySelector(".modal");
 const newBtn = document.getElementById("new-game");
-const player1 = "X";
-const player2 = "O";
+const play1 = document.getElementById("playerOne");
+const play2 = document.getElementById("playerTwo");
+
 let lastMove;
-let nextPlayer = player2;
+let nextPlayer = player2.name;
 let currentPlayer;
 
 let playOneCheck = [];
@@ -17,12 +21,14 @@ function init() {
 }
 
 function start() {
+  play1.textContent = player1.score;
+  play2.textContent = player2.score;
   init();
   putValueCell();
 }
 
 function changePlayer() {
-  if (lastMove === player1) {
+  if (lastMove === player1.name) {
     currentPlayer = player2;
   } else {
     currentPlayer = player1;
@@ -54,28 +60,40 @@ function putValueCell() {
         playerGridValue(currentPlayer, coord_cell);
 
         if (currentPlayer === player1) {
-          el.innerHTML = currentPlayer;
-          cell.value = currentPlayer;
+          el.innerHTML = currentPlayer.value;
+          cell.value = currentPlayer.value;
           el.classList.add("xClass");
           cell.isLock = true;
-          lastMove = currentPlayer;
+          lastMove = currentPlayer.name;
           grid.gridCheckCellIsEmpty();
           draw(grid);
         } else {
-          el.innerHTML = currentPlayer;
-          cell.value = currentPlayer;
+          el.innerHTML = currentPlayer.value;
+          cell.value = currentPlayer.value;
           el.classList.add("oClass");
           cell.isLock = true;
-          lastMove = currentPlayer;
+          lastMove = currentPlayer.name;
           draw(grid);
         }
         if (checkWin(playOneCheck) === true) {
           console.log(checkWin(playOneCheck));
           modal.style.display = "block";
-          win_message.textContent = "Player One Wins!";
+          win_message.textContent = `${player1.name} Wins!`;
+          player1.incrementScore();
+          play1.textContent = player1.score;
+          play1.classList.add("player-animation");
+          setTimeout(() => {
+            play1.classList.remove("player-animation");
+          }, 1000);
         } else if (checkWin(playTwoCheck) === true) {
           modal.style.display = "block";
-          win_message.textContent = "Player Two Wins!";
+          win_message.textContent = `${player2.name} Wins!`;
+          player2.incrementScore();
+          play2.textContent = player2.score;
+          play2.classList.add("player-animation");
+          setTimeout(() => {
+            play2.classList.remove("player-animation");
+          }, 1000);
         } else {
           return;
         }
@@ -92,5 +110,5 @@ newBtn.addEventListener("click", function() {
   resetGridElements();
   playOneCheck = [];
   playTwoCheck = [];
-  currentPlayer = player1;
+  currentPlayer = player1.name;
 });
