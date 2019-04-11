@@ -9,7 +9,6 @@ const win_array = [
   [{ x: 2, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }]
 ];
 
-// win_array.forEach(win => {});
 function getMatrix() {
   let grid = [];
   let el;
@@ -40,9 +39,6 @@ function cellCoords(cell) {
   return coord;
 }
 
-const wins = [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }];
-const ps = [{ x: 0, y: 1 }];
-
 function checkWin(arr) {
   return win_array.some(row => {
     return row.every(item => {
@@ -50,6 +46,7 @@ function checkWin(arr) {
     });
   });
 }
+
 function resetGridElements() {
   const gridElements = document.querySelectorAll(".cell");
   gridElements.forEach(el => {

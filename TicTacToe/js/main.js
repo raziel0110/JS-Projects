@@ -1,8 +1,11 @@
+//object instantiation
 const grid = new Grid();
 const player1 = new Player("Player One", "X");
 const player2 = new Player("Player Two", "O");
 let cells = grid.retriveCell();
-
+let playOneCheck = player1.coords;
+let playTwoCheck = player2.coords;
+// dom manipulation
 const win_message = document.getElementById("win-text");
 const modal = document.querySelector(".modal");
 const newBtn = document.getElementById("new-game");
@@ -10,19 +13,13 @@ const play1 = document.getElementById("playerOne");
 const play2 = document.getElementById("playerTwo");
 
 let lastMove;
-let nextPlayer = player2.name;
 let currentPlayer;
-
-let playOneCheck = [];
-let playTwoCheck = [];
 
 function init() {
   currentPlayer = player1;
 }
 
 function start() {
-  play1.textContent = player1.score;
-  play2.textContent = player2.score;
   init();
   putValueCell();
 }
@@ -46,7 +43,7 @@ function playerGridValue(currentPlayer, coord_cell) {
     return;
   }
 }
-
+// put in cell value block code
 function putValueCell() {
   for (let cell of cells) {
     const el = retriveElement(cell.x, cell.y);
@@ -85,7 +82,7 @@ function putValueCell() {
           setTimeout(() => {
             modal.style.display = "block";
             win_message.textContent = `${player1.name} Wins!`;
-          }, 700);
+          }, 500);
         } else if (checkWin(playTwoCheck) === true) {
           player2.incrementScore();
           play2.textContent = player2.score;
@@ -96,7 +93,7 @@ function putValueCell() {
           setTimeout(() => {
             modal.style.display = "block";
             win_message.textContent = `${player2.name} Wins!`;
-          }, 700);
+          }, 500);
         } else {
           return;
         }
@@ -106,7 +103,7 @@ function putValueCell() {
 }
 
 start();
-
+// reset grid
 newBtn.addEventListener("click", function() {
   modal.style.display = "none";
   grid.resetGrid();

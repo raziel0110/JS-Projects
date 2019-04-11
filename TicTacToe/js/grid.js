@@ -5,16 +5,6 @@ class Grid {
   }
 
   initGrid() {
-    // $(".row-cell").each((rowIndex, rowElement) => {
-    //   this.gridArray[rowIndex] = [];
-    //   $(rowElement)
-    //     .children()
-    //     .each((colIndex, cellElement) => {
-    //       const cell = new Cell(rowIndex, colIndex, cellElement);
-    //       this.gridArray[rowIndex].push(cell);
-    //       console.log(cell);
-    //     });
-    // });
     let el;
     let rows = document.getElementsByClassName("row-cell");
 
@@ -40,14 +30,6 @@ class Grid {
       }
     }
     return cells;
-  }
-
-  getCellValue(x, y) {
-    return this.gridArray[x][y].getValue();
-  }
-
-  setCellValue(x, y, value) {
-    return this.gridArray[x][y].setValue(value);
   }
 
   resetGrid() {

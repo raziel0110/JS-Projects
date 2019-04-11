@@ -3,6 +3,7 @@ class Player {
     this.name = name;
     this.value = value;
     this.score = 0;
+    this.coords = [];
   }
 
   incrementScore() {
