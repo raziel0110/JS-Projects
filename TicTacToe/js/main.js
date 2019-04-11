@@ -76,24 +76,27 @@ function putValueCell() {
           draw(grid);
         }
         if (checkWin(playOneCheck) === true) {
-          console.log(checkWin(playOneCheck));
-          modal.style.display = "block";
-          win_message.textContent = `${player1.name} Wins!`;
           player1.incrementScore();
           play1.textContent = player1.score;
           play1.classList.add("player-animation");
           setTimeout(() => {
             play1.classList.remove("player-animation");
           }, 1000);
+          setTimeout(() => {
+            modal.style.display = "block";
+            win_message.textContent = `${player1.name} Wins!`;
+          }, 700);
         } else if (checkWin(playTwoCheck) === true) {
-          modal.style.display = "block";
-          win_message.textContent = `${player2.name} Wins!`;
           player2.incrementScore();
           play2.textContent = player2.score;
           play2.classList.add("player-animation");
           setTimeout(() => {
             play2.classList.remove("player-animation");
           }, 1000);
+          setTimeout(() => {
+            modal.style.display = "block";
+            win_message.textContent = `${player2.name} Wins!`;
+          }, 700);
         } else {
           return;
         }
