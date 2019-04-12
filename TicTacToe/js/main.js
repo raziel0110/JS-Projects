@@ -55,7 +55,6 @@ function putValueCell() {
       }
       if (!cell.isLock) {
         playerGridValue(currentPlayer, coord_cell);
-
         if (currentPlayer === player1) {
           el.innerHTML = currentPlayer.value;
           cell.value = currentPlayer.value;
@@ -72,6 +71,7 @@ function putValueCell() {
           lastMove = currentPlayer.name;
           draw(grid);
         }
+
         if (checkWin(playOneCheck) === true) {
           player1.incrementScore();
           play1.textContent = player1.score;
@@ -79,21 +79,24 @@ function putValueCell() {
           setTimeout(() => {
             play1.classList.remove("player-animation");
           }, 1000);
+          displayRowWin(playOneCheck);
           setTimeout(() => {
             modal.style.display = "block";
             win_message.textContent = `${player1.name} Wins!`;
-          }, 500);
+          }, 1500);
         } else if (checkWin(playTwoCheck) === true) {
           player2.incrementScore();
+
           play2.textContent = player2.score;
           play2.classList.add("player-animation");
           setTimeout(() => {
             play2.classList.remove("player-animation");
           }, 1000);
+          displayRowWin(playTwoCheck);
           setTimeout(() => {
             modal.style.display = "block";
             win_message.textContent = `${player2.name} Wins!`;
-          }, 500);
+          }, 1500);
         } else {
           return;
         }
@@ -111,4 +114,5 @@ newBtn.addEventListener("click", function() {
   playOneCheck = [];
   playTwoCheck = [];
   currentPlayer = player1.name;
+  resetScore(player1, player2);
 });

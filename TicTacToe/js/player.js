@@ -9,4 +9,8 @@ class Player {
   incrementScore() {
     return this.score++;
   }
+
+  resetScore() {
+    this.score = 0;
+  }
 }

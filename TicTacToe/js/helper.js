@@ -53,6 +53,7 @@ function resetGridElements() {
     if (el.classList.contains("xClass") || el.classList.contains("oClass")) {
       el.classList.remove("xClass");
       el.classList.remove("oClass");
+      el.classList.remove("win-row");
       el.textContent = "";
     }
   });
@@ -62,5 +63,33 @@ function draw(grid) {
   if (!grid.gridCheckCellIsEmpty()) {
     modal.style.display = "block";
     win_message.textContent = "Its a draw";
+  }
+}
+function getRowWin(arr) {
+  return win_array.filter(row => {
+    return row.every(cell => {
+      return arr.find(el => cell.x == el.x && cell.y == el.y);
+    });
+  });
+}
+
+function displayRowWin(arr) {
+  const rowCells = getRowWin(arr);
+  console.log(rowCells);
+  for (cells of rowCells) {
+    for (cell of cells) {
+      console.log(cell);
+      const el = retriveElement(cell.x, cell.y);
+      el.classList.add("win-row");
+    }
+  }
+}
+
+function resetScore(player1, player2) {
+  if (player1.score == 3 || player2.score == 3) {
+    player1.resetScore();
+    player2.resetScore();
+    play1.textContent = player1.score;
+    play2.textContent = player2.score;
   }
 }
