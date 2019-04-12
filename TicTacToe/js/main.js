@@ -11,9 +11,10 @@ const modal = document.querySelector(".modal");
 const newBtn = document.getElementById("new-game");
 const play1 = document.getElementById("playerOne");
 const play2 = document.getElementById("playerTwo");
-
+const sound = new Audio();
 let lastMove;
 let currentPlayer;
+let rowCellWin;
 
 function init() {
   currentPlayer = player1;
@@ -109,6 +110,7 @@ start();
 // reset grid
 newBtn.addEventListener("click", function() {
   modal.style.display = "none";
+  line.classList.remove("line");
   grid.resetGrid();
   resetGridElements();
   playOneCheck = [];

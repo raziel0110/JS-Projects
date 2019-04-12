@@ -8,6 +8,7 @@ const win_array = [
   [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }],
   [{ x: 2, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }]
 ];
+const line = document.getElementById("line");
 
 function getMatrix() {
   let grid = [];
@@ -75,14 +76,40 @@ function getRowWin(arr) {
 
 function displayRowWin(arr) {
   const rowCells = getRowWin(arr);
-  console.log(rowCells);
+
   for (cells of rowCells) {
-    for (cell of cells) {
-      console.log(cell);
+    cells.forEach((cell, i) => {
+      const top = cells.every(cell => cell.x === cells[0].x);
+      const left = cells.every(cell => cell.y === cells[0].y);
       const el = retriveElement(cell.x, cell.y);
+      const pos = getPositionElement(el);
+
+      if (top) {
+        line.classList.add("line");
+        line.style.position = "absolute";
+        line.style.top = 0 + "px";
+        line.style.left = 0 + cells[i].x * 55 + "px";
+        console.log(pos.left - pos.left);
+        // window.innerWidth / 3 + pos.left - cells[i].y * 55 + "px";
+      }
+
       el.classList.add("win-row");
-    }
+    });
   }
+}
+
+function checkElementsPosLeft(arr) {
+  arr.every((val, i) => {
+    val.left === val[0].left;
+  });
+}
+
+function getPositionElement(el) {
+  let rect = el.getBoundingClientRect();
+  // (scrollLeft = window.pageXOffset || document.documentElement.scrollLeft),
+  //   (scrollTop = window.pageYOffset || document.documentElement.scrollTop);
+
+  return { top: rect.top, left: rect.left };
 }
 
 function resetScore(player1, player2) {
@@ -93,3 +120,32 @@ function resetScore(player1, player2) {
     play2.textContent = player2.score;
   }
 }
+
+function playSound() {
+  sound.src = "winner.mp3";
+  sound.play();
+}
+// ==> tring to make a line over the win cells
+//(
+//   if (c.x == cells[i].x) {
+//     line.classList.add("line");
+//     line.style.position = "absolute";
+//     line.style.top = 0 + "px";
+//     line.style.left = 55 + cells[i].x * 110 + "px";
+//   } else if (c.y == cells[i].y) {
+//     line.classList.add("line");
+//     line.style.position = "absolute";
+//     line.style.top = 55 + cells[i].y * 110 + "px";
+//     line.style.left = 330 + "px";
+//     line.style.transformOrigin = "top";
+//     line.style.transform = "rotate(90deg)";
+//   } else if (c.x !== cells[i].x && c.y !== cells[i].y) {
+//     line.classList.add("line");
+//     line.style.position = "absolute";
+//     line.style.top = 0;
+//     line.style.left = 0 + "px";
+//     line.style.height = "400px";
+//     line.style.transformOrigin = "top";
+//     line.style.transform = "rotate(-45deg)";
+//   }
+// )

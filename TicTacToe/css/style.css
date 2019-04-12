@@ -16,6 +16,7 @@
   background-color: #efd68f;
   border-radius: 10px;
   border: 1px solid brown;
+  position: relative;
 }
 
 .cell {
@@ -165,4 +166,11 @@
 
 .win-row {
   background-color: #dd460f;
+}
+
+.line {
+  background-color: #6d6d13;
+  width: 5px;
+  height: 330px;
+  position: absolute;
 }
