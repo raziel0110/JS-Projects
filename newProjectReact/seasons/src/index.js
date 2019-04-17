@@ -26,8 +26,7 @@ class App extends React.Component {
     );
   }
 
-  // react need render method,required
-  render() {
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat && !this.state.long) {
       return <div>Error:{this.state.errorMessage}</div>;
     }
@@ -37,9 +36,15 @@ class App extends React.Component {
     }
     return (
       <div>
-        <Spinner />
+        <Spinner message="Please accept location request" />
       </div>
     );
+  }
+  // react need render method,required
+  render() {
+    //wrap every element in a container => renderContent() represents
+    //=> all content
+    return <div className="border red">{this.renderContent()}</div>;
   }
 }
 
