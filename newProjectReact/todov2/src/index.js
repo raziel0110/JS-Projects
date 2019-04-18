@@ -21,6 +21,7 @@ class App extends React.Component {
   };
 
   updateTodo = todo => {
+    // debugger;
     const { list } = this.state;
     const element = list.find(item => item.id === todo.id);
     this.setState(element);
