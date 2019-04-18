@@ -1,0 +1,9 @@
+.container {
+  width: 600px;
+  height: auto;
+  margin: 30px auto;
+}
+
+html {
+  background-color: rgba(123, 196, 196, 0.356);
+}
