@@ -12,7 +12,6 @@ class InputUser extends React.Component {
   }
   clickButton = e => {
     e.preventDefault();
-    console.log(this.state.userInput);
     this.setState({ id: this.state.id + 1 });
     this.props.onAdd({ id: this.state.id, userInput: this.state.userInput });
   };
