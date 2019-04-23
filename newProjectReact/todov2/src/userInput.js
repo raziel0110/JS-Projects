@@ -7,6 +7,12 @@ class UserInput extends React.Component {
     this.state = { id: 0, inputValue: "" };
     this.onInputChange = this.onInputChange.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
+
+    this.inputRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.inputRef.current.focus();
   }
 
   onInputChange(e) {
@@ -37,7 +43,12 @@ class UserInput extends React.Component {
               placeholder="Please enter some text"
             />
 
-            <button type="" onClick={this.onButtonClick} className="addBtn">
+            <button
+              type=""
+              onClick={this.onButtonClick}
+              className="addBtn"
+              ref={this.inputRef}
+            >
               Add
             </button>
           </div>
