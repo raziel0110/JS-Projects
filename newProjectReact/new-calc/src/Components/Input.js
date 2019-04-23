@@ -3,8 +3,13 @@ import "./Input.css";
 
 export default class Input extends Component {
   render() {
-    return <input type="text" className="display" value={this.props.value} />;
+    return (
+      <input
+        type="text"
+        className="display"
+        value={this.props.value}
+        readOnly
+      />
+    );
   }
 }
-
-//value={this.props.value}

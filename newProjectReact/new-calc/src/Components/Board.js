@@ -2,22 +2,35 @@ import React, { Component } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import ClearButton from "./ClearButton";
+import math from "mathjs";
 import "./Board.css";
 
 export default class Board extends Component {
-  state = { value: "" };
+  state = { value: "0" };
   onAddValue = val => {
-    this.setState({
-      value: this.state.value + val
-    });
+    if (this.state.value === "0") {
+      this.setState({ value: "" + val });
+    } else {
+      this.setState({
+        value: this.state.value + val
+      });
+    }
   };
 
   onEqual = () => {
-    this.setState({ value: eval(this.state.value) });
+    const result = this.state.value;
+    if (parseInt(result[0]) !== Number) {
+      this.setState({ value: math.eval("0" + this.state.value) });
+    }
+    if (this.state.value === "") {
+      this.setState({ value: "0" });
+    } else {
+      this.setState({ value: math.eval(result) });
+    }
   };
 
   onReset = () => {
-    this.setState({ value: "" });
+    this.setState({ value: "0" });
   };
 
   render() {
