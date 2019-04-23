@@ -6,31 +6,18 @@ import math from "mathjs";
 import "./Board.css";
 
 export default class Board extends Component {
-  state = { value: "0" };
+  state = { value: "" };
   onAddValue = val => {
-    if (this.state.value === "0") {
-      this.setState({ value: "" + val });
-    } else {
-      this.setState({
-        value: this.state.value + val
-      });
-    }
+    this.setState({ value: this.state.value + val });
   };
 
   onEqual = () => {
     const result = this.state.value;
-    if (parseInt(result[0]) !== Number) {
-      this.setState({ value: math.eval("0" + this.state.value) });
-    }
-    if (this.state.value === "") {
-      this.setState({ value: "0" });
-    } else {
-      this.setState({ value: math.eval(result) });
-    }
+    this.setState({ value: math.eval(result) });
   };
 
   onReset = () => {
-    this.setState({ value: "0" });
+    this.setState({ value: "" });
   };
 
   render() {
