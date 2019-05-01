@@ -19,6 +19,7 @@ export default class App extends React.Component {
 
     const person = { ...this.state.persons[personIdx] };
     person.name = e.target.value;
+    console.log(person.name);
 
     const persons = [...this.state.persons];
     persons[personIdx] = person;
