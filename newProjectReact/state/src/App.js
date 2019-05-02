@@ -1,7 +1,15 @@
 import React from "react";
-import Person from "./Components/Person";
+import Persons from "./Components/Persons/persons";
+import Cockpit from "./Components/cockpit";
+import WithClass from "./Components/hoc/WithClass";
+import Radium, { StyleRoot } from "radium";
 
-export default class App extends React.Component {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    console.log("[App.js] constructor");
+  }
   state = {
     persons: [
       { id: 1, name: "Max", age: 20 },
@@ -11,6 +19,13 @@ export default class App extends React.Component {
     show: false
   };
 
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] from getDerivedStateFromProps", props);
+  }
+
+  componentDidMount() {
+    console.log("Component did mount");
+  }
   deleteHandler = index => {
     const persons = this.state.persons.slice();
     persons.splice(index, 1);
@@ -37,30 +52,31 @@ export default class App extends React.Component {
   };
 
   render() {
+    console.log("[App.js] from render");
     let persons = null;
 
     if (this.state.show) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                click={() => this.deleteHandler(index)}
-                changed={e => this.clickHandler(e, person.id)}
-              />
-            );
-          })}
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deleteHandler}
+            changed={this.clickHandler}
+          />
         </div>
       );
     }
     return (
-      <div>
-        <button onClick={this.toggleHandler}>Show</button>
-        {persons}
-      </div>
+      <WithClass classes={sal}>
+        <StyleRoot>
+          <div>
+            <Cockpit toggle={this.toggleHandler} persons={this.state.persons} />
+            {persons}
+          </div>
+        </StyleRoot>
+      </WithClass>
     );
   }
 }
+
+export default Radium(App);
