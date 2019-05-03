@@ -1,16 +1,16 @@
 import React from "react";
-import SongList from "./SongList";
-import SongDetail from "./SongDetail";
+import CarList from "./CarsList";
+import CarDetail from "./CarDetail";
 
 const App = () => {
   return (
     <div className="ui container grid">
       <div className="ui row">
         <div className="column eight wide">
-          <SongList />
+          <CarList />
         </div>
         <div className="column eight wide">
-          <SongDetail />
+          <CarDetail />
         </div>
       </div>
     </div>
