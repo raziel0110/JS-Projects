@@ -44,7 +44,7 @@ export default class Folders extends React.Component {
             New Folder
           </button>
         </div>
-        <FolderList folders={this.state.folderList} />
+        <FolderList folders={this.state.folderList} note={this.props.note} />
         {modal}
       </div>
     );

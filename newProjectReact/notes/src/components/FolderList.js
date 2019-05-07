@@ -9,7 +9,11 @@ class FolderList extends React.Component {
       <div className="folder-list">
         <ul>
           {this.props.folders.map(folder => (
-            <Folder folder={folder} key={folder.folderId} />
+            <Folder
+              folder={folder}
+              key={folder.folderId}
+              note={this.props.note}
+            />
           ))}
         </ul>
       </div>
