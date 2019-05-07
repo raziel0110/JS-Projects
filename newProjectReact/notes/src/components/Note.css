@@ -1,0 +1,23 @@
+.note {
+  width: 60%;
+  text-align: center;
+}
+
+textarea {
+  width: 90%;
+  height: 500px;
+}
+
+.add-note {
+  width: 91%;
+  height: 40px;
+  color: white;
+  border: 3px solid #001f3f;
+  background-color: #001f3f;
+  transition: ease-in-out 0.5s;
+}
+
+.add-note:hover {
+  background-color: #04396e;
+  border: 2px solid #04396e;
+}

@@ -1,15 +1,20 @@
 import React from "react";
+import Folder from "./Folder";
+import "./FolderList.css";
 
-const FolderList = props => {
-  return (
-    <div className="folder-list">
-      <ul>
-        {props.folders.map(folder => (
-          <li key={folder.folderId}>{folder.folderName}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+class FolderList extends React.Component {
+  render() {
+    console.log(this.props);
+    return (
+      <div className="folder-list">
+        <ul>
+          {this.props.folders.map(folder => (
+            <Folder folder={folder} key={folder.folderId} />
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
 
 export default FolderList;
