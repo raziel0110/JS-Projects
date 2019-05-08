@@ -9,23 +9,33 @@ class Folder extends React.Component {
     this.setState({ folderSelect: !select });
   };
 
+  selectFolder = e => {
+    const { folder } = this.props.folder;
+    folder.isSelected = true;
+  };
+
   render() {
-    console.log(this.props);
-    const { folderName } = this.props.folder;
-    // console.log("[folder.js]", folderName);
+    console.log(this.props.folder);
+    const { folder } = this.props.folder;
+    const { notes, isSelected } = this.props.folder.folder;
 
     const note_list =
-      this.state.folderSelect &&
-      this.props.notes.map(note => <li key={note.id}>{note.note}</li>);
+      isSelected && notes.map(note => <li key={note.id}>{note.note}</li>);
     return (
-      <div className="folder-items">
+      <div
+        className="folder-items"
+        onDoubleClick={this.toggleFolderSelectHandler}
+        onClick={() => {
+          this.props.selectFolder(folder);
+        }}
+      >
         <div>
           <li className="folder-list-items">
-            {`${folderName.folderName}`}
+            {`${folder.folderName}`}
             <ul>{note_list}</ul>
           </li>
         </div>
-        <div onClick={this.toggleFolderSelectHandler}>(+)</div>
+        <div>(+)</div>
       </div>
     );
   }

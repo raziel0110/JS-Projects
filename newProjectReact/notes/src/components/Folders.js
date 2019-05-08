@@ -23,6 +23,7 @@ export default class Folders extends React.Component {
   };
 
   render() {
+    // console.log(this.props);
     const modal = this.state.showModal && (
       <Modal show={this.state.showModal}>
         <InputFolder onAdd={this.props.newFolder} hideModal={this.hideModal} />
@@ -36,7 +37,11 @@ export default class Folders extends React.Component {
             New Folder
           </button>
         </div>
-        <FolderList folders={this.props.folderList} notes={this.props.notes} />
+        <FolderList
+          folders={this.props.folderList}
+          notes={this.props.notes}
+          selectFolder={this.props.selectFolder}
+        />
         {modal}
       </div>
     );

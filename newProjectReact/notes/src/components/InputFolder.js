@@ -14,7 +14,8 @@ class InputFolder extends React.Component {
     this.props.onAdd({
       folderId: this.state.userInput,
       folderName: this.state.userInput,
-      notes: []
+      notes: [],
+      isSelected: false
     });
     this.props.hideModal();
   };
