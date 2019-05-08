@@ -4,14 +4,23 @@ import Note from "./Note";
 import "./App.css";
 
 export default class App extends Component {
-  state = { note: "" };
+  state = { notes: [], folderList: [] };
+
+  newFolder = name => {
+    const { folderList } = this.state;
+    folderList.push({ folderName: name, isSelected: false });
+    this.setState({
+      folderList: folderList
+    });
+  };
 
   saveNote = note => {
-    this.setState({ note: note });
+    const { notes } = this.state;
+    notes.push(note);
+    this.setState({ notes: notes });
   };
 
   render() {
-    console.log(this.state.note);
     return (
       <div>
         <div className="body-app">
@@ -19,7 +28,11 @@ export default class App extends Component {
             <h5>Notes</h5>
           </div>
           <div className="components">
-            <Folders note={this.state.note} />
+            <Folders
+              notes={this.state.notes}
+              newFolder={this.newFolder}
+              folderList={this.state.folderList}
+            />
             <Note note={this.saveNote} />
           </div>
         </div>

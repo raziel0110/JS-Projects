@@ -6,16 +6,8 @@ import "./Folders.css";
 
 export default class Folders extends React.Component {
   state = {
-    folderList: [],
+    // folderList: [],
     showModal: false
-  };
-
-  newFolder = name => {
-    const { folderList } = this.state;
-    folderList.push(name);
-    this.setState({
-      folderList: folderList
-    });
   };
 
   showModal = () => {
@@ -33,7 +25,7 @@ export default class Folders extends React.Component {
   render() {
     const modal = this.state.showModal && (
       <Modal show={this.state.showModal}>
-        <InputFolder onAdd={this.newFolder} hideModal={this.hideModal} />
+        <InputFolder onAdd={this.props.newFolder} hideModal={this.hideModal} />
       </Modal>
     );
 
@@ -44,7 +36,7 @@ export default class Folders extends React.Component {
             New Folder
           </button>
         </div>
-        <FolderList folders={this.state.folderList} note={this.props.note} />
+        <FolderList folders={this.props.folderList} notes={this.props.notes} />
         {modal}
       </div>
     );

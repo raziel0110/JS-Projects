@@ -1,0 +1,12 @@
+.folder-items {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+}
+.folder-list-items {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-style: italic;
+}

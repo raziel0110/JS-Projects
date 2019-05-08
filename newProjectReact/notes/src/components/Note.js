@@ -13,7 +13,7 @@ class Note extends React.Component {
   saveNote = e => {
     e.preventDefault();
     this.setState({ noteId: this.state.noteId + 1 });
-    this.props.note({ note: this.state.noteText });
+    this.props.note({ id: this.state.noteId, note: this.state.noteText });
   };
   render() {
     return (

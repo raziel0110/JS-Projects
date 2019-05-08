@@ -20,8 +20,3 @@
   background-color: #aeb8c2;
   padding: 0;
 }
-
-.folder-list > ul > li::after {
-  content: " (+)";
-  font-weight: 700;
-}

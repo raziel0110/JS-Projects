@@ -11,8 +11,8 @@ class FolderList extends React.Component {
           {this.props.folders.map(folder => (
             <Folder
               folder={folder}
-              key={folder.folderId}
-              note={this.props.note}
+              key={folder.folderName.folderId}
+              notes={this.props.notes}
             />
           ))}
         </ul>

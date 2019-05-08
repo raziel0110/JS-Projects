@@ -1,30 +1,32 @@
 import React from "react";
+import "./Folder.css";
 
 class Folder extends React.Component {
-  state = { folderSelect: false, notes: [] };
-  toggleFolderSelectHandler = () => {
+  state = { folderSelect: false };
+  toggleFolderSelectHandler = e => {
+    e.stopPropagation();
     let select = this.state.folderSelect;
     this.setState({ folderSelect: !select });
   };
 
-  saveNote = () => {
-    const note = {};
-    let id = 0;
-    note.id = id + 1;
-    note.text = this.props.note;
-    const { notes } = this.state;
-    notes.push(note);
-
-    this.setState({ notes });
-  };
-
   render() {
-    console.log(this.props.note);
-    console.log(this.state.folderSelect);
+    console.log(this.props);
+    const { folderName } = this.props.folder;
+    // console.log("[folder.js]", folderName);
+
+    const note_list =
+      this.state.folderSelect &&
+      this.props.notes.map(note => <li key={note.id}>{note.note}</li>);
     return (
-      <li onClick={() => this.toggleFolderSelectHandler()}>
-        {this.props.folder.folderName}
-      </li>
+      <div className="folder-items">
+        <div>
+          <li className="folder-list-items">
+            {`${folderName.folderName}`}
+            <ul>{note_list}</ul>
+          </li>
+        </div>
+        <div onClick={this.toggleFolderSelectHandler}>(+)</div>
+      </div>
     );
   }
 }
