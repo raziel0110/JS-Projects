@@ -2,7 +2,7 @@ import React from "react";
 import "./Note.css";
 
 class Note extends React.Component {
-  state = { noteId: 0, noteText: "" };
+  state = { noteId: 0, noteText: "", noteTitle: "" };
 
   textareaChangeHandler = e => {
     this.setState({
@@ -13,7 +13,12 @@ class Note extends React.Component {
   saveNote = e => {
     e.preventDefault();
     this.setState({ noteId: this.state.noteId + 1 });
-    this.props.note({ id: this.state.noteId, note: this.state.noteText });
+    this.props.note({
+      id: this.state.noteId,
+      note: this.state.noteText,
+      noteTitle: this.state.noteText.substr(0, 30)
+    });
+    this.setState({ noteText: "" });
   };
   render() {
     return (
@@ -30,6 +35,7 @@ class Note extends React.Component {
             <button type="button" className="add-note" onClick={this.saveNote}>
               Add Note
             </button>
+            {this.props.modal}
           </form>
         </div>
       </div>

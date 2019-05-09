@@ -14,8 +14,3 @@
 .folder-list ul li {
   margin-bottom: 3px;
 }
-
-.folder-list ul li:hover {
-  background-color: #aeb8c2;
-  padding: 0;
-}

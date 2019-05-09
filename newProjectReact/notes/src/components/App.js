@@ -1,10 +1,25 @@
 import React, { Component } from "react";
 import Folders from "./Folders";
 import Note from "./Note";
+import MessagePopUp from "./MessagePopUp";
+import Modal from "./Modal";
+
 import "./App.css";
 
 export default class App extends Component {
-  state = { notes: "", folderList: [] };
+  constructor(props) {
+    super(props);
+    this.modal = "";
+  }
+  state = { notes: "", folderList: [], showMessage: false, error: "" };
+
+  showModal = () => {
+    this.setState({ showMessage: true });
+  };
+
+  hideModal = () => {
+    this.setState({ showMessage: false });
+  };
 
   newFolder = name => {
     const { folderList } = this.state;
@@ -15,18 +30,16 @@ export default class App extends Component {
   };
 
   saveNote = note => {
-    const { folderList, notes } = this.state;
     const dir = this.state.folderList.find(f => {
       return f.folder.isSelected === true;
     });
+    if (dir) {
+      dir.folder.notes.push(note);
+    } else {
+      this.setState({ showMessage: true, error: "Please select a folder!" });
+    }
 
-    dir.folder.notes.push(note);
     this.setState({ dir });
-    // const { notes } = this.state;
-    // console.log(notes);
-    // // notes.push(note);
-    // // this.setState({ notes });
-    // // console.log(this.state.notes);
   };
 
   selectFolder = folder => {
@@ -41,10 +54,16 @@ export default class App extends Component {
     const folderList = { ...this.state.folderList };
     folderList[index] = dir;
 
-    // this.setState({ folderList: folderList });
+    this.setState({ dir });
   };
 
   render() {
+    const modal = this.state.showMessage && (
+      <Modal showModal={this.showModal}>
+        <MessagePopUp hideModal={this.hideModal} message={this.state.error} />
+      </Modal>
+    );
+    console.log(this.state.folderList);
     return (
       <div>
         <div className="body-app">
@@ -58,7 +77,8 @@ export default class App extends Component {
               folderList={this.state.folderList}
               selectFolder={this.selectFolder}
             />
-            <Note note={this.saveNote} />
+            <Note note={this.saveNote} modal={this.modal} />
+            {modal}
           </div>
         </div>
       </div>

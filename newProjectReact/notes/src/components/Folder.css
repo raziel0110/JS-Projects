@@ -1,6 +1,6 @@
 .folder-items {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 550;
   font-size: 13px;
   display: flex;
   justify-content: space-between;
@@ -9,4 +9,17 @@
   font-family: "Courier New", Courier, monospace;
   font-size: 13px;
   font-style: italic;
+}
+
+.folder-list-items:hover {
+  background-color: #aeb8c2;
+  padding: 0;
+}
+
+.folder {
+  color: #001f3f;
+}
+
+.active {
+  color: green;
 }

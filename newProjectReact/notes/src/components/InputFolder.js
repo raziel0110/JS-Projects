@@ -2,6 +2,10 @@ import React from "react";
 import "./InputFolder.css";
 
 class InputFolder extends React.Component {
+  constructor(props) {
+    super(props);
+    this.folderId = 0;
+  }
   state = { userInput: "" };
   changeInputHandler = e => {
     this.setState({
