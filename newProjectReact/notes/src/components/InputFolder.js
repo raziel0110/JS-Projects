@@ -4,9 +4,9 @@ import "./InputFolder.css";
 class InputFolder extends React.Component {
   constructor(props) {
     super(props);
-    this.folderId = 0;
+    this.id = 0;
   }
-  state = { userInput: "" };
+  state = { userInput: "", folderId: 0 };
   changeInputHandler = e => {
     this.setState({
       userInput: e.target.value
@@ -15,12 +15,15 @@ class InputFolder extends React.Component {
 
   submitHandler = e => {
     e.preventDefault();
+    this.setState({ folderId: this.state.folderId + 1 });
+    console.log(this.state.folderId);
     this.props.onAdd({
-      folderId: this.state.userInput,
+      folderId: this.state.folderId,
       folderName: this.state.userInput,
       notes: [],
       isSelected: false
     });
+
     this.props.hideModal();
   };
   render() {
