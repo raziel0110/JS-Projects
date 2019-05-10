@@ -4,22 +4,31 @@ import "./NoteItem.css";
 class NoteItem extends React.Component {
   state = { activeItem: false };
 
-  isNoteItem = () => {
-    const active = this.state.activeItem;
-    this.setState({ activeItem: !active });
+  setItemActive = () => {
+    const active = this.props.note.isSelect;
+    this.setState({ activeItem: active });
   };
 
   render() {
+    console.log(this.state.activeItem);
+    console.log(this.props.note);
     return (
-      <div className="folder-list-items">
-        <li
-          className={this.state.activeItem ? "activeItem" : null}
+      <div>
+        <div
+          className="folder-list-items"
           onClick={() => {
-            this.props.showNoteItem(this.props.note);
+            this.setItemActive();
           }}
         >
-          {this.props.note.noteTitle}
-        </li>
+          <li
+            className={this.props.note.isSelect ? "activeItem" : null}
+            onClick={() => {
+              this.props.showNoteItem(this.props.note);
+            }}
+          >
+            {this.props.note.noteTitle}
+          </li>
+        </div>
       </div>
     );
   }

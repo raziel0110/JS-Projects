@@ -12,7 +12,7 @@ export default class App extends Component {
     this.modal = "";
     this.id = 0;
   }
-  state = { notes: "", folderList: [], showMessage: false, error: "" };
+  state = { note_value: "", folderList: [], showMessage: false, error: "" };
 
   showModal = () => {
     this.setState({ showMessage: true });
@@ -21,6 +21,10 @@ export default class App extends Component {
   hideModal = () => {
     this.setState({ showMessage: false });
   };
+
+  // onClickNoteItem = (item) =>{
+
+  // }
 
   newFolder = name => {
     const { folderList } = this.state;
@@ -60,6 +64,7 @@ export default class App extends Component {
   };
 
   render() {
+    console.log(this.state);
     const modal = this.state.showMessage && (
       <Modal showModal={this.showModal}>
         <MessagePopUp hideModal={this.hideModal} message={this.state.error} />

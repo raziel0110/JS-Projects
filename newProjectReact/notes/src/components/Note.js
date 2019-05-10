@@ -22,7 +22,8 @@ class Note extends React.Component {
       // id: this.state.noteId,
       id: this.id,
       note: this.state.noteText,
-      noteTitle: this.state.noteText.substr(0, 30)
+      noteTitle: this.state.noteText.substr(0, 30),
+      isSelect: false
     });
     this.id++;
     this.setState({ noteText: "" });

@@ -3,14 +3,37 @@ import NoteItem from "./NoteItem";
 import "./Folder.css";
 
 class Folder extends React.Component {
+  constructor(props) {
+    super(props);
+    this.noteItem = "";
+    this.isSel = false;
+  }
   state = { expandFolder: false, active: false };
+
+  // checkIsSelect = note => {
+  //   const { notes } = this.props.folder.folder;
+  //   const n = notes.some(item => {
+  //     return item.isSelect === true;
+  //   });
+
+  //   n.isSelect = false;
+  // };
 
   onClickNoteItem = item => {
     const { notes } = this.props.folder.folder;
-    const note = notes.find(n => {
-      return n.id === item.id;
+    // const note = notes.find(n => {
+    //   return n.id === item.id;
+    // });
+    // this.noteItem = note.note;
+    // item.isSelect = true;
+
+    notes.forEach(element => {
+      if (element.id === item.id) {
+        element.isSelect = true;
+      } else {
+        element.isSelect = false;
+      }
     });
-    console.log(note);
   };
 
   toggleExapandHandler = e => {
@@ -26,8 +49,11 @@ class Folder extends React.Component {
   };
 
   render() {
+    console.log(this.props.folder.folder.notes);
     const { folder } = this.props.folder;
     const { notes } = this.props.folder.folder;
+
+    // const updateModal =
 
     const note_list =
       this.state.expandFolder &&
@@ -36,6 +62,7 @@ class Folder extends React.Component {
           note={note}
           key={note.id}
           showNoteItem={this.onClickNoteItem}
+          // reset={this.checkIsSelect}
         />
       ));
     return (
