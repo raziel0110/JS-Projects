@@ -10,6 +10,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.modal = "";
+    this.id = 0;
   }
   state = { notes: "", folderList: [], showMessage: false, error: "" };
 
@@ -27,6 +28,7 @@ export default class App extends Component {
     this.setState({
       folderList: folderList
     });
+    this.id++;
   };
 
   saveNote = note => {
@@ -63,7 +65,7 @@ export default class App extends Component {
         <MessagePopUp hideModal={this.hideModal} message={this.state.error} />
       </Modal>
     );
-    console.log(this.state.folderList);
+    //console.log(this.state.folderList);
     return (
       <div>
         <div className="body-app">
@@ -76,6 +78,7 @@ export default class App extends Component {
               newFolder={this.newFolder}
               folderList={this.state.folderList}
               selectFolder={this.selectFolder}
+              id={this.id}
             />
             <Note note={this.saveNote} modal={this.modal} />
             {modal}

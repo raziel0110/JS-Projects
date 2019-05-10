@@ -1,0 +1,13 @@
+.activeItem {
+  color: royalblue;
+}
+.folder-list-items:hover {
+  width: 200px;
+  background-color: rgba(115, 138, 83, 0.479);
+  padding: 0;
+}
+.folder-list-items {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-style: italic;
+}

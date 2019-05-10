@@ -2,28 +2,22 @@ import React from "react";
 import "./InputFolder.css";
 
 class InputFolder extends React.Component {
-  constructor(props) {
-    super(props);
-    this.id = 0;
-  }
   state = { userInput: "", folderId: 0 };
   changeInputHandler = e => {
+    const value = e.target.value.toUpperCase();
     this.setState({
-      userInput: e.target.value
+      userInput: value
     });
   };
 
   submitHandler = e => {
     e.preventDefault();
-    this.setState({ folderId: this.state.folderId + 1 });
-    console.log(this.state.folderId);
     this.props.onAdd({
-      folderId: this.state.folderId,
+      folderId: this.props.id,
       folderName: this.state.userInput,
       notes: [],
       isSelected: false
     });
-
     this.props.hideModal();
   };
   render() {

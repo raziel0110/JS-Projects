@@ -2,6 +2,10 @@ import React from "react";
 import "./Note.css";
 
 class Note extends React.Component {
+  constructor(props) {
+    super(props);
+    this.id = 0;
+  }
   state = { noteId: 0, noteText: "", noteTitle: "" };
 
   textareaChangeHandler = e => {
@@ -13,11 +17,14 @@ class Note extends React.Component {
   saveNote = e => {
     e.preventDefault();
     this.setState({ noteId: this.state.noteId + 1 });
+
     this.props.note({
-      id: this.state.noteId,
+      // id: this.state.noteId,
+      id: this.id,
       note: this.state.noteText,
       noteTitle: this.state.noteText.substr(0, 30)
     });
+    this.id++;
     this.setState({ noteText: "" });
   };
   render() {
