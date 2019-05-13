@@ -43,7 +43,7 @@ class Folder extends React.Component {
   render() {
     const { folder } = this.props.folder;
     const { notes } = this.props.folder.folder;
-    console.log(folder);
+    // console.log(folder);
     const note_list =
       this.state.expandFolder &&
       notes.map(note => (
