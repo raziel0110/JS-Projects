@@ -8,32 +8,25 @@ class Folder extends React.Component {
     this.noteItem = "";
     this.isSel = false;
   }
-  state = { expandFolder: false, active: false };
+  state = { expandFolder: false, folderActive: false, itemId: null };
 
-  // checkIsSelect = note => {
-  //   const { notes } = this.props.folder.folder;
-  //   const n = notes.some(item => {
-  //     return item.isSelect === true;
-  //   });
-
-  //   n.isSelect = false;
-  // };
-
-  onClickNoteItem = item => {
+  showNote = item => {
     const { notes } = this.props.folder.folder;
-    // const note = notes.find(n => {
-    //   return n.id === item.id;
-    // });
-    // this.noteItem = note.note;
-    // item.isSelect = true;
-
-    notes.forEach(element => {
-      if (element.id === item.id) {
-        element.isSelect = true;
-      } else {
-        element.isSelect = false;
-      }
+    const note = notes.find(n => {
+      return n.id === item.id;
     });
+    note.isSelect = !note.isSelect;
+
+    this.setState({ itemId: item.id });
+  };
+
+  getNoteBody = item => {
+    const { notes } = this.props.folder.folder;
+    const note = notes.find(n => {
+      return n.id === item.id;
+    });
+
+    console.log(item.note);
   };
 
   toggleExapandHandler = e => {
@@ -43,26 +36,23 @@ class Folder extends React.Component {
   };
 
   setActive = e => {
-    // e.stopPropagation();
-    let active = this.state.active;
-    this.setState({ active: !active });
+    let active = this.state.folderActive;
+    this.setState({ folderActive: !active });
   };
 
   render() {
-    console.log(this.props.folder.folder.notes);
     const { folder } = this.props.folder;
     const { notes } = this.props.folder.folder;
-
-    // const updateModal =
-
+    console.log(folder);
     const note_list =
       this.state.expandFolder &&
       notes.map(note => (
         <NoteItem
           note={note}
           key={note.id}
-          showNoteItem={this.onClickNoteItem}
-          // reset={this.checkIsSelect}
+          showNoteItem={this.showNote}
+          isSelect={note.id === this.state.itemId}
+          showBody={this.getNoteBody}
         />
       ));
     return (
@@ -75,7 +65,7 @@ class Folder extends React.Component {
         >
           <div>
             <div
-              className={this.state.active ? "active" : null}
+              className={this.state.folderActive ? "active" : null}
               onClick={this.setActive}
             >
               {folder.folderName}

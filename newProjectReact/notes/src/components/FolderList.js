@@ -3,11 +3,23 @@ import Folder from "./Folder";
 import "./FolderList.css";
 
 class FolderList extends React.Component {
+  state = { folderId: null };
   folderSelect = folder => {
     this.props.selectFolder(folder);
   };
 
+  // selectFolderhandler = folder => {
+  //   const { folders } = this.props;
+  //   const dir = folders.find(f => {
+  //     return f.folderId === folder.folderId;
+  //   });
+  //   // dir.isSelected = !folder.isSelected;
+  //   console.log(dir);
+  //   // this.setState({ folderId: folder.id });
+  // };
+
   render() {
+    console.log(this.props.folders);
     return (
       <div className="folder-list">
         <ul>
@@ -17,6 +29,8 @@ class FolderList extends React.Component {
               key={dir.folder.folderId}
               notes={this.props.notes}
               selectFolder={this.props.selectFolder}
+              // selectFolder={this.selectFolderhandler}
+              // isFolderSelect={}
             />
           ))}
         </ul>

@@ -52,7 +52,6 @@ export default class App extends Component {
     const index = this.state.folderList.findIndex(
       f => f.folder.folderId === folder.folderId
     );
-
     const dir = { ...this.state.folderList[index] };
     const isSelect = this.state.folderList[index].folder.isSelected;
     folder.isSelected = !isSelect;
@@ -64,7 +63,7 @@ export default class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const modal = this.state.showMessage && (
       <Modal showModal={this.showModal}>
         <MessagePopUp hideModal={this.hideModal} message={this.state.error} />
