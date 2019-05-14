@@ -30,7 +30,7 @@ class Folder extends React.Component {
     const note = notes.find(n => {
       return n.id === item.id;
     });
-    note.note = item.note;
+    this.props.onUpdate(note);
   };
 
   toggleExapandHandler = e => {
@@ -56,7 +56,7 @@ class Folder extends React.Component {
           key={note.id}
           showNoteItem={this.showNote}
           isSelect={note.id === this.state.itemId}
-          onUpdate={this.updateNote}
+          onUpdate={() => this.props.onUpdate(note.note)}
         />
       ));
     return (

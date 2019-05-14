@@ -14,16 +14,10 @@ class FolderList extends React.Component {
     const dir = folders.find(f => {
       return f.folderId === folder.folderId;
     });
-    // dir.isSelected = !folder.isSelected;
-    // console.log(dir);
-    // this.setState({ folderId: folder.id });
   };
 
   render() {
-    console.log("Folder: ", get(this.props, "folders[0].folder.folderId"));
-    // console.log(this.props.folders[1].folderId);
-    // const folders = Object.values(this.props.folders);
-    // console.log(folders.folderId);
+    // console.log("Folder: ", get(this.props, "folders[0].folder.folderId"));
     return (
       <div className="folder-list">
         <ul>
@@ -33,8 +27,7 @@ class FolderList extends React.Component {
               key={dir.folder.folderId}
               notes={this.props.notes}
               selectFolder={this.props.selectFolder}
-              // selectFolder={this.selectFolderhandler}
-              // isFolderSelect={}
+              onUpdate={this.props.onUpdate}
             />
           ))}
         </ul>

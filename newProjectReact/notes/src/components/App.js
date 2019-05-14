@@ -3,8 +3,10 @@ import Folders from "./Folders";
 import Note from "./Note";
 import MessagePopUp from "./MessagePopUp";
 import Modal from "./Modal";
+import { get } from "lodash";
 
 import "./App.css";
+import { throwStatement } from "@babel/types";
 
 export default class App extends Component {
   constructor(props) {
@@ -46,7 +48,17 @@ export default class App extends Component {
   };
 
   updateNote = note => {
-    console.log(note);
+    console.log("app :", note);
+    const { folderList } = this.state;
+
+    folderList.forEach(f => {
+      if (f.folder.isSelected === true) {
+        const { notes } = f.folder;
+        console.log(notes);
+        const element = notes.find(item => item.id === note.id);
+        this.setState(element);
+      }
+    });
   };
 
   saveNote = note => {
@@ -63,21 +75,23 @@ export default class App extends Component {
   };
 
   selectFolder = folder => {
-    const index = this.state.folderList.findIndex(
-      f => f.folder.folderId === folder.folderId
-    );
-    const dir = { ...this.state.folderList[index] };
-    const isSelect = this.state.folderList[index].folder.isSelected;
-    folder.isSelected = !isSelect;
-
-    const folderList = { ...this.state.folderList };
-    folderList[index] = dir;
-
+    // const index = this.state.folderList.findIndex(
+    //   f => f.folder.folderId === folder.folderId
+    // );
+    // const dir = { ...this.state.folderList[index] };
+    // const isSelect = this.state.folderList[index].folder.isSelected;
+    // folder.isSelected = !isSelect;
+    // const folderList = { ...this.state.folderList };
+    // folderList[index] = dir;
+    // this.setState({ dir });
+    const dir = this.state.folderList.find(f => {
+      return f.folder.folderId === folder.folderId;
+    });
+    dir.folder.isSelected = !dir.folder.isSelected;
     this.setState({ dir });
   };
 
   render() {
-    console.log(this.state);
     const modal = this.state.showMessage && (
       <Modal showModal={this.showModal}>
         <MessagePopUp hideModal={this.hideModal} message={this.state.error} />

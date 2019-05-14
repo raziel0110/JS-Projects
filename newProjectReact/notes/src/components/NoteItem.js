@@ -5,6 +5,14 @@ import "./NoteItem.css";
 
 class NoteItem extends React.Component {
   state = { showInfo: false };
+
+  updateNote = item => {
+    const note = this.props.note;
+    note.note = item.textnote;
+    note.noteTitle = item.textnote.substr(0, 15);
+    this.props.onUpdate(note);
+  };
+
   showInfo = () => {
     this.setState({ showInfo: true });
   };
@@ -18,12 +26,10 @@ class NoteItem extends React.Component {
         <UpdateBox
           note={this.props.note}
           hideInfo={this.hideInfo}
-          onUpdate={this.props.onUpdate}
+          update={this.updateNote}
         />
       </Modal>
     );
-
-    console.log(this.state.showInfo);
     return (
       <div>
         <div className="folder-list-items" onDoubleClick={this.showInfo}>
