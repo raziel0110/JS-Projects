@@ -21,3 +21,8 @@ textarea {
   background-color: #04396e;
   border: 2px solid #04396e;
 }
+
+.add-title {
+  width: 90%;
+  margin: 10px auto;
+}

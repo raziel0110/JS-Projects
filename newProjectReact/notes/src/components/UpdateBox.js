@@ -2,9 +2,18 @@ import React from "react";
 import "./UpdateBox.css";
 
 export default class UpdateBox extends React.Component {
-  state = { textnote: this.props.note.note };
+  constructor(props) {
+    super(props);
+    this.isdiff = false;
+  }
+  state = {
+    textnote: this.props.note.note
+  };
   updateValue = e => {
     this.setState({ textnote: e.target.value });
+    if (this.props.note.note !== e.target.value) {
+      this.isdiff = true;
+    }
   };
 
   updateHandler = e => {
@@ -21,7 +30,14 @@ export default class UpdateBox extends React.Component {
       <div className="update-modal">
         <div className="update-window">
           <h4 className="update-header">Text input:</h4>
+
           <form className="update-form">
+            <input
+              type="text"
+              value={this.props.note.noteTitle}
+              disabled
+              className="update-title"
+            />
             <textarea
               type="text"
               value={this.state.textnote}
@@ -33,7 +49,7 @@ export default class UpdateBox extends React.Component {
               className="btn btn-primary"
               onClick={this.updateHandler}
             >
-              Update
+              {this.isdiff ? "Update" : "Close"}
             </button>
           </form>
         </div>

@@ -22,7 +22,10 @@
   display: flex;
   flex-direction: column;
 }
-
+.update-title {
+  width: 80%;
+  margin: 0 auto;
+}
 .update-textarea {
   width: 80%;
   height: 300px;

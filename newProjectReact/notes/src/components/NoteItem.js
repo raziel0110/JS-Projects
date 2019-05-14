@@ -9,7 +9,6 @@ class NoteItem extends React.Component {
   updateNote = item => {
     const note = this.props.note;
     note.note = item.textnote;
-    note.noteTitle = item.textnote.substr(0, 15);
     this.props.onUpdate(note);
   };
 
