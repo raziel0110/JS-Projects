@@ -19,7 +19,6 @@ class Note extends React.Component {
     this.setState({ noteId: this.state.noteId + 1 });
 
     this.props.note({
-      // id: this.state.noteId,
       id: this.id,
       note: this.state.noteText,
       noteTitle: this.state.noteText.substr(0, 30),

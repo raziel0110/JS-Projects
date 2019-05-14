@@ -12,7 +12,21 @@ export default class App extends Component {
     this.modal = "";
     this.id = 0;
   }
-  state = { note_value: "", folderList: [], showMessage: false, error: "" };
+  state = {
+    note_value: "",
+    folderList: [
+      {
+        folder: {
+          folderId: 0,
+          folderName: "Test",
+          notes: [],
+          isSelected: false
+        }
+      }
+    ],
+    showMessage: false,
+    error: ""
+  };
 
   showModal = () => {
     this.setState({ showMessage: true });
@@ -22,10 +36,6 @@ export default class App extends Component {
     this.setState({ showMessage: false });
   };
 
-  // onClickNoteItem = (item) =>{
-
-  // }
-
   newFolder = name => {
     const { folderList } = this.state;
     folderList.push({ folder: name });
@@ -33,6 +43,10 @@ export default class App extends Component {
       folderList: folderList
     });
     this.id++;
+  };
+
+  updateNote = note => {
+    console.log(note);
   };
 
   saveNote = note => {
@@ -63,7 +77,7 @@ export default class App extends Component {
   };
 
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     const modal = this.state.showMessage && (
       <Modal showModal={this.showModal}>
         <MessagePopUp hideModal={this.hideModal} message={this.state.error} />
@@ -83,6 +97,7 @@ export default class App extends Component {
               folderList={this.state.folderList}
               selectFolder={this.selectFolder}
               id={this.id}
+              onUpdate={this.updateNote}
             />
             <Note note={this.saveNote} modal={this.modal} />
             {modal}

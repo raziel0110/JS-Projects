@@ -1,6 +1,7 @@
 import React from "react";
 import Folder from "./Folder";
 import "./FolderList.css";
+import { get } from "lodash";
 
 class FolderList extends React.Component {
   state = { folderId: null };
@@ -19,9 +20,10 @@ class FolderList extends React.Component {
   };
 
   render() {
-    //console.log(this.props.folders[0].folder);
-    const folders = Object.values(this.props.folders);
-    console.log(folders["0"].folder);
+    console.log("Folder: ", get(this.props, "folders[0].folder.folderId"));
+    // console.log(this.props.folders[1].folderId);
+    // const folders = Object.values(this.props.folders);
+    // console.log(folders.folderId);
     return (
       <div className="folder-list">
         <ul>
@@ -30,8 +32,8 @@ class FolderList extends React.Component {
               folder={dir}
               key={dir.folder.folderId}
               notes={this.props.notes}
-              // selectFolder={this.props.selectFolder}
-              selectFolder={this.selectFolderhandler}
+              selectFolder={this.props.selectFolder}
+              // selectFolder={this.selectFolderhandler}
               // isFolderSelect={}
             />
           ))}

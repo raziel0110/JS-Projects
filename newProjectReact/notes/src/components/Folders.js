@@ -44,6 +44,7 @@ export default class Folders extends React.Component {
           folders={this.props.folderList}
           notes={this.props.notes}
           selectFolder={this.props.selectFolder}
+          onUpdate={this.props.onUpdate}
         />
         {modal}
       </div>

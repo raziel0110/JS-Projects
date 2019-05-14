@@ -8,7 +8,12 @@ class Folder extends React.Component {
     this.noteItem = "";
     this.isSel = false;
   }
-  state = { expandFolder: false, folderActive: false, itemId: null };
+  state = {
+    expandFolder: false,
+    folderActive: false,
+    itemId: null,
+    openInfo: false
+  };
 
   showNote = item => {
     const { notes } = this.props.folder.folder;
@@ -20,13 +25,12 @@ class Folder extends React.Component {
     this.setState({ itemId: item.id });
   };
 
-  getNoteBody = item => {
+  updateNote = item => {
     const { notes } = this.props.folder.folder;
     const note = notes.find(n => {
       return n.id === item.id;
     });
-
-    console.log(item.note);
+    note.note = item.note;
   };
 
   toggleExapandHandler = e => {
@@ -52,7 +56,7 @@ class Folder extends React.Component {
           key={note.id}
           showNoteItem={this.showNote}
           isSelect={note.id === this.state.itemId}
-          showBody={this.getNoteBody}
+          onUpdate={this.updateNote}
         />
       ));
     return (
