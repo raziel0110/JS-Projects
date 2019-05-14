@@ -1,7 +1,7 @@
 import React from "react";
 import Folder from "./Folder";
 import "./FolderList.css";
-import { get } from "lodash";
+// import { get } from "lodash";
 
 class FolderList extends React.Component {
   state = { folderId: null };

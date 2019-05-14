@@ -3,10 +3,8 @@ import Folders from "./Folders";
 import Note from "./Note";
 import MessagePopUp from "./MessagePopUp";
 import Modal from "./Modal";
-import { get } from "lodash";
 
 import "./App.css";
-import { throwStatement } from "@babel/types";
 
 export default class App extends Component {
   constructor(props) {
