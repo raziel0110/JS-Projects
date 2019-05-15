@@ -5,9 +5,11 @@ export default class UpdateBox extends React.Component {
   constructor(props) {
     super(props);
     this.isdiff = false;
+    this.initialstate = this.props.note.note;
   }
   state = {
-    textnote: this.props.note.note
+    textnote: this.props.note.note,
+    errorMessage: ""
   };
   updateValue = e => {
     this.setState({ textnote: e.target.value });
@@ -16,14 +18,29 @@ export default class UpdateBox extends React.Component {
     }
   };
 
+  validate_update = () => {
+    let messageError;
+    if (this.state.textnote.length <= 0) {
+      messageError = "Note can not be empty";
+    }
+
+    if (messageError) {
+      this.setState({ errorMessage: messageError });
+      return false;
+    }
+
+    return true;
+  };
+
   updateHandler = e => {
     e.preventDefault();
+    const isValid = this.validate_update();
     console.log(this.state.textnote);
     const value = this.state;
-
-    this.props.update(value);
-    // console.log(value);
-    this.props.hideInfo();
+    if (isValid) {
+      this.props.update(value);
+      this.props.hideInfo();
+    }
   };
   render() {
     return (
@@ -38,6 +55,7 @@ export default class UpdateBox extends React.Component {
               disabled
               className="update-title"
             />
+            <div className="error-message">{this.state.errorMessage}</div>
             <textarea
               type="text"
               value={this.state.textnote}

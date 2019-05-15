@@ -6,7 +6,13 @@ class Note extends React.Component {
     super(props);
     this.id = 0;
   }
-  state = { noteId: 0, noteText: "", noteTitle: "" };
+  state = {
+    noteId: 0,
+    noteText: "",
+    noteTitle: "",
+    titleError: "",
+    noteError: ""
+  };
 
   titleHandler = e => {
     this.setState({ noteTitle: e.target.value });
@@ -20,16 +26,46 @@ class Note extends React.Component {
 
   saveNote = e => {
     e.preventDefault();
-    this.setState({ noteId: this.state.noteId + 1 });
+    const isValid = this.validateNote();
+    if (isValid) {
+      this.setState({ noteId: this.state.noteId + 1 });
+      this.props.note({
+        id: this.id,
+        note: this.state.noteText,
+        noteTitle: this.state.noteTitle,
+        isSelect: false
+      });
+      this.id++;
+      this.setState({
+        noteText: "",
+        noteTitle: "",
+        noteError: "",
+        titleError: ""
+      });
+    }
+  };
 
-    this.props.note({
-      id: this.id,
-      note: this.state.noteText,
-      noteTitle: this.state.noteTitle,
-      isSelect: false
-    });
-    this.id++;
-    this.setState({ noteText: "", noteTitle: "" });
+  validateNote = () => {
+    let titleError;
+    let noteError;
+
+    if (this.state.noteTitle.length <= 0) {
+      titleError = "Please add a title";
+    }
+    if (titleError) {
+      this.setState({ titleError });
+      return false;
+    }
+
+    if (this.state.noteText.length <= 0) {
+      noteError = "Please fill the text area with some note!";
+    }
+    if (noteError) {
+      this.setState({ noteError });
+      return false;
+    }
+
+    return true;
   };
   render() {
     return (
@@ -39,6 +75,7 @@ class Note extends React.Component {
         </div>
         <div className="note-input">
           <form>
+            <div className="error-message">{this.state.titleError}</div>
             <input
               type="text"
               onChange={this.titleHandler}
@@ -46,6 +83,8 @@ class Note extends React.Component {
               className="add-title"
               placeholder="Please enter a title"
             />
+
+            <div className="error-message">{this.state.noteError}</div>
             <textarea
               value={this.state.noteText}
               onChange={this.textareaChangeHandler}

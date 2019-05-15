@@ -25,7 +25,7 @@ class InputFolder extends React.Component {
       <div className="container-input">
         <div className="window">
           <h4>Create new folder</h4>
-          <form>
+          <form onSubmit={this.submitHandler}>
             <input
               type="text"
               value={this.state.userInput}

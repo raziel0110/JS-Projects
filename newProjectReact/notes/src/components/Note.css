@@ -25,4 +25,13 @@ textarea {
 .add-title {
   width: 90%;
   margin: 10px auto;
+  margin-top: 0;
+}
+
+.error-message {
+  margin-left: 3em;
+  text-align: left;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  color: brown;
 }
