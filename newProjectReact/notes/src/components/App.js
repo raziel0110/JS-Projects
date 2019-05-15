@@ -14,16 +14,7 @@ export default class App extends Component {
   }
   state = {
     note_value: "",
-    folderList: [
-      {
-        folder: {
-          folderId: 0,
-          folderName: "Test",
-          notes: [],
-          isSelected: false
-        }
-      }
-    ],
+    folderList: [],
     showMessage: false,
     error: ""
   };
@@ -72,30 +63,13 @@ export default class App extends Component {
     this.setState({ dir });
   };
 
-  selectFolder = folder => {
-    // const index = this.state.folderList.findIndex(
-    //   f => f.folder.folderId === folder.folderId
-    // );
-    // const dir = { ...this.state.folderList[index] };
-    // const isSelect = this.state.folderList[index].folder.isSelected;
-    // folder.isSelected = !isSelect;
-    // const folderList = { ...this.state.folderList };
-    // folderList[index] = dir;
-    // this.setState({ dir });
-    const dir = this.state.folderList.find(f => {
-      return f.folder.folderId === folder.folderId;
-    });
-    dir.folder.isSelected = !dir.folder.isSelected;
-    this.setState({ dir });
-  };
-
   render() {
     const modal = this.state.showMessage && (
       <Modal showModal={this.showModal}>
         <MessagePopUp hideModal={this.hideModal} message={this.state.error} />
       </Modal>
     );
-    //console.log(this.state.folderList);
+
     return (
       <div>
         <div className="body-app">

@@ -8,6 +8,7 @@
   transition: ease-in-out 0.5s;
 }
 .folder-list-items {
+  display: block;
   font-family: "Courier New", Courier, monospace;
   font-size: 13px;
   font-style: italic;

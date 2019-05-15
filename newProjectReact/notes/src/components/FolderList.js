@@ -1,23 +1,22 @@
 import React from "react";
 import Folder from "./Folder";
 import "./FolderList.css";
-// import { get } from "lodash";
 
 class FolderList extends React.Component {
-  state = { folderId: null };
-  folderSelect = folder => {
-    this.props.selectFolder(folder);
-  };
+  state = { folderId: "" };
 
   selectFolderhandler = folder => {
     const { folders } = this.props;
+    console.log(folders);
     const dir = folders.find(f => {
-      return f.folderId === folder.folderId;
+      return f.folder.folderId === folder.folderId;
     });
+    console.log(folder.folderId);
+    console.log(dir.folder.isSelected);
+    this.setState({ folderId: folder.folderId });
   };
 
   render() {
-    // console.log("Folder: ", get(this.props, "folders[0].folder.folderId"));
     return (
       <div className="folder-list">
         <ul>
@@ -26,7 +25,8 @@ class FolderList extends React.Component {
               folder={dir}
               key={dir.folder.folderId}
               notes={this.props.notes}
-              selectFolder={this.props.selectFolder}
+              showFolder={this.selectFolderhandler}
+              selectFolder={dir.folder.folderId === this.state.folderId}
               onUpdate={this.props.onUpdate}
             />
           ))}

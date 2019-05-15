@@ -3,13 +3,8 @@ import NoteItem from "./NoteItem";
 import "./Folder.css";
 
 class Folder extends React.Component {
-  constructor(props) {
-    super(props);
-    this.noteItem = "";
-    this.isSel = false;
-  }
   state = {
-    expandFolder: false,
+    expandFolder: true,
     folderActive: false,
     itemId: null,
     openInfo: false
@@ -21,7 +16,6 @@ class Folder extends React.Component {
       return n.id === item.id;
     });
     note.isSelect = !note.isSelect;
-
     this.setState({ itemId: item.id });
   };
 
@@ -47,7 +41,11 @@ class Folder extends React.Component {
   render() {
     const { folder } = this.props.folder;
     const { notes } = this.props.folder.folder;
-    // console.log(folder);
+    if (this.props.selectFolder) {
+      folder.isSelected = true;
+    } else {
+      folder.isSelected = false;
+    }
     const note_list =
       this.state.expandFolder &&
       notes.map(note => (
@@ -61,16 +59,11 @@ class Folder extends React.Component {
       ));
     return (
       <li>
-        <div
-          className="folder-items"
-          onClick={() => {
-            this.props.selectFolder(folder);
-          }}
-        >
+        <div className="folder-items">
           <div>
             <div
-              className={this.state.folderActive ? "active" : null}
-              onClick={this.setActive}
+              className={this.props.selectFolder === true ? "active" : null}
+              onClick={() => this.props.showFolder(folder)}
             >
               {folder.folderName}
             </div>
@@ -78,7 +71,9 @@ class Folder extends React.Component {
               <ul>{note_list}</ul>
             </div>
           </div>
-          <div onClick={this.toggleExapandHandler}>(+)</div>
+          <div onClick={this.toggleExapandHandler}>
+            {this.state.expandFolder ? "( - )" : "( + )"}
+          </div>
         </div>
       </li>
     );

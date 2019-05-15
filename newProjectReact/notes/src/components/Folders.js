@@ -6,7 +6,6 @@ import "./Folders.css";
 
 export default class Folders extends React.Component {
   state = {
-    // folderList: [],
     showModal: false
   };
 
@@ -43,7 +42,7 @@ export default class Folders extends React.Component {
         <FolderList
           folders={this.props.folderList}
           notes={this.props.notes}
-          selectFolder={this.props.selectFolder}
+          selectFolder={this.selectFolderhandler}
           onUpdate={this.props.onUpdate}
         />
         {modal}
