@@ -10,6 +10,7 @@ class Note extends React.Component {
     noteId: 0,
     noteText: "",
     noteTitle: "",
+    date: "",
     titleError: "",
     noteError: ""
   };
@@ -33,6 +34,7 @@ class Note extends React.Component {
         id: this.id,
         note: this.state.noteText,
         noteTitle: this.state.noteTitle,
+        date: new Date().toLocaleString(),
         isSelect: false
       });
       this.id++;
@@ -83,14 +85,18 @@ class Note extends React.Component {
               className="add-title"
               placeholder="Please enter a title"
             />
-
             <div className="error-message">{this.state.noteError}</div>
             <textarea
               value={this.state.noteText}
               onChange={this.textareaChangeHandler}
               placeholder="Enter Text"
             />
-            <button type="button" className="add-note" onClick={this.saveNote}>
+            <button
+              type="button"
+              className="add-note"
+              onClick={this.saveNote}
+              disabled={!this.state.noteTitle}
+            >
               Add Note
             </button>
             {this.props.modal}

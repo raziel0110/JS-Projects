@@ -38,7 +38,10 @@ class NoteItem extends React.Component {
               this.props.showNoteItem(this.props.note);
             }}
           >
-            {this.props.note.noteTitle}
+            <div className="list-item">
+              <div className="list-item-title">{this.props.note.noteTitle}</div>
+              <div className="list-item-date">{this.props.note.date}</div>
+            </div>
           </li>
         </div>
         {modal}

@@ -2,14 +2,25 @@
   color: royalblue;
 }
 .folder-list-items:hover {
-  width: 200px;
+  display: block;
+  width: 250px;
+  /* height: 30px; */
   background-color: rgba(115, 138, 83, 0.479);
   padding: 0;
   transition: ease-in-out 0.5s;
 }
 .folder-list-items {
+  width: 250px;
   display: block;
   font-family: "Courier New", Courier, monospace;
   font-size: 13px;
   font-style: italic;
+  border-bottom: 1px solid rgba(146, 146, 146, 0.479);
+}
+
+.list-item-date {
+  width: 200px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 8px;
+  color: #7c7c7cc0;
 }
