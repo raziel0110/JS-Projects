@@ -6,7 +6,8 @@ import "./Folders.css";
 
 export default class Folders extends React.Component {
   state = {
-    showModal: false
+    showModal: false,
+    search: ""
   };
 
   showModal = () => {
@@ -48,15 +49,14 @@ export default class Folders extends React.Component {
               aria-label="Search"
               aria-describedby="addon-wrapping"
             />
-            <div className="new-folder">
-              <button
-                type="button"
-                onClick={this.showModal}
-                className="btn btn-warning"
-              >
-                New
-              </button>
-            </div>
+
+            <button
+              type="button"
+              onClick={this.showModal}
+              className="btn btn-warning"
+            >
+              New
+            </button>
           </div>
         </div>
 

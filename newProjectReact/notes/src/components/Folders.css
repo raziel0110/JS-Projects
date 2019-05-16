@@ -11,10 +11,10 @@
 }
 
 .top-container {
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   margin: 0 auto;
 }
 
