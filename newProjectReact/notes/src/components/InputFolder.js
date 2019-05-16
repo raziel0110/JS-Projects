@@ -24,14 +24,26 @@ class InputFolder extends React.Component {
     return (
       <div className="container-input">
         <div className="window">
+          <button
+            type="button"
+            className="close-btn"
+            onClick={() => this.props.hideModal()}
+          >
+            x
+          </button>
           <h4>Create new folder</h4>
+
           <form onSubmit={this.submitHandler}>
             <input
               type="text"
               value={this.state.userInput}
               onChange={this.changeInputHandler}
             />
-            <button type="button" onClick={this.submitHandler}>
+            <button
+              type="button"
+              className="add-folder"
+              onClick={this.submitHandler}
+            >
               Create Folder
             </button>
           </form>

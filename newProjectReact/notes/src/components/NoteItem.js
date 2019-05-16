@@ -9,6 +9,7 @@ class NoteItem extends React.Component {
   updateNote = item => {
     const note = this.props.note;
     note.note = item.textnote;
+    note.date = `Updated at: ${new Date().toLocaleString()}`;
     this.props.onUpdate(note);
   };
 

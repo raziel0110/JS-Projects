@@ -17,18 +17,15 @@ export default class UpdateBox extends React.Component {
       this.isdiff = true;
     }
   };
-
   validate_update = () => {
     let messageError;
     if (this.state.textnote.length <= 0) {
       messageError = "Note can not be empty";
     }
-
     if (messageError) {
       this.setState({ errorMessage: messageError });
       return false;
     }
-
     return true;
   };
 

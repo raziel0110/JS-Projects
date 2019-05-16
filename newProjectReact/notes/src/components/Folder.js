@@ -28,7 +28,6 @@ class Folder extends React.Component {
   };
 
   toggleExapandHandler = e => {
-    e.stopPropagation();
     let expand = this.state.expandFolder;
     this.setState({ expandFolder: !expand });
   };

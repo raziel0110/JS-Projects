@@ -17,6 +17,12 @@ textarea {
   transition: ease-in-out 0.5s;
 }
 
+.add-note:disabled {
+  background-color: grey;
+  color: whitesmoke;
+  border: 3px solid grey;
+}
+
 .add-note:hover {
   background-color: #04396e;
   border: 2px solid #04396e;
