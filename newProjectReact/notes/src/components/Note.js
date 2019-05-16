@@ -93,7 +93,7 @@ class Note extends React.Component {
             />
             <button
               type="button"
-              className="add-note"
+              className={!this.state.noteTitle ? "disabled" : "add-note"}
               onClick={this.saveNote}
               disabled={!this.state.noteTitle}
             >

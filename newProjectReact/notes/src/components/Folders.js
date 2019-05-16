@@ -34,11 +34,32 @@ export default class Folders extends React.Component {
 
     return (
       <div className="container">
-        <div className="new-folder">
-          <button type="button" onClick={this.showModal}>
-            New Folder
-          </button>
+        <div className="top-container">
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <button className="input-group-text">
+                <i className="fa fa-search glass" />
+              </button>
+            </div>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="addon-wrapping"
+            />
+            <div className="new-folder">
+              <button
+                type="button"
+                onClick={this.showModal}
+                className="btn btn-warning"
+              >
+                New
+              </button>
+            </div>
+          </div>
         </div>
+
         <FolderList
           folders={this.props.folderList}
           notes={this.props.notes}

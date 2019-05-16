@@ -6,14 +6,22 @@
 }
 
 .new-folder {
-  width: 100px;
+  width: 30%;
+  height: 20px;
+}
+
+.top-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
   margin: 0 auto;
 }
 
-.new-folder button {
-  text-align: center;
-  background-color: white;
-  border: none;
-  color: rgb(160, 82, 45);
-  font-weight: 700;
+.search-bar {
+  width: 100%;
+}
+
+.glass {
+  color: rgba(11, 25, 46, 0.877);
 }

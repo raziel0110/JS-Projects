@@ -14,14 +14,14 @@ textarea {
   color: white;
   border: 3px solid #001f3f;
   background-color: #001f3f;
-  transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.9s;
 }
 
-.add-note:disabled {
+/* .add-note:disabled {
   background-color: grey;
   color: whitesmoke;
   border: 3px solid grey;
-}
+} */
 
 .add-note:hover {
   background-color: #04396e;
@@ -40,4 +40,13 @@ textarea {
   font-family: "Courier New", Courier, monospace;
   font-size: 11px;
   color: brown;
+}
+
+.disabled {
+  width: 91%;
+  height: 40px;
+  background-color: grey;
+  color: whitesmoke;
+  border: 3px solid grey;
+  transition: ease-in-out 0.9s;
 }
