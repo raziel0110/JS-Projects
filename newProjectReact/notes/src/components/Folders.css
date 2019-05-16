@@ -13,7 +13,7 @@
 .top-container {
   width: 95%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   margin-bottom: 30px;
   margin: 0 auto;
 }
@@ -24,4 +24,11 @@
 
 .glass {
   color: rgba(11, 25, 46, 0.877);
+}
+
+.found-items {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
 }

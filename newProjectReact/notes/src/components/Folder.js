@@ -40,6 +40,17 @@ class Folder extends React.Component {
   render() {
     const { folder } = this.props.folder;
     const { notes } = this.props.folder.folder;
+    let filterdNote = notes.filter(note => {
+      return (
+        note.noteTitle
+          .toUpperCase()
+          .indexOf(this.props.search.toUpperCase()) !== -1
+      );
+    });
+    console.log("[Folder]-> notes found:", filterdNote.length);
+    if (filterdNote.length > -1) {
+      this.props.found(filterdNote.length);
+    }
     if (this.props.selectFolder) {
       folder.isSelected = true;
     } else {
@@ -47,7 +58,7 @@ class Folder extends React.Component {
     }
     const note_list =
       this.state.expandFolder &&
-      notes.map(note => (
+      filterdNote.map(note => (
         <NoteItem
           note={note}
           key={note.id}
