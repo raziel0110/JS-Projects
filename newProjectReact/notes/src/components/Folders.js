@@ -3,16 +3,14 @@ import FolderList from "./FolderList";
 import Modal from "./Modal";
 import InputFolder from "./InputFolder";
 import "./Folders.css";
+import { cloneDeep } from "lodash";
 
 export default class Folders extends React.Component {
-  constructor(props) {
-    super(props);
-    this.found = 0;
-  }
   state = {
     showModal: false,
     search: "",
-    found: 0
+    found: 0,
+    folders: []
   };
 
   showModal = () => {
@@ -27,11 +25,38 @@ export default class Folders extends React.Component {
     });
   };
 
-  showNum = items => {
-    const num = items;
-    console.log("[Folders]-> notes found:", num);
-    console.log("[Folders]-> this.found:", this.found);
-    this.found = num;
+  componentDidMount() {
+    this.findNotes();
+  }
+
+  componentDidUpdate() {
+    const elements = this.searchNotes();
+    console.log(elements);
+  }
+
+  findNotes = () => {
+    const { folderList } = this.props;
+    if (folderList !== this.state.folders) {
+      this.setState({ folders: folderList });
+    }
+  };
+
+  duplicateFolder = folder => {
+    cloneDeep(folder);
+  };
+  // trebuie facuta o copie la foldere dupa care fiecare folder sa aiba doar notes care
+  // satisfac conditia
+
+  searchNotes = () => {
+    return this.state.folders.map(folder => {
+      return this.duplicateFolder(folder);
+    });
+    // .filter(folder => {
+    //   const { notes } = folder.folder;
+    //   return notes.filter(note => {
+    //     return note.noteTitle === this.state.search;
+    //   });
+    // });
   };
 
   handleSearch = e => {
@@ -40,6 +65,8 @@ export default class Folders extends React.Component {
   };
 
   render() {
+    const els = this.searchNotes();
+    console.log(els);
     const modal = this.state.showModal && (
       <Modal show={this.state.showModal}>
         <InputFolder
@@ -55,9 +82,9 @@ export default class Folders extends React.Component {
         <div className="top-container">
           <div className="input-group">
             <div className="input-group-prepend">
-              <button className="input-group-text">
+              <span className="input-group-text">
                 <i className="fa fa-search glass" />
-              </button>
+              </span>
             </div>
             <input
               type="text"
@@ -80,15 +107,16 @@ export default class Folders extends React.Component {
           <div className="found-items">
             {this.state.search.length < 1
               ? `Notes found: 0`
-              : `Notes found: ${this.found}`}
+              : `Notes found: ${this.state.found}`}
           </div>
         </div>
 
         <FolderList
-          found={this.showNum}
+          //found={this.showNum}
           search={this.state.search}
-          folders={this.props.folderList}
-          notes={this.props.notes}
+          //folders={this.props.folderList}
+          folders={this.state.folders}
+          //notes={this.props.notes}
           selectFolder={this.selectFolderhandler}
           onUpdate={this.props.onUpdate}
         />

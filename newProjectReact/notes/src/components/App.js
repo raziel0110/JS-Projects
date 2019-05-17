@@ -13,7 +13,7 @@ export default class App extends Component {
     this.id = 0;
   }
   state = {
-    note_value: "",
+    //note_value: "",
     folderList: [],
     showMessage: false,
     error: ""
