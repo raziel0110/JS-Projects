@@ -30,8 +30,7 @@ export default class Folders extends React.Component {
   }
 
   componentDidUpdate() {
-    const elements = this.searchNotes();
-    console.log(elements);
+    this.searchNotes();
   }
 
   findNotes = () => {
@@ -48,15 +47,28 @@ export default class Folders extends React.Component {
   // satisfac conditia
 
   searchNotes = () => {
-    return this.state.folders.map(folder => {
-      return this.duplicateFolder(folder);
-    });
-    // .filter(folder => {
-    //   const { notes } = folder.folder;
-    //   return notes.filter(note => {
-    //     return note.noteTitle === this.state.search;
-    //   });
-    // });
+    const filtered = this.state.folders
+      .filter(folder => {
+        return folder.folder.notes.some(note => {
+          return (
+            note.noteTitle
+              .toLowerCase()
+              .indexOf(this.state.search.toLowerCase()) !== -1
+          );
+        });
+      })
+      .map(folder => {
+        return Object.assign({}, folder, {
+          notes: folder.folder.notes.filter(note => {
+            return (
+              note.noteTitle
+                .toLowerCase()
+                .indexOf(this.state.search.toLowerCase()) !== -1
+            );
+          })
+        });
+      });
+    console.log(filtered);
   };
 
   handleSearch = e => {
@@ -65,8 +77,6 @@ export default class Folders extends React.Component {
   };
 
   render() {
-    const els = this.searchNotes();
-    console.log(els);
     const modal = this.state.showModal && (
       <Modal show={this.state.showModal}>
         <InputFolder
