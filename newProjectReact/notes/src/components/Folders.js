@@ -8,13 +8,12 @@ import { cloneDeep } from "lodash";
 export default class Folders extends React.Component {
   constructor(props) {
     super(props);
-    this.filtered_notes = [];
+    this.found = 0;
   }
   state = {
     showModal: false,
     search: "",
     found: 0,
-    folders: this.props.folderList,
     filtered: []
   };
 
@@ -30,30 +29,17 @@ export default class Folders extends React.Component {
     });
   };
 
-  // componentDidMount() {
-  //   const filtered = this.searchNotes();
-  //   this.setState({ filtered });
-  // }
-
-  componentDidUpdate(prevState) {
-    const filtered = this.searchNotes();
-    // if (prevState.filtered !== filtered) {
-    //   this.setState({ filtered });
-    // }
-
-    console.log(filtered);
-  }
-
   //deep copy of folders then filter notes
-  searchNotes = () => {
-    const filtered = this.state.folders
+  //parametrul search depinde methoda pentru a seta state-ul
+  //folosin Lodash pentru a face o clona la obiect, Object.assign face o copie doar de suprafata nu deep,referinta ramane aceeaiasi
+
+  searchNotes = search => {
+    const filtered = this.props.folderList
       .map(folder => {
         const newFolder = cloneDeep(folder);
         newFolder.folder.notes = newFolder.folder.notes.filter(note => {
           return (
-            note.noteTitle
-              .toLowerCase()
-              .indexOf(this.state.search.toLowerCase()) !== -1
+            note.noteTitle.toLowerCase().indexOf(search.toLowerCase()) !== -1
           );
         });
         return newFolder;
@@ -64,13 +50,29 @@ export default class Folders extends React.Component {
     return filtered;
   };
 
+  searchItemsFound = () => {
+    let founds = 0;
+    this.state.filtered.forEach(folder => {
+      return (founds += folder.folder.notes.length);
+    });
+    return founds;
+  };
+
   handleSearch = e => {
     e.preventDefault();
-    this.setState({ search: e.target.value });
+    const searchValue = e.target.value;
+    const num = this.searchItemsFound();
+    const filtered = this.searchNotes(searchValue);
+
+    this.setState({
+      search: searchValue,
+      filtered: filtered,
+      found: num
+    });
+    console.log(this.state.found);
   };
 
   render() {
-    console.log(this.filtered_notes);
     const modal = this.state.showModal && (
       <Modal show={this.state.showModal}>
         <InputFolder
@@ -109,18 +111,19 @@ export default class Folders extends React.Component {
             </button>
           </div>
           <div className="found-items">
-            {this.state.search.length < 1
-              ? `Notes found: 0`
-              : `Notes found: ${this.state.found}`}
+            {this.state.search.length > 0
+              ? `Notes found: ${this.state.found}`
+              : `Notes found: 0`}
           </div>
         </div>
 
         <FolderList
-          //found={this.showNum}
           search={this.state.search}
-          //folders={this.props.folderList}
-          folders={this.state.folders}
-          //notes={this.props.notes}
+          folders={
+            this.state.search !== ""
+              ? this.state.filtered
+              : this.props.folderList
+          }
           selectFolder={this.selectFolderhandler}
           onUpdate={this.props.onUpdate}
         />

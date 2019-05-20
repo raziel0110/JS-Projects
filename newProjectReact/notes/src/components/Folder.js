@@ -7,8 +7,7 @@ class Folder extends React.Component {
     expandFolder: true,
     folderActive: false,
     itemId: null,
-    openInfo: false,
-    filterdNote: []
+    openInfo: false
   };
 
   showNote = item => {
@@ -38,25 +37,9 @@ class Folder extends React.Component {
     this.setState({ folderActive: !active });
   };
 
-  static getDerivedStateFromProps(props) {
-    const { notes } = props.folder.folder;
-    let filtered = notes.filter(note => {
-      return (
-        note.noteTitle.toUpperCase().indexOf(props.search.toUpperCase()) !== -1
-      );
-    });
-    return { filterdNote: filtered };
-  }
-
-  // componentDidMount() {
-  //   if (this.state.filterdNote.length > -1) {
-  //     this.props.found(this.state.filterdNote.length);
-  //   }
-  // }
-
   render() {
     const { folder } = this.props.folder;
-    //const { notes } = this.props.folder.folder;
+    const { notes } = this.props.folder.folder;
     if (this.props.selectFolder) {
       folder.isSelected = true;
     } else {
@@ -65,7 +48,7 @@ class Folder extends React.Component {
 
     const note_list =
       this.state.expandFolder &&
-      this.state.filterdNote.map(note => (
+      notes.map(note => (
         <NoteItem
           note={note}
           key={note.id}
