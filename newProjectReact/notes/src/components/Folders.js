@@ -6,11 +6,16 @@ import "./Folders.css";
 import { cloneDeep } from "lodash";
 
 export default class Folders extends React.Component {
+  constructor(props) {
+    super(props);
+    this.filtered_notes = [];
+  }
   state = {
     showModal: false,
     search: "",
     found: 0,
-    folders: []
+    folders: this.props.folderList,
+    filtered: []
   };
 
   showModal = () => {
@@ -25,50 +30,38 @@ export default class Folders extends React.Component {
     });
   };
 
-  componentDidMount() {
-    this.findNotes();
+  // componentDidMount() {
+  //   const filtered = this.searchNotes();
+  //   this.setState({ filtered });
+  // }
+
+  componentDidUpdate(prevState) {
+    const filtered = this.searchNotes();
+    // if (prevState.filtered !== filtered) {
+    //   this.setState({ filtered });
+    // }
+
+    console.log(filtered);
   }
 
-  componentDidUpdate() {
-    this.searchNotes();
-  }
-
-  findNotes = () => {
-    const { folderList } = this.props;
-    if (folderList !== this.state.folders) {
-      this.setState({ folders: folderList });
-    }
-  };
-
-  duplicateFolder = folder => {
-    cloneDeep(folder);
-  };
-  // trebuie facuta o copie la foldere dupa care fiecare folder sa aiba doar notes care
-  // satisfac conditia
-
+  //deep copy of folders then filter notes
   searchNotes = () => {
     const filtered = this.state.folders
-      .filter(folder => {
-        return folder.folder.notes.some(note => {
+      .map(folder => {
+        const newFolder = cloneDeep(folder);
+        newFolder.folder.notes = newFolder.folder.notes.filter(note => {
           return (
             note.noteTitle
               .toLowerCase()
               .indexOf(this.state.search.toLowerCase()) !== -1
           );
         });
+        return newFolder;
       })
-      .map(folder => {
-        return Object.assign({}, folder, {
-          notes: folder.folder.notes.filter(note => {
-            return (
-              note.noteTitle
-                .toLowerCase()
-                .indexOf(this.state.search.toLowerCase()) !== -1
-            );
-          })
-        });
+      .filter(folder => {
+        return folder.folder.notes.length > 0;
       });
-    console.log(filtered);
+    return filtered;
   };
 
   handleSearch = e => {
@@ -77,6 +70,7 @@ export default class Folders extends React.Component {
   };
 
   render() {
+    console.log(this.filtered_notes);
     const modal = this.state.showModal && (
       <Modal show={this.state.showModal}>
         <InputFolder

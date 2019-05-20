@@ -56,7 +56,7 @@ class Folder extends React.Component {
 
   render() {
     const { folder } = this.props.folder;
-    const { notes } = this.props.folder.folder;
+    //const { notes } = this.props.folder.folder;
     if (this.props.selectFolder) {
       folder.isSelected = true;
     } else {
