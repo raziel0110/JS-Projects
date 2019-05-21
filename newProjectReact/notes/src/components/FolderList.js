@@ -15,14 +15,13 @@ class FolderList extends React.Component {
         <ul>
           {this.props.folders.map(dir => (
             <Folder
-              // found={this.props.found}
               search={this.props.search}
               folder={dir}
               key={dir.folder.folderId}
-              //notes={dir.notes}
               showFolder={this.selectFolderhandler}
               selectFolder={dir.folder.folderId === this.state.folderId}
               onUpdate={this.props.onUpdate}
+              onDelete={this.props.onDelete}
             />
           ))}
         </ul>

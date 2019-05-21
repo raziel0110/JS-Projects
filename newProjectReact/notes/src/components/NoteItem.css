@@ -21,8 +21,38 @@
 }
 
 .list-item-date {
-  /* width: 150px; */
+  padding: 0;
   font-family: "Courier New", Courier, monospace;
   font-size: 8px;
   color: #7c7c7cc0;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-del {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10px;
+  line-height: 16px;
+  display: none;
+  transform-origin: 50% 50%;
+  transform: rotate(1260deg);
+}
+
+.del {
+  border: none;
+  border-radius: 50%;
+  margin: 5px 5px;
+  transition: ease-in-out 4s;
+}
+
+.list-item:hover .btn-del {
+  display: block;
+  transition: ease-in-out 5s;
+}
+
+.btn-del:hover {
+  transform: rotate(-1260deg);
 }

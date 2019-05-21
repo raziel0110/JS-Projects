@@ -3,6 +3,7 @@ import Folders from "./Folders";
 import Note from "./Note";
 import MessagePopUp from "./MessagePopUp";
 import Modal from "./Modal";
+import { cloneDeep } from "lodash";
 
 import "./App.css";
 
@@ -13,7 +14,6 @@ export default class App extends Component {
     this.id = 0;
   }
   state = {
-    //note_value: "",
     folderList: [],
     showMessage: false,
     error: ""
@@ -37,17 +37,26 @@ export default class App extends Component {
   };
 
   updateNote = note => {
-    console.log("app :", note);
     const { folderList } = this.state;
-
     folderList.forEach(f => {
       if (f.folder.isSelected === true) {
         const { notes } = f.folder;
-        console.log(notes);
         const element = notes.find(item => item.id === note.id);
         this.setState(element);
       }
     });
+  };
+
+  deleteNote = note => {
+    const { folderList } = this.state;
+    const dir = folderList.map(f => {
+      const newFolders = cloneDeep(f);
+      newFolders.folder.notes = newFolders.folder.notes.filter(n => {
+        return n.id !== note.id;
+      });
+      return newFolders;
+    });
+    this.setState({ folderList: dir });
   };
 
   saveNote = note => {
@@ -84,6 +93,7 @@ export default class App extends Component {
               selectFolder={this.selectFolder}
               id={this.id}
               onUpdate={this.updateNote}
+              onDelete={this.deleteNote}
             />
             <Note note={this.saveNote} modal={this.modal} />
             {modal}

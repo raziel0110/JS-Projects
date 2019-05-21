@@ -13,6 +13,10 @@ class NoteItem extends React.Component {
     this.props.onUpdate(note);
   };
 
+  deleteNote = () => {
+    this.props.onDelete(this.props.note);
+  };
+
   showInfo = () => {
     this.setState({ showInfo: true });
   };
@@ -40,8 +44,18 @@ class NoteItem extends React.Component {
             }}
           >
             <div className="list-item">
-              <div className="list-item-title">{this.props.note.noteTitle}</div>
-              <div className="list-item-date">{this.props.note.date}</div>
+              <div className="content">
+                <div className="list-item-title">
+                  {this.props.note.noteTitle}
+                </div>
+                <div className="list-item-date">{this.props.note.date}</div>
+              </div>
+
+              <div className="btn-del">
+                <button type="button" className="del" onClick={this.deleteNote}>
+                  x
+                </button>
+              </div>
             </div>
           </li>
         </div>

@@ -69,7 +69,6 @@ export default class Folders extends React.Component {
       filtered: filtered,
       found: num
     });
-    console.log(this.state.found);
   };
 
   render() {
@@ -111,9 +110,7 @@ export default class Folders extends React.Component {
             </button>
           </div>
           <div className="found-items">
-            {this.state.search.length > 0
-              ? `Notes found: ${this.state.found}`
-              : `Notes found: 0`}
+            {`Notes found: ${this.state.found}`}
           </div>
         </div>
 
@@ -126,6 +123,7 @@ export default class Folders extends React.Component {
           }
           selectFolder={this.selectFolderhandler}
           onUpdate={this.props.onUpdate}
+          onDelete={this.props.onDelete}
         />
         {modal}
       </div>

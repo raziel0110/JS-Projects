@@ -19,14 +19,6 @@ class Folder extends React.Component {
     this.setState({ itemId: item.id });
   };
 
-  updateNote = item => {
-    const { notes } = this.props.folder.folder;
-    const note = notes.find(n => {
-      return n.id === item.id;
-    });
-    this.props.onUpdate(note);
-  };
-
   toggleExapandHandler = e => {
     let expand = this.state.expandFolder;
     this.setState({ expandFolder: !expand });
@@ -55,6 +47,7 @@ class Folder extends React.Component {
           showNoteItem={this.showNote}
           isSelect={note.id === this.state.itemId}
           onUpdate={() => this.props.onUpdate(note.note)}
+          onDelete={this.props.onDelete}
         />
       ));
     return (

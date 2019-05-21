@@ -32,7 +32,6 @@ export default class UpdateBox extends React.Component {
   updateHandler = e => {
     e.preventDefault();
     const isValid = this.validate_update();
-    console.log(this.state.textnote);
     const value = this.state;
     if (isValid) {
       this.props.update(value);
