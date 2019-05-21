@@ -6,6 +6,7 @@
 textarea {
   width: 90%;
   height: 500px;
+  margin-top: 5px;
 }
 
 .add-note {
@@ -30,7 +31,7 @@ textarea {
 
 .add-title {
   width: 90%;
-  margin: 10px auto;
+  margin: 5px auto;
   margin-top: 0;
 }
 
@@ -49,4 +50,28 @@ textarea {
   color: whitesmoke;
   border: 3px solid grey;
   transition: ease-in-out 0.9s;
+}
+
+.buttons-format {
+  display: flex;
+  justify-content: left;
+  width: 89%;
+  margin: 0 auto;
+}
+
+.format {
+  width: 30px;
+  border: 1px solid black;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 800;
+}
+.active-buttons {
+  background-color: #4e4e4e;
+}
+
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
 }

@@ -12,14 +12,24 @@ class Note extends React.Component {
     noteTitle: "",
     date: "",
     titleError: "",
-    noteError: ""
+    noteError: "",
+    bold: false,
+    italic: false
   };
 
   titleHandler = e => {
     this.setState({ noteTitle: e.target.value });
   };
 
+  handleButtonBold = () => {
+    this.setState({ bold: !this.state.bold });
+  };
+  handleButtonItalic = () => {
+    this.setState({ italic: !this.state.italic });
+  };
+
   textareaChangeHandler = e => {
+    console.log(this.formatText());
     this.setState({
       noteText: e.target.value
     });
@@ -45,6 +55,12 @@ class Note extends React.Component {
         titleError: ""
       });
     }
+  };
+
+  formatText = () => {
+    const hightLighted = window.getSelection();
+
+    return hightLighted;
   };
 
   validateNote = () => {
@@ -85,6 +101,25 @@ class Note extends React.Component {
               className="add-title"
               placeholder="Please enter a title"
             />
+            <div className="buttons-format">
+              <button
+                className={this.state.bold ? "format active-buttons" : "format"}
+                type="button"
+                onClick={this.handleButtonBold}
+              >
+                B
+              </button>
+              <button
+                className={
+                  this.state.italic ? "format active-buttons" : "format"
+                }
+                type="button"
+                onClick={this.handleButtonItalic}
+              >
+                <i>I</i>
+              </button>
+            </div>
+
             <div className="error-message">{this.state.noteError}</div>
             <textarea
               value={this.state.noteText}
