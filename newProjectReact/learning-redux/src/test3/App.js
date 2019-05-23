@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import Counter from "./Counter";
 import store from "./store/index";
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <div>

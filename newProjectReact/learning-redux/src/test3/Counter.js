@@ -2,23 +2,24 @@ import React from "react";
 import { connect } from "react-redux";
 
 const Counter = props => {
-  console.log(props);
   return (
     <div>
-      <button onClick={props.onIncrementClick}>increment</button>
-      <span>Count: {props.count}</span>
+      <h1>Counter</h1>
       <button onClick={props.onDecrementClick}>decrement</button>
+      <p>Count: {props.count}</p>
+      <button onClick={props.onIncrementClick}>increment</button>
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     count: state.count
   };
 };
+
 const mapDispatchToProps = dispatch => {
+  console.log("mapDispatch");
   return {
     onIncrementClick: () => {
       const action = { type: "INCREMENT" };

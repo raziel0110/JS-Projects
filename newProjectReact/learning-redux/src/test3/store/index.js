@@ -1,9 +1,9 @@
 import { createStore } from "redux";
 
-const initialState = { count: 0 };
+const initialState = { count: 1 };
 
 const reducer = (state = initialState, action) => {
-  console.log(state);
+  console.log("reducer", state);
   switch (action.type) {
     case "INCREMENT":
       return Object.assign({}, state, { count: state.count + 1 });
