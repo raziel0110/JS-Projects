@@ -26,6 +26,7 @@
 
 .btn-padding {
   margin: 1px;
-  padding: 0.1rem 0.3rem;
-  line-height: 1.6;
+  padding: 0.175rem 0.3rem;
+  line-height: 1.7;
+  font-size: 13px;
 }
