@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { inputText, onSubmit } from "../actions";
+import { inputText, onSubmit } from "../actions/";
 
 const UserInput = props => {
   return (
     <div>
-      <form onSubmit={e => props.onSubmit(e)}>
+      <form onSubmit={e => props.onSubmit(e, props.userInput)}>
         <input
           type="text"
           value={props.userInput}
@@ -18,8 +18,7 @@ const UserInput = props => {
 
 const mapStateToProps = state => {
   return {
-    userInput: state.input.inputTextValue,
-    todos: state.input.todos
+    userInput: state.inputTextValue.inputTextValue
   };
 };
 
