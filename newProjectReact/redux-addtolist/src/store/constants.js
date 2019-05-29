@@ -1,5 +1,0 @@
-export default {
-  ADD_ITEM: "ADD_ITEM",
-  INPUT_CHANGE: "INPUT_CHANGE",
-  DELETE_ITEM: "DELETE_ITEM"
-};
