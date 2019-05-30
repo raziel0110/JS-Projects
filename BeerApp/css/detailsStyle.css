@@ -1,0 +1,129 @@
+.container {
+  margin: 0;
+  padding: 0;
+}
+.wrapHeader {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+}
+.head-photo {
+  margin-left: 5%;
+  width: 30%;
+  height: auto;
+}
+.headLogo {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.headLogo h3 {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-family: "Great Vibes", cursive;
+  font-size: 5em;
+  text-align: center;
+  vertical-align: middle;
+  align-self: center;
+}
+
+.beer-name {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Great Vibes", cursive;
+  font-size: 3em;
+}
+.ingredients {
+  width: 70%;
+  margin: 1em auto;
+  display: flex;
+  flex-direction: column;
+}
+.ingredients h3 {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.ingredients-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.ingredients-container ul {
+  list-style: none;
+}
+
+.ingredients-container ul li {
+  font-size: 1.5em;
+  font-family: "Indie Flower", cursive;
+  font-weight: 600;
+}
+.ingredients-container ul li:nth-child(odd) {
+  background-color: rgb(231, 231, 231);
+}
+.description {
+  width: 100%;
+}
+
+.description h3 {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.description p {
+  width: 70%;
+  margin: 0 auto;
+  line-height: 1.5em;
+  font-family: "Indie Flower", cursive;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+}
+.food-pairing h3 {
+  text-align: center;
+}
+.food-pairing {
+  width: 100%;
+}
+
+.food-pairing ul {
+  list-style: none;
+  width: 50%;
+  margin: 1em auto;
+  margin-bottom: 5em;
+}
+
+.food-pairing ul li {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Indie Flower", cursive;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.food-pairing ul li:nth-child(odd) {
+  background-color: #eee;
+}
+
+.back {
+  width: 100%;
+  display: flex;
+  margin: 2em auto;
+}
+
+.back-btn {
+  width: 15%;
+  height: 30px;
+  margin: 0 auto;
+  border: none;
+  background-image: linear-gradient(to left, #b59336, #e9c051);
+  border-color: 5px solid rgba(124, 108, 64, 0.5);
+  color: white;
+}

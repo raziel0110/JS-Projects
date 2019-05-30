@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Permanent+Marker"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Satisfy"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>To Do List</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="container">
+        <div class="users">
+          <p><span class="credentials" id="username">Username:</span><span class="credentials" id="logOut"><button id="logout" type="button">Logout</button><button id="login" type="button">Login</button></span></span></p>
+        </div>
+        <br>
+        <div class="header effect">
+          <h3>Shopping List</h3>
+        </div>
+
+        <div class="inputData">
+          <div class="input-group">
+            <input
+              type="text"
+              name="newItem"
+              class="form-control"
+              placeholder="Shopping Item"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+              id="newItem"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-warning"
+                type="button"
+                id="button-addon2"
+              >
+                Add to List
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="shoppingList">
+          <ul class="list-group" id="list-group">
+        
+            </li>
+          </ul>
+        </div>
+
+        <div class="modalBoxAnswer" id="areyousure">
+          <div class="modalAnswer">
+            <div class="answerQuestion">
+              <h3>Are you sure?</h3>
+            </div>
+            <div class="dialog">   
+            <div class="yes">
+              <button class="btn btn-danger choiseBtn" id="yes">Yes</button>
+            </div>
+            <div class="no">
+              <button class="btn btn-warning choiseBtn" id="no">No</button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="errorMessageModal" id="errorMessageModal">
+          <div class="errorMessageBox">
+            <div class="textMessage">
+              <h3>This item is already exists!</h3>
+            </div>
+            <div class="textMessageBtn">
+              <button class="btn btn-danger" id="retry">Retry</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/user.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/module.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

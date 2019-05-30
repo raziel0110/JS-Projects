@@ -1,0 +1,11 @@
+.header-continer {
+  width: 60%;
+  margin: 5% auto;
+  padding: 3px;
+}
+.header-continer h1 {
+  text-align: center;
+  color: rgba(143, 99, 18, 0.61);
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+}

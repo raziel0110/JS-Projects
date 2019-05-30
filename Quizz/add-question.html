@@ -1,0 +1,38 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet"> 
+    <link href="css/questions.css" rel="stylesheet">
+    <title>Quizz Add Question</title>
+</head>
+<body>
+    <div class="header">
+        <h3>Quizz questions</h3>
+    </div>
+    <div id="container">
+        <form id="form" class="input">
+            <label for="question">Enter Question:</label>
+            <input type="text" id="question" name="question"> 
+            <br>
+            <label for="alternative1">First answer:</label>
+            <input type="text" id="alternative1" name="alternative1">
+            <br> 
+            <label for="alternative2">Second answer:</label>
+            <input type="text" id="alternative2" name="alternative2">
+            <br> 
+            <label for="answer">Good Answer:</label>
+            <input type="text" id="answer" name="answer"> 
+            <br>
+            <button id="addToLocalStorage" type="button" class="btn btn-outline-success">Add List</button>
+        </form>
+    </div>
+
+    <script src="js/Question.js"></script>
+    <script src="js/addList.js"></script>
+    
+</body>
+</html>
