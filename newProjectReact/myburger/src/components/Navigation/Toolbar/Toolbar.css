@@ -16,3 +16,18 @@
 .Toolbal nav {
   height: 100%;
 }
+
+.Logo {
+  height: 80%;
+  background-color: white;
+  padding: 8px;
+  /* height: 100%; */
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+@media (max-width: 499px) {
+  .DesktopOnly {
+    display: none;
+  }
+}
