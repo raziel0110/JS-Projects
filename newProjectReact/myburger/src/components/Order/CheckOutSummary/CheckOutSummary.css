@@ -1,5 +1,5 @@
 .CheckoutSummary {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   text-align: center;
   width: 80%;
@@ -12,8 +12,10 @@
   }
 }
 
-.Buttons {
+/* .Checkout-btn {
+  width: 80%;
+  border: 1px solid red;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-around;
-  text-align: center;
-}
+  justify-content: center;
+} */
