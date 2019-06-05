@@ -5,7 +5,7 @@ import Aux from "../Auxiliar";
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends React.Component {
     state = { error: null };
-    componentWillMount() {
+    componentDidMount() {
       this.reqInterceptor = axios.interceptors.request.use(req => {
         this.setState({ error: null });
         return req;
