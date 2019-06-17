@@ -1,0 +1,27 @@
+body {
+  font-family: "Open Sans", sans-serif !important;
+}
+
+.text-slanted {
+  font-family: "Courgette", cursive;
+}
+
+.text-orange {
+  color: #f15025;
+}
+
+.letter-spacing {
+  letter-spacing: 0.5rem;
+}
+
+.header-hero {
+  min-height: calc(100vh - 56px);
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../images/homeBcg.jpeg") center/cover no-repeat;
+}
+
+.default-hero {
+  min-height: calc(100vh - 56px);
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../images/defaultBcg.jpeg") center/cover no-repeat;
+}
