@@ -1,0 +1,10 @@
+.canvas {
+  background: rgba(45, 77, 45, 0.815);
+}
+
+.header {
+  width: 80%;
+  margin: 1%;
+  display: flex;
+  justify-content: space-between;
+}

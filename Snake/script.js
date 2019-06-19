@@ -1,25 +1,31 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
-let snakeSize = 10;
-let w = 350;
-let h = 350;
+let scale = 10;
+let rows = canvas.height / scale;
+let cols = canvas.width / scale;
 
-const posX = Math.floor(Math.random() * (w / snakeSize));
-const posY = Math.floor(Math.random() * (h / snakeSize));
-const snake = new Snake(posX, posY, snakeSize, snakeSize);
+let snake = new Snake();
+let food = new Food();
+let score = new Score();
+food.randomPosition();
 
-const init = function() {
-  drawSnakeHead();
-};
+(function setup() {
+  window.setInterval(() => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    snake.update();
+    food.draw();
+    snake.draw();
 
-let drawSnakeHead = function() {
-  ctx.fillStyle = "lightgrey";
-  ctx.rect(0, 0, w, h);
-  ctx.fillRect(0, 0, w, h);
-  ctx.stroke();
-  snake.drawSnake(ctx);
-};
+    if (snake.eat(food)) {
+      food.randomPosition();
+      score.incrementScore();
+    }
+  }, 200);
+})();
 
-function paint() {}
+document.addEventListener("keydown", directions);
 
-init();
+function directions(event) {
+  const direction = event.key.replace("Arrow", "");
+  snake.changeDirection(direction);
+}
