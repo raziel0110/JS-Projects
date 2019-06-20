@@ -4,7 +4,12 @@
 
 .header {
   width: 80%;
-  margin: 1%;
+  text-align: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+}
+
+.snake {
+  width: 30%;
+  margin: 0 auto;
 }

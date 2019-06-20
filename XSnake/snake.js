@@ -27,11 +27,14 @@ class Snake {
   };
 
   update = () => {
+    // update tail
+
     for (let i = 0; i < this.tail.length - 1; i++) {
       this.tail[i] = this.tail[i + 1];
     }
-
     this.tail[this.total - 1] = { x: this.x, y: this.y };
+
+    // update position and limit bounderies
 
     this.x += this.xSpeed;
     this.y += this.ySpeed;

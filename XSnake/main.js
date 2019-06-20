@@ -12,25 +12,21 @@ const score = new Score();
 snake.snakeInit();
 food.initFood();
 
-function initGame() {
+function initGame(speed) {
   const game = setInterval(() => {
-    // LevelUp();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     snake.update();
     snake.draw();
     food.draw();
-
     if (snake.eat(food)) {
       score.incrementScore();
       text_score.innerHTML = score.score;
       food.initFood();
-      console.log("score:", score.score);
     }
-
     if (snake.findCollision()) {
       clearInterval(game);
     }
-  }, gameSpeed);
+  }, speed);
 }
 
 document.addEventListener("keydown", directions);
@@ -40,16 +36,18 @@ function directions(event) {
   snake.changeDirection(direction);
 }
 
-function LevelUp() {
-  let levels = 1;
-  let speed = 10;
+(function LevelUp() {
+  setInterval(changeLevel, 60000);
+})();
 
-  while (levels <= 10) {
-    setTimeout(() => {
-      level++;
-      gameSpeed -= 10;
-    }, 10000);
+function changeLevel() {
+  gameSpeed -= 10;
+  level++;
+  if (level == 50) {
+    level = "max";
   }
+  initGame(gameSpeed);
+  document.getElementById("level").innerHTML = level;
 }
 
-initGame();
+initGame(gameSpeed);
