@@ -1,0 +1,89 @@
+body {
+  background: rgb(64, 103, 82);
+  background: radial-gradient(
+    circle,
+    rgba(64, 103, 82, 0.9612219887955182) 22%,
+    rgba(28, 56, 33, 1) 100%
+  );
+}
+
+.game {
+  width: 40%;
+  height: 700px;
+  margin: 4% auto;
+  text-align: center;
+  background-color: rgba(28, 56, 33, 0.4);
+  border-radius: 10px;
+  box-shadow: 1px 3px 3px 2px rgba(0, 0, 0, 0.2),
+    4px 7px 7px 4px rgba(0, 0, 0, 0.17);
+}
+
+.header {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.header > h4 {
+  width: 100%;
+  text-align: center;
+  font-family: "Mali", cursive;
+  margin: 10px auto;
+  padding: 10px;
+  color: white;
+}
+
+.letters {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.underscore {
+  font-size: 30px;
+  color: white;
+  margin: 0 7px;
+}
+
+.lines {
+  font-size: 30px;
+  color: white;
+  margin: 0 5px;
+  line-height: 10px;
+}
+
+.letter {
+  font-family: "Mali", cursive;
+  margin: 3px;
+  flex-grow: 1;
+  width: 10%;
+  margin: 5px;
+  background-color: #cecece;
+  border-radius: 5px;
+  box-shadow: 1px 3px 3px 2px rgba(0, 0, 0, 0.2),
+    4px 7px 7px 4px rgba(0, 0, 0, 0.17);
+  color: rgba(28, 56, 33, 1) 100%;
+  cursor: pointer;
+}
+
+.letter:hover {
+  background-color: white;
+}
+
+.word_hidding {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#word_letter {
+  margin: 0;
+}
+
+.guest_word {
+  margin-top: 20px;
+}

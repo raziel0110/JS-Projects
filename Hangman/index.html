@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Mali&display=swap"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <title>Hangman</title>
+  </head>
+  <body>
+    <div class="game">
+      <div class="header">
+        <h4>Hangman</h4>
+      </div>
+
+      <div>
+        <p class="word_hidding" id="word_letter"></p>
+        <p class="lines" id="lines"></p>
+      </div>
+
+      <div class="guest_word">
+        <input type="text" id="input" />
+        <button type="submit" id="try">try</button>
+      </div>
+      <div id="start">
+        <button>Start Game</button>
+      </div>
+      <!-- <div class="letters" id="letters"></div> -->
+    </div>
+    <script src="Words.js"></script>
+    <script src="Hangman.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
