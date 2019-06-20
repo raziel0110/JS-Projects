@@ -1,13 +1,13 @@
 const word_hidding = document.getElementById("word_letter");
+const game = document.getElementById("game");
 const lettersArray = "abcdefghijklmnopqrstuvwxyz".split("");
 const letters = document.getElementsByClassName("letter");
 const input = document.getElementById("input");
 const start = document.getElementById("start");
 const trying = document.getElementById("try");
 const lines = document.getElementById("lines");
-let show = false;
 
-console.log(input);
+let show = false;
 
 const game_word = new Word();
 const hangman = new Hangman();
@@ -17,35 +17,40 @@ const word = game_word
   .toString()
   .split("");
 const word_length = word.length;
-console.log(word_length);
-
-word.forEach(letter => {
-  const span = document.createElement("span");
-  span.classList.add("hidden");
-  span.classList.add("underscore");
-
-  span.innerHTML = letter;
-  word_hidding.append(span);
-});
-
-for (let i = 0; i < word_length; i++) {
-  const span = document.createElement("span");
-  span.classList.add("lines");
-  span.innerHTML = "_";
-  lines.append(span);
-}
-
-function init() {}
+//game init
 
 start.addEventListener("click", startGame);
 
 function startGame() {
   if (!show) {
-    word_hidding.classList.remove("word_hidding");
+    game.classList.remove("hidden");
     start.classList.add("hidden");
     init();
-  } else {
-    word_hidding.classList.add("word_hidding");
+  }
+}
+
+function init() {
+  showUnderscoreLetters(word_length);
+  hideLetters(word);
+}
+
+function hideLetters(arr) {
+  arr.forEach(letter => {
+    const span = document.createElement("span");
+    span.classList.add("hidden");
+    span.classList.add("underscore");
+
+    span.innerHTML = letter;
+    word_hidding.append(span);
+  });
+}
+
+function showUnderscoreLetters(number) {
+  for (let i = 0; i < number; i++) {
+    const span = document.createElement("span");
+    span.classList.add("line");
+    span.innerHTML = "_";
+    lines.append(span);
   }
 }
 
@@ -60,10 +65,19 @@ function returnLetter(input) {
 }
 
 function tryLetter() {
-  if (ifExist(input.value)) {
+  const line = document.querySelectorAll(".line");
+  const index = findIndex(word, input.value);
+
+  if (ifExist(input.value) && line[index].innerHTML === "_") {
+    line.replace(line[index].innerHTML, returnLetter(input.value));
     console.log(returnLetter(input.value));
+    console.log(findIndex(word, input.value));
   } else {
     hangman.removeLifes();
     console.log(hangman.errorLeft);
   }
+}
+
+function findIndex(arr, value) {
+  return arr.findIndex(el => el === value);
 }
