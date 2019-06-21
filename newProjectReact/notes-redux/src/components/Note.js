@@ -1,5 +1,6 @@
 import React from "react";
 import "./Note.css";
+import { connect } from "react-redux";
 
 class Note extends React.Component {
   constructor(props) {
@@ -8,31 +9,9 @@ class Note extends React.Component {
   }
   state = {
     noteId: 0,
-    noteText: "",
-    noteTitle: "",
     date: "",
     titleError: "",
-    noteError: "",
-    bold: false,
-    italic: false
-  };
-
-  titleHandler = e => {
-    this.setState({ noteTitle: e.target.value });
-  };
-
-  handleButtonBold = () => {
-    this.setState({ bold: !this.state.bold });
-  };
-  handleButtonItalic = () => {
-    this.setState({ italic: !this.state.italic });
-  };
-
-  textareaChangeHandler = e => {
-    console.log(this.formatText());
-    this.setState({
-      noteText: e.target.value
-    });
+    noteError: ""
   };
 
   saveNote = e => {
@@ -42,15 +21,13 @@ class Note extends React.Component {
       this.setState({ noteId: this.state.noteId + 1 });
       this.props.note({
         id: this.id,
-        note: this.state.noteText,
-        noteTitle: this.state.noteTitle,
+        note: this.props.noteText,
+        noteTitle: this.props.noteTitle,
         date: new Date().toLocaleString(),
         isSelect: false
       });
       this.id++;
       this.setState({
-        noteText: "",
-        noteTitle: "",
         noteError: "",
         titleError: ""
       });
@@ -59,7 +36,6 @@ class Note extends React.Component {
 
   formatText = () => {
     const hightLighted = window.getSelection();
-
     return hightLighted;
   };
 
@@ -67,7 +43,7 @@ class Note extends React.Component {
     let titleError;
     let noteError;
 
-    if (this.state.noteTitle.length <= 0) {
+    if (this.props.noteTitle.length <= 0) {
       titleError = "Please add a title";
     }
     if (titleError) {
@@ -75,14 +51,13 @@ class Note extends React.Component {
       return false;
     }
 
-    if (this.state.noteText.length <= 0) {
+    if (this.props.noteText.length <= 0) {
       noteError = "Please fill the text area with some note!";
     }
     if (noteError) {
       this.setState({ noteError });
       return false;
     }
-
     return true;
   };
   render() {
@@ -96,41 +71,23 @@ class Note extends React.Component {
             <div className="error-message">{this.state.titleError}</div>
             <input
               type="text"
-              onChange={this.titleHandler}
-              value={this.state.noteTitle}
+              onChange={this.props.titleHandler}
+              value={this.props.noteTitle}
               className="add-title"
               placeholder="Please enter a title"
             />
-            <div className="buttons-format">
-              <button
-                className={this.state.bold ? "format active-buttons" : "format"}
-                type="button"
-                onClick={this.handleButtonBold}
-              >
-                B
-              </button>
-              <button
-                className={
-                  this.state.italic ? "format active-buttons" : "format"
-                }
-                type="button"
-                onClick={this.handleButtonItalic}
-              >
-                <i>I</i>
-              </button>
-            </div>
 
             <div className="error-message">{this.state.noteError}</div>
             <textarea
-              value={this.state.noteText}
-              onChange={this.textareaChangeHandler}
+              value={this.props.noteText}
+              onChange={this.props.textareaChangeHandler}
               placeholder="Enter Text"
             />
             <button
               type="button"
-              className={!this.state.noteTitle ? "disabled" : "add-note"}
+              className={!this.props.noteTitle ? "disabled" : "add-note"}
               onClick={this.saveNote}
-              disabled={!this.state.noteTitle}
+              disabled={!this.props.noteTitle}
             >
               Add Note
             </button>
@@ -142,4 +99,34 @@ class Note extends React.Component {
   }
 }
 
-export default Note;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    noteText: state.inputNote.noteText,
+    noteTitle: state.inputNote.noteTitle
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    textareaChangeHandler: e => {
+      const action = {
+        type: "INPUT_NOTE",
+        text: e.target.value
+      };
+      dispatch(action);
+    },
+    titleHandler: e => {
+      const action = {
+        type: "INPUT_TITLE",
+        text: e.target.value
+      };
+      dispatch(action);
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Note);

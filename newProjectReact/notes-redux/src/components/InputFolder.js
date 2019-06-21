@@ -1,26 +1,21 @@
 import React from "react";
 import "./InputFolder.css";
+import { connect } from "react-redux";
 
 class InputFolder extends React.Component {
-  state = { userInput: "", folderId: 0 };
-  changeInputHandler = e => {
-    const value = e.target.value.toUpperCase();
-    this.setState({
-      userInput: value
-    });
-  };
-
+  state = { folderId: 0 };
   submitHandler = e => {
     e.preventDefault();
     this.props.onAdd({
       folderId: this.props.id,
-      folderName: this.state.userInput,
+      folderName: this.props.userInput,
       notes: [],
       isSelected: false
     });
     this.props.hideModal();
   };
   render() {
+    console.log(this.props);
     return (
       <div className="container-input">
         <div className="window">
@@ -37,7 +32,7 @@ class InputFolder extends React.Component {
             <input
               type="text"
               value={this.state.userInput}
-              onChange={this.changeInputHandler}
+              onChange={this.props.changeInputHandler}
             />
             <button
               type="button"
@@ -53,4 +48,26 @@ class InputFolder extends React.Component {
   }
 }
 
-export default InputFolder;
+const mapStateToProps = state => {
+  console.log(state.inputFolder.userInput);
+  return {
+    userInput: state.inputFolder.userInput
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeInputHandler: e => {
+      const action = {
+        type: "INPUT_FOLDER",
+        text: e.target.value.toUpperCase()
+      };
+      dispatch(action);
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InputFolder);
