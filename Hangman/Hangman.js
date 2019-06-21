@@ -7,4 +7,15 @@ class Hangman {
   removeLifes() {
     this.errorLeft--;
   }
+
+  loose() {
+    if (this.errorLeft == 0) {
+      return true;
+    }
+    return false;
+  }
+
+  reset() {
+    this.errorLeft = 5;
+  }
 }

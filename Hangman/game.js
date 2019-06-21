@@ -38,6 +38,8 @@ function showUnderscoreLetters(number) {
   }
 }
 
+function removeUnderscores() {}
+
 trying.addEventListener("click", tryLetter);
 
 function returnLetter(input) {
@@ -56,6 +58,11 @@ function tryLetter() {
     }
   } else {
     hangman.removeLifes();
+    if (hangman.loose()) {
+      alert("you loose");
+      hangman.reset();
+      init();
+    }
   }
 }
 

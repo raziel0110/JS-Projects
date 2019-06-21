@@ -1,0 +1,17 @@
+.folder-list {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 12px;
+  color: #001f3f;
+  width: 100%;
+  text-align: left;
+  margin-top: 25px;
+}
+
+.folder-list ul {
+  list-style-type: none;
+  padding-left: 13px;
+}
+
+.folder-list ul li {
+  margin-bottom: 3px;
+}

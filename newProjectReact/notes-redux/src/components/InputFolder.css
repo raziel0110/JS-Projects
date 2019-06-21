@@ -1,0 +1,66 @@
+.close-btn {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  line-height: 15px;
+}
+
+.container-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.window {
+  position: fixed;
+  top: calc(40% - (200px / 2));
+  left: 35%;
+  background-color: white;
+  width: 350px;
+  height: 150px;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.2),
+    -5px 7px 10px 5px rgba(0, 0, 0, 0.17);
+}
+
+.window h4 {
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1em;
+  padding: 5px;
+  color: #001f3f;
+}
+
+.window form {
+  width: 85%;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.window input {
+  width: 300px;
+  padding: 0;
+}
+
+.add-folder {
+  margin: 10px auto;
+  width: 300px;
+  border: 2px solid #001f3f;
+  background-color: #001f3f;
+  color: white;
+  transition: ease-in-out 0.5s;
+}
+
+.add-folder:hover {
+  background-color: #033464;
+  border: 2px solid #033464;
+}
