@@ -18,7 +18,7 @@ class Note extends React.Component {
     e.preventDefault();
     const isValid = this.validateNote();
     if (isValid) {
-      this.setState({ noteId: this.state.noteId + 1 });
+      // this.setState({ noteId: this.state.noteId + 1 });
       this.props.note({
         id: this.id,
         note: this.props.noteText,
@@ -32,11 +32,6 @@ class Note extends React.Component {
         titleError: ""
       });
     }
-  };
-
-  formatText = () => {
-    const hightLighted = window.getSelection();
-    return hightLighted;
   };
 
   validateNote = () => {
@@ -103,7 +98,10 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     noteText: state.inputNote.noteText,
-    noteTitle: state.inputNote.noteTitle
+    noteTitle: state.inputNote.noteTitle,
+    noteId: state.inputNote.noteId,
+    date: state.inputNote.date,
+    isSelect: state.inputNote.isSelect
   };
 };
 

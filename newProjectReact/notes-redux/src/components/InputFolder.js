@@ -49,7 +49,6 @@ class InputFolder extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.inputFolder.userInput);
   return {
     userInput: state.inputFolder.userInput
   };

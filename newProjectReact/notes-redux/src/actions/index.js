@@ -18,3 +18,9 @@ export const titleHandler = e => {
     text: e.target.value
   };
 };
+
+export const saveNote = () => {
+  return {
+    type: "SAVE_NOTE"
+  };
+};

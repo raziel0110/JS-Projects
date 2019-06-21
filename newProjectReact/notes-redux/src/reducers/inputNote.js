@@ -1,4 +1,10 @@
-const initialState = { noteText: "", noteTitle: "" };
+const initialState = {
+  noteText: "",
+  noteTitle: "",
+  noteId: 0,
+  date: "",
+  isSelect: false
+};
 
 const noteReducer = (state = initialState, action) => {
   if (action.type === "INPUT_NOTE") {
@@ -9,6 +15,12 @@ const noteReducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       noteTitle: action.text
     });
+  } else if (action.type === "SAVE_NOTE") {
+    return {
+      ...state,
+      noteId: state.noteId + 1,
+      date: new Date().toLocaleString()
+    };
   } else {
     return state;
   }
