@@ -3,11 +3,12 @@ import Folders from "./Folders";
 import Note from "./Note";
 import MessagePopUp from "./MessagePopUp";
 import Modal from "./Modal";
+import { connect } from "react-redux";
 import { cloneDeep } from "lodash";
 
 import "./App.css";
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.modal = "";
@@ -63,12 +64,12 @@ export default class App extends Component {
     const dir = this.state.folderList.find(f => {
       return f.folder.isSelected === true;
     });
+
     if (dir) {
       dir.folder.notes.push(note);
     } else {
       this.setState({ showMessage: true, error: "Please select a folder!" });
     }
-
     this.setState({ dir });
   };
 
@@ -103,3 +104,23 @@ export default class App extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  console.log(state);
+  return state;
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveNote: e => {
+      const action = {
+        type: "SAVE_NOTE"
+      };
+      dispatch(action);
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

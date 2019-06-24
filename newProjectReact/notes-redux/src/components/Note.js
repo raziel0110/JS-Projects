@@ -8,8 +8,7 @@ class Note extends React.Component {
     this.id = 0;
   }
   state = {
-    noteId: 0,
-    date: "",
+    note: {},
     titleError: "",
     noteError: ""
   };
@@ -17,16 +16,19 @@ class Note extends React.Component {
   saveNote = e => {
     e.preventDefault();
     const isValid = this.validateNote();
+
     if (isValid) {
       // this.setState({ noteId: this.state.noteId + 1 });
-      this.props.note({
-        id: this.id,
+      const note = {
+        id: this.props.noteId,
         note: this.props.noteText,
         noteTitle: this.props.noteTitle,
         date: new Date().toLocaleString(),
         isSelect: false
-      });
-      this.id++;
+      };
+
+      this.props.note(note);
+      // this.id++;
       this.setState({
         noteError: "",
         titleError: ""
@@ -56,13 +58,14 @@ class Note extends React.Component {
     return true;
   };
   render() {
+    console.log(this.props);
     return (
       <div className="note">
         <div className="note-header">
           <h4>Text Area</h4>
         </div>
         <div className="note-input">
-          <form>
+          <form onSubmit={this.saveNote}>
             <div className="error-message">{this.state.titleError}</div>
             <input
               type="text"
@@ -81,7 +84,7 @@ class Note extends React.Component {
             <button
               type="button"
               className={!this.props.noteTitle ? "disabled" : "add-note"}
-              onClick={this.saveNote}
+              onClick={this.props.saveNote}
               disabled={!this.props.noteTitle}
             >
               Add Note
@@ -118,6 +121,12 @@ const mapDispatchToProps = dispatch => {
       const action = {
         type: "INPUT_TITLE",
         text: e.target.value
+      };
+      dispatch(action);
+    },
+    saveNote: () => {
+      const action = {
+        type: "SAVE_NOTE"
       };
       dispatch(action);
     }
