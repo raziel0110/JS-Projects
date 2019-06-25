@@ -24,3 +24,9 @@ export const saveNote = () => {
     type: "SAVE_NOTE"
   };
 };
+
+export const addFolder = () => {
+  return {
+    type: "ADD_FOLDER"
+  };
+};

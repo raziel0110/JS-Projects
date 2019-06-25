@@ -17,9 +17,9 @@ class FolderList extends React.Component {
             <Folder
               search={this.props.search}
               folder={dir}
-              key={dir.folder.folderId}
+              key={dir.folderId}
               showFolder={this.selectFolderhandler}
-              selectFolder={dir.folder.folderId === this.state.folderId}
+              selectFolder={dir.folderId === this.state.folderId}
               onUpdate={this.props.onUpdate}
               onDelete={this.props.onDelete}
             />

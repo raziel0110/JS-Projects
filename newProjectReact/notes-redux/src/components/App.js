@@ -61,7 +61,7 @@ class App extends Component {
   };
 
   saveNote = note => {
-    const dir = this.state.folderList.find(f => {
+    const dir = this.props.folderList.find(f => {
       return f.folder.isSelected === true;
     });
 
@@ -90,7 +90,7 @@ class App extends Component {
             <Folders
               notes={this.state.notes}
               newFolder={this.newFolder}
-              folderList={this.state.folderList}
+              folderList={this.props.folderList}
               selectFolder={this.selectFolder}
               id={this.id}
               onUpdate={this.updateNote}
@@ -106,7 +106,9 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   console.log(state);
-  return state;
+  return {
+    folderList: state.folders.folderList
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -120,4 +122,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);

@@ -14,6 +14,11 @@ class InputFolder extends React.Component {
     });
     this.props.hideModal();
   };
+
+  saveFolder = () => {
+    this.props.addFolder();
+    this.props.hideModal();
+  };
   render() {
     console.log(this.props);
     return (
@@ -28,7 +33,7 @@ class InputFolder extends React.Component {
           </button>
           <h4>Create new folder</h4>
 
-          <form onSubmit={this.submitHandler}>
+          <form onSubmit={() => this.props.hideModal()}>
             <input
               type="text"
               value={this.state.userInput}
@@ -37,7 +42,7 @@ class InputFolder extends React.Component {
             <button
               type="button"
               className="add-folder"
-              onClick={this.submitHandler}
+              onClick={() => this.saveFolder()}
             >
               Create Folder
             </button>
@@ -50,7 +55,7 @@ class InputFolder extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    userInput: state.inputFolder.userInput
+    folderName: state.folders.folderName
   };
 };
 
@@ -62,6 +67,9 @@ const mapDispatchToProps = dispatch => {
         text: e.target.value.toUpperCase()
       };
       dispatch(action);
+    },
+    addFolder: e => {
+      dispatch({ type: "ADD_FOLDER" });
     }
   };
 };

@@ -30,39 +30,37 @@ class Folder extends React.Component {
   };
 
   render() {
-    const { folder } = this.props.folder;
-    const { notes } = this.props.folder.folder;
-    if (this.props.selectFolder) {
-      folder.isSelected = true;
-    } else {
-      folder.isSelected = false;
-    }
+    const { folder } = this.props;
+    const { notes } = this.props;
+    // if (this.props.selectFolder) {
+    //   folder.isSelected = true;
+    // } else {
+    //   folder.isSelected = false;
+    // }
 
-    const note_list =
-      this.state.expandFolder &&
-      notes.map(note => (
-        <NoteItem
-          note={note}
-          key={note.id}
-          showNoteItem={this.showNote}
-          isSelect={note.id === this.state.itemId}
-          onUpdate={() => this.props.onUpdate(note.note)}
-          onDelete={this.props.onDelete}
-        />
-      ));
+    // const note_list =
+    //   this.state.expandFolder &&
+    //   notes.map(note => (
+    //     <NoteItem
+    //       note={note}
+    //       key={note.id}
+    //       showNoteItem={this.showNote}
+    //       isSelect={note.id === this.state.itemId}
+    //       onUpdate={() => this.props.onUpdate(note.note)}
+    //       onDelete={this.props.onDelete}
+    //     />
+    //   ));
     return (
       <li>
         <div className="folder-items">
           <div>
             <div
-              className={this.props.selectFolder === true ? "active" : null}
+              // className={this.props.selectFolder === true ? "active" : null}
               onClick={() => this.props.showFolder(folder)}
             >
               {folder.folderName}
             </div>
-            <div>
-              <ul>{note_list}</ul>
-            </div>
+            <div>{/* <ul>{note_list}</ul> */}</div>
           </div>
           <div onClick={this.toggleExapandHandler}>
             {this.state.expandFolder ? "( - )" : "( + )"}

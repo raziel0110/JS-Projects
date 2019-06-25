@@ -58,7 +58,6 @@ class Note extends React.Component {
     return true;
   };
   render() {
-    console.log(this.props);
     return (
       <div className="note">
         <div className="note-header">

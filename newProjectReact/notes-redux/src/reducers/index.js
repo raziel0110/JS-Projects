@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import InputFolder from "./InputFolder";
+import foldersReducer from "./InputFolder";
 import noteReducer from "./inputNote";
 
 export default combineReducers({
-  inputFolder: InputFolder,
+  folders: foldersReducer,
   inputNote: noteReducer
 });
