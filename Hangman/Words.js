@@ -1,6 +1,15 @@
 class Word {
   constructor() {
-    this.words = ["javascript", "cat", "pyton", "ruby on rails", "acasa"];
+    this.words = [
+      "javascript",
+      "cat",
+      "pyton",
+      "ruby on rails",
+      "acasa",
+      "melc",
+      "fantana",
+      "avion"
+    ];
   }
 
   randomWord = () => {

@@ -3,18 +3,16 @@ const input = document.getElementById("input");
 const start = document.getElementById("start");
 const trying = document.getElementById("try");
 const lines = document.getElementById("lines");
+const container = document.getElementById("container");
 
 let show = false;
 
 const game_word = new Word();
 const hangman = new Hangman();
-
 const word = game_word
   .randomWord()
   .toString()
   .split("");
-const word_length = word.length;
-
 start.addEventListener("click", startGame);
 
 function startGame() {
@@ -26,7 +24,7 @@ function startGame() {
 }
 
 function init() {
-  showUnderscoreLetters(word_length);
+  showUnderscoreLetters(word.length);
 }
 
 function showUnderscoreLetters(number) {
@@ -38,13 +36,7 @@ function showUnderscoreLetters(number) {
   }
 }
 
-function removeUnderscores() {}
-
 trying.addEventListener("click", tryLetter);
-
-function returnLetter(input) {
-  return word.find(letter => letter === input);
-}
 
 function tryLetter() {
   const line = document.querySelectorAll(".line");
@@ -61,18 +53,7 @@ function tryLetter() {
     if (hangman.loose()) {
       alert("you loose");
       hangman.reset();
-      init();
+      window.location.reload();
     }
   }
-}
-
-function findIndex(arr, value) {
-  const indexes = [];
-  arr.forEach((el, index) => {
-    if (el === value) {
-      indexes.push(index);
-    }
-  });
-
-  return indexes;
 }

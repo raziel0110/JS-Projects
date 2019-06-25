@@ -124,9 +124,11 @@ const mapDispatchToProps = dispatch => {
       };
       dispatch(action);
     },
-    saveNote: () => {
+    saveNote: e => {
       const action = {
-        type: "SAVE_NOTE"
+        type: "SAVE_NOTE",
+        note: e.target.value,
+        title: e.target.value
       };
       dispatch(action);
     }
