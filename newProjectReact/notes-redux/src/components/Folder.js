@@ -32,11 +32,11 @@ class Folder extends React.Component {
   render() {
     const { folder } = this.props;
     const { notes } = this.props;
-    // if (this.props.selectFolder) {
-    //   folder.isSelected = true;
-    // } else {
-    //   folder.isSelected = false;
-    // }
+    if (this.props.selectFolder) {
+      folder.isSelected = true;
+    } else {
+      folder.isSelected = false;
+    }
 
     // const note_list =
     //   this.state.expandFolder &&
@@ -55,7 +55,7 @@ class Folder extends React.Component {
         <div className="folder-items">
           <div>
             <div
-              // className={this.props.selectFolder === true ? "active" : null}
+              className={this.props.selectFolder === true ? "active" : null}
               onClick={() => this.props.showFolder(folder)}
             >
               {folder.folderName}

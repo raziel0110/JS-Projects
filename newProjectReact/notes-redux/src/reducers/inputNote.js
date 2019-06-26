@@ -15,14 +15,6 @@ const noteReducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       noteTitle: action.text
     });
-  } else if (action.type === "SAVE_NOTE") {
-    return {
-      ...state,
-      noteText: action.note,
-      noteTitle: action.title,
-      noteId: state.noteId + 1,
-      date: new Date().toLocaleString()
-    };
   } else {
     return state;
   }

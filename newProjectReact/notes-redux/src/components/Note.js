@@ -83,7 +83,9 @@ class Note extends React.Component {
             <button
               type="button"
               className={!this.props.noteTitle ? "disabled" : "add-note"}
-              onClick={this.props.saveNote}
+              onClick={() =>
+                this.props.saveNote(this.props.noteText, this.props.noteTitle)
+              }
               disabled={!this.props.noteTitle}
             >
               Add Note
@@ -97,7 +99,6 @@ class Note extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     noteText: state.inputNote.noteText,
     noteTitle: state.inputNote.noteTitle,
@@ -123,11 +124,11 @@ const mapDispatchToProps = dispatch => {
       };
       dispatch(action);
     },
-    saveNote: e => {
+    saveNote: (note, title) => {
       const action = {
         type: "SAVE_NOTE",
-        note: e.target.value,
-        title: e.target.value
+        note: note,
+        title: title
       };
       dispatch(action);
     }

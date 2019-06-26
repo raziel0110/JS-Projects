@@ -3,24 +3,11 @@ import "./InputFolder.css";
 import { connect } from "react-redux";
 
 class InputFolder extends React.Component {
-  state = { folderId: 0 };
-  submitHandler = e => {
-    e.preventDefault();
-    this.props.onAdd({
-      folderId: this.props.id,
-      folderName: this.props.userInput,
-      notes: [],
-      isSelected: false
-    });
-    this.props.hideModal();
-  };
-
   saveFolder = () => {
     this.props.addFolder();
     this.props.hideModal();
   };
   render() {
-    console.log(this.props);
     return (
       <div className="container-input">
         <div className="window">
@@ -36,7 +23,7 @@ class InputFolder extends React.Component {
           <form onSubmit={() => this.props.hideModal()}>
             <input
               type="text"
-              value={this.state.userInput}
+              value={this.props.folderName}
               onChange={this.props.changeInputHandler}
             />
             <button

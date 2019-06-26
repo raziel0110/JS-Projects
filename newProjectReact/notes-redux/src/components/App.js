@@ -15,7 +15,6 @@ class App extends Component {
     this.id = 0;
   }
   state = {
-    folderList: [],
     showMessage: false,
     error: ""
   };
@@ -27,16 +26,6 @@ class App extends Component {
   hideModal = () => {
     this.setState({ showMessage: false });
   };
-
-  newFolder = name => {
-    const { folderList } = this.state;
-    folderList.push({ folder: name });
-    this.setState({
-      folderList: folderList
-    });
-    this.id++;
-  };
-
   updateNote = note => {
     const { folderList } = this.state;
     folderList.forEach(f => {
@@ -89,7 +78,6 @@ class App extends Component {
           <div className="components">
             <Folders
               notes={this.state.notes}
-              newFolder={this.newFolder}
               folderList={this.props.folderList}
               selectFolder={this.selectFolder}
               id={this.id}
@@ -105,7 +93,6 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log(state);
   return {
     folderList: state.folders.folderList
   };

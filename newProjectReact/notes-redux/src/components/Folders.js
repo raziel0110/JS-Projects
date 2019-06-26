@@ -74,11 +74,7 @@ export default class Folders extends React.Component {
   render() {
     const modal = this.state.showModal && (
       <Modal show={this.state.showModal}>
-        <InputFolder
-          onAdd={this.props.newFolder}
-          hideModal={this.hideModal}
-          id={this.props.id}
-        />
+        <InputFolder hideModal={this.hideModal} id={this.props.id} />
       </Modal>
     );
 

@@ -19,9 +19,11 @@ export const titleHandler = e => {
   };
 };
 
-export const saveNote = () => {
+export const saveNote = (note, title) => {
   return {
-    type: "SAVE_NOTE"
+    type: "SAVE_NOTE",
+    note: note,
+    title: title
   };
 };
 
