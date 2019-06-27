@@ -1,0 +1,17 @@
+<h3>{{ authors.length }} Authors</h3>
+<ul>
+  <li *ngFor="let author of authors">
+    {{ author }}
+    <div (click)="onClickDiv()">
+      <button
+        class="btn btn-warning"
+        [class.active]="isActive ? 'blue' : 'white'"
+        (click)="onSave($event)"
+      >
+        hei
+      </button>
+    </div>
+  </li>
+</ul>
+
+<input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
