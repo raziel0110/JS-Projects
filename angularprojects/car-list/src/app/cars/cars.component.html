@@ -1,0 +1,10 @@
+<h2>Dream Cars</h2>
+
+<ul class="cars">
+  <li *ngFor="let car of cars" (click)="onSelect(car)">
+    <span class="badge">{{ car.id }}</span
+    >{{ car.name }}
+  </li>
+</ul>
+
+<car-detail [car]="selectedCar"></car-detail>
