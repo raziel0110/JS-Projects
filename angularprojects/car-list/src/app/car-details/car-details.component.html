@@ -1,0 +1,11 @@
+<div class="container" *ngIf="car">
+  <h2 class="headerInput">{{ car.name }} Details:</h2>
+
+  <div><span>id:</span>{{ car.id }}</div>
+  <div>
+    <label
+      >name:
+      <input type="text" [(ngModel)]="car.name" />
+    </label>
+  </div>
+</div>

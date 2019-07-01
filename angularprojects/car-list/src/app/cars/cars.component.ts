@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { CARS } from "../mock-cars";
-import { Car } from "../car";
+import { Car } from "../models/car";
+import { CarsService } from "../services/cars.service";
 
 @Component({
   selector: "cars",
@@ -8,13 +8,19 @@ import { Car } from "../car";
   styleUrls: ["./cars.component.css"]
 })
 export class CarsComponent implements OnInit {
-  cars = CARS;
+  cars: Car[];
   selectedCar: Car;
 
-  constructor() {}
+  constructor(private carsService: CarsService) {}
+  getCars(): void {
+    this.carsService.getCars().subscribe(cars => (this.cars = cars));
+  }
 
-  onSelect(car: Car): void {
+  ngOnInit() {
+    this.getCars();
+  }
+
+  onSelectCar(car) {
     this.selectedCar = car;
   }
-  ngOnInit() {}
 }

@@ -1,0 +1,9 @@
+.headerInput {
+  margin-top: 10px;
+  font-size: 1em;
+  text-align: center;
+  background-color: rgb(49, 49, 49);
+  color: #fff;
+  padding: 5px 8px;
+  font-family: "Courier New", Courier, monospace;
+}

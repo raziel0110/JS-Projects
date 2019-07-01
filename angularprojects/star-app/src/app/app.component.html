@@ -1,1 +1,16 @@
-<favorite></favorite>
+<!-- <favorite
+  [isFavorite]="post.isFavorite"
+  (change)="onFavoriteChange($event)"
+></favorite> -->
+
+<!-- <bootstrap-panel>
+  <div class="heading">Heading</div>
+  <div class="body">
+    <h3>Body</h3>
+    <p>Some content here...</p>
+  </div>
+</bootstrap-panel> -->
+
+<bootstrap-panel [heading]="heading" [body]="body"></bootstrap-panel>
+
+<like [likesCount]="tweet.likesCount" [isActive]="tweet.isLiked"></like>

@@ -1,10 +1,10 @@
-<h2>Dream Cars</h2>
+<app-header></app-header>
+<div class="container">
+  <ul *ngFor="let car of cars" class="list-group">
+    <li class="list-group-item" (click)="onSelectCar(car)">
+      <span>{{ car.id }}. </span>{{ car.name }}
+    </li>
+  </ul>
+</div>
 
-<ul class="cars">
-  <li *ngFor="let car of cars" (click)="onSelect(car)">
-    <span class="badge">{{ car.id }}</span
-    >{{ car.name }}
-  </li>
-</ul>
-
-<car-detail [car]="selectedCar"></car-detail>
+<app-car-details [car]="selectedCar"></app-car-details>
