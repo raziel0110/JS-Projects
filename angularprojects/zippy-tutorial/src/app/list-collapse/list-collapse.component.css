@@ -1,0 +1,21 @@
+.list-container {
+  border: 1px solid rgb(146, 146, 146);
+  border-radius: 2px;
+}
+
+.list-heading {
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.list-body {
+  padding: 20px;
+}
+.expanded {
+  background: #e7e7e7;
+}
+
+.glyphicon {
+  float: right;
+}

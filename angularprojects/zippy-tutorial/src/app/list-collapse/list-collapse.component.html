@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="list-container">
+    <div class="list-heading" [class.expanded]="isExpanded" (click)="toggle()">
+      {{ title }}
+      <span
+        class="glyphicon"
+        [ngClass]="{
+          'glyphicon-chevron-up': isExpanded,
+          'glyphicon-chevron-down': !isExpanded
+        }"
+      ></span>
+    </div>
+
+    <div class="list-body" *ngIf="isExpanded">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

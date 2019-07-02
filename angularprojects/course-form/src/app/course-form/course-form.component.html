@@ -1,0 +1,64 @@
+<div class="container">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group">
+      <label for="courseName">Course:</label>
+      <input
+        required
+        ngModel
+        minlength="5"
+        pattern="[A-Za-z0-9 ]*"
+        name="courseName"
+        #courseName="ngModel"
+        (change)="log(courseName)"
+        type="text"
+        id="course"
+        class="form-control"
+      />
+    </div>
+
+    <div
+      class="alert alert-danger"
+      *ngIf="courseName.touched && !courseName.valid"
+    >
+      <div *ngIf="courseName.errors.required">Course name is required</div>
+      <div *ngIf="courseName.errors.minlength">Course minimal length is 5</div>
+      <div *ngIf="courseName.errors.pattern">
+        Course should have just letters
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="courseCategory">Course:</label>
+      <select
+        required
+        ngModel
+        name="category"
+        #category="ngModel"
+        class="form-group"
+        id="category"
+      >
+        <option value=""></option>
+        <option *ngFor="let c of categories" [value]="c.id">{{
+          c.name
+        }}</option>
+      </select>
+      <div
+        class="alert alert-danger"
+        *ngIf="category.touched && category.invalid"
+      >
+        Category is required.
+      </div>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ngModel name="hasGuarantee" required /> 30 days
+        money back guarantee
+      </label>
+    </div>
+    {{ f.value | json }}
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+      Submit
+    </button>
+  </form>
+</div>

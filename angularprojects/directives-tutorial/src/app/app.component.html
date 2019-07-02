@@ -1,0 +1,60 @@
+<!-- <div *ngIf="courses.length > 0; else noCourses">
+  list of courses
+</div>
+
+<ng-template #noCourses>
+  no courses yet
+</ng-template> -->
+
+<!-- ngSwitchCase -->
+
+<!-- <ul class="nav nav-pills">
+  <li [class.active]="viewMode === 'map'">
+    <a (click)="viewMode = 'map'">Map View</a>
+  </li>
+  <li [class.active]="viewMode === 'list'">
+    <a (click)="viewMode = 'list'">List View</a>
+  </li>
+</ul>
+
+<div [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'map'">Map View Content</div>
+  <div *ngSwitchCase="'list'">List View Content</div>
+  <div *ngSwitchDefault="">Otherwise</div>
+</div> -->
+
+<button (click)="loadCourses()">Load Courses</button>
+
+<ul>
+  <li *ngFor="let course of courses; trackBy: trackCourse">
+    {{ course.name }}
+  </li>
+</ul>
+
+<span
+  class="glyphicon"
+  (click)="onClick()"
+  [ngClass]="{
+    'glyphicon-star': isSelected,
+    'glyphicon-star-empty': !isSelected
+  }"
+></span>
+
+<!-- [style.backgroundColor]="canSave ? 'blue' : 'gray'"
+  [style.color]="canSave ? 'white' : 'black'"
+  [style.fontWeight]="canSave ? 'bold' : 'normal'" -->
+<button
+  [ngStyle]="{
+    backgroundColor: canSave ? 'blue' : 'gray',
+    color: canSave ? 'white' : 'black'
+  }"
+  (click)="buttonClick()"
+>
+  Save
+</button>
+
+<div>
+  <span>{{ task.assignee?.name }}</span>
+</div>
+
+<input type="text" [appInputFormat]="'uppercase'" />

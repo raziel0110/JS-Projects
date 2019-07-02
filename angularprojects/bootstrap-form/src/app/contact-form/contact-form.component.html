@@ -1,0 +1,99 @@
+<div class="container">
+  <form #f="ngForm" (ngSubmit)="submit(f)">
+    <div ngModelGroup="contact">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input
+          ngModel
+          required
+          minlength="3"
+          maxlength="20"
+          pattern="[A-Za-z]*"
+          name="firstName"
+          #firstName="ngModel"
+          (change)="log(firstName)"
+          id="firstName"
+          type="text"
+          class="form-control"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="firstName.touched && !firstName.valid"
+        >
+          <div *ngIf="firstName.errors.required">First name is required</div>
+          <div *ngIf="firstName.errors.minlength">
+            First name should be min
+            {{ firstName.errors.minlength.requiredLength }} characters
+          </div>
+          <div *ngIf="firstName.errors.maxlength">
+            First name should be maximum 20 characters
+          </div>
+          <div *ngIf="firstName.errors.pattern">
+            First name not valid
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea
+          required
+          ngModel
+          name="comment"
+          #comment="ngModel"
+          type="text"
+          id="comment"
+          pattern="[A-Za-z0-9 ]*"
+          minlength="5"
+          cols="30"
+          row="10"
+          class="form-control"
+        ></textarea>
+      </div>
+      <div class="alert alert-danger" *ngIf="comment.touched && !comment.valid">
+        <div *ngIf="comment.errors.required">Comment is required</div>
+        <div *ngIf="comment.errors.pattern">Comment not valid</div>
+        <div *ngIf="comment.errors.minlength">
+          Comment characters must have minimun 5
+        </div>
+      </div>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ngModel name="isSubscribed" />Subscribe to
+          mailing list
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="contactMethod"></label>
+        <select
+          name="contactMethod"
+          multiple
+          ngModel
+          id="contactMethod"
+          class="form-group"
+        >
+          <option value=""></option>
+          <option *ngFor="let method of contactMethods" [value]="method.id">{{
+            method.name
+          }}</option>
+        </select>
+      </div>
+
+      <div *ngFor="let method of contactMethods" class="radio">
+        <label
+          ><input
+            ngModel
+            type="radio"
+            name="contactMethod"
+            [value]="method.id"
+          />
+          {{ method.name }}
+        </label>
+      </div>
+
+      <p>{{ f.value | json }}</p>
+      <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+    </div>
+  </form>
+</div>
