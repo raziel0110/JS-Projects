@@ -1,15 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { UsernameValidators } from "./username.validators";
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: "signup",
+  templateUrl: "./signup.component.html",
+  styleUrls: ["./signup.component.css"]
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
+  form = new FormGroup({
+    account: new FormGroup({
+      username: new FormControl(
+        "",
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern("[A-Za-z ]*"),
+          // UsernameValidators.cannotContainSpace,
+          UsernameValidators.shouldBeUnique
+        ],
+        UsernameValidators.shouldBeUniqueOne
+      ),
+      password: new FormControl("", Validators.required)
+    })
+  });
 
-  constructor() { }
-
-  ngOnInit() {
+  get username() {
+    return this.form.get("account.username");
   }
 
+  get password() {
+    return this.form.get("account.password");
+  }
+  login() {
+    this.form.setErrors({
+      invalidLogin: true
+    });
+  }
 }

@@ -1,1 +1,61 @@
-<p>signup works!</p>
+<div class="container">
+  <!-- bind formGroup cu form din componenta
+  adaugam formControlName cu una din
+  key-ile obiectului form din compoenta la fiecare input field -->
+
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <div formGroupName="account">
+      <!-- <div class="alert alert-danger" *ngIf="form.errors">
+        The Username or password is invalid
+      </div> -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          class="form-control"
+          formControlName="username"
+        />
+        <div *ngIf="username.pending">Checking for uniquess</div>
+        <div
+          class="alert alert-danger"
+          *ngIf="username.touched && username.invalid"
+        >
+          <div *ngIf="username.errors.required">Username is required</div>
+          <!-- <div *ngIf="username.errors.cannotContainSpace">
+          Username cannot contain space
+        </div> -->
+          <div *ngIf="username.errors.shouldBeUnique">
+            Username is taken
+          </div>
+          <div *ngIf="username.errors.shouldBeUniqueOne">
+            Username is taken
+          </div>
+          <!-- <div *ngIf="username.errors.minlength">
+          Username must have minimum
+          {{ username.errors.minlength.requierdLength }} characters
+        </div> -->
+          <!-- <div *ngIf="username.errors.pattern">
+          Username must contain just characters.
+        </div> -->
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="text"
+          class="form-control"
+          formControlName="password"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="password.touched && password.invalid"
+        >
+          Password is requierd
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">Sign Up</button>
+    </div>
+  </form>
+</div>
