@@ -1,0 +1,10 @@
+<input type="text" #newHero (keyup.enter)="addHero(newHero.value)" />
+<button (click)="addHero(newHero.value)">Add</button>
+
+<div>
+  <ul>
+    <li *ngFor="let hero of heroes">
+      {{ hero }}
+    </li>
+  </ul>
+</div>

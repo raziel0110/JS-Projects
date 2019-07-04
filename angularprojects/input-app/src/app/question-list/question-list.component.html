@@ -1,0 +1,7 @@
+<p>{{ master }} controls {{ heroes.length }} heroes</p>
+
+<app-question
+  [master]="master"
+  [hero]="hero"
+  *ngFor="let hero of heroes"
+></app-question>

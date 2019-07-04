@@ -1,0 +1,23 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Hero Form</h1>
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <div class="form-group">
+        <label>Name:</label>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="model.name"
+          name="name"
+          #name="ngModel"
+        />
+      </div>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required
+      </div>
+    </form>
+  </div>
+</div>
+<ng-content>dfsdgf</ng-content>

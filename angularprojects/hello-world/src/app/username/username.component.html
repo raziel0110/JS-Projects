@@ -1,0 +1,17 @@
+<input type="text" class="form-control" [(ngModel)]="username" />
+<p>{{ username }}</p>
+<button
+  class="btn btn-primary"
+  [disabled]="username === ''"
+  (click)="onClick()"
+>
+  Submit
+</button>
+
+<p *ngIf="username !== ''; else noUsername">{{ username }}</p>
+<!-- ng-template acts like else if directive -->
+<ng-template #noUsername>
+  <p>
+    No username typed!
+  </p>
+</ng-template>

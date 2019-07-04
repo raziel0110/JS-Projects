@@ -1,0 +1,13 @@
+<div class="container">
+  <button class="btn btn-primary" (click)="onClick()">Display Details</button>
+  <p *ngIf="isVisible">Secret password = plane</p>
+  <p
+    *ngFor="let item of array"
+    [ngStyle]="{
+      backgroundColor: item >= 5 ? 'blue' : 'white',
+      color: item >= 5 ? 'white' : 'black'
+    }"
+  >
+    {{ item }}
+  </p>
+</div>
