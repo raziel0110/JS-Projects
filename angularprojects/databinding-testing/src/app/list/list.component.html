@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-success" (click)="addItem(inputName)">
+          ADD
+        </button>
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="inputName"
+        (keyup.enter)="addItem(inputName)"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <app-list-item
+        *ngFor="let todo of todos"
+        [todo]="todo"
+        (todoDel)="deleteItem(todo)"
+        (todoChange)="updateItem($event)"
+      ></app-list-item>
+    </ul>
+  </div>
+</div>

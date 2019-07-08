@@ -1,0 +1,24 @@
+<li class="list-group-item" *ngIf="!todo.isSelected; else updateForm">
+  {{ todo.name }}
+  <span class="badge badge-color" (click)="removeItem(todo)">x</span>
+  <span class="badge badge-color-success" (click)="toggleSelect(todo)"
+    >update</span
+  >
+</li>
+
+<ng-template #updateForm>
+  <li class="list-group-item">
+    <div class="input-group">
+      <span class="input-group-btn"
+        ><button class="btn btn-success" (click)="update(updatedInput)">
+          Update
+        </button></span
+      >
+      <input
+        class="form-control"
+        [value]="todo.name"
+        [(ngModel)]="updatedInput"
+      />
+    </div>
+  </li>
+</ng-template>
