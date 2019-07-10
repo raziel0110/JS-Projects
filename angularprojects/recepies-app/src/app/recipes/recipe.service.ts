@@ -22,6 +22,7 @@ export class RecipeService {
       [new Ingredient("French Fries", 50)]
     )
   ];
+  constructor(private slService: ShoppingListService) {}
 
   getRecipes() {
     return this.recipes.slice();
@@ -30,5 +31,4 @@ export class RecipeService {
   addIngredinetsToShoppingList(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients);
   }
-  constructor(private slService: ShoppingListService) {}
 }
