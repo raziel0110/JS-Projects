@@ -13,6 +13,9 @@ import { ShoppingEditComponent } from "./shopping-edit/shopping-edit.component";
 import { DropdownDirective } from "./shared/dropdown.directive";
 import { RainbowDirective } from "./shared/rainbow.directive";
 
+import { RecipeService } from "./recipes/recipe.service";
+import { ShoppingListService } from "./shopping-list/shopping-list.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,7 @@ import { RainbowDirective } from "./shared/rainbow.directive";
     RainbowDirective
   ],
   imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  providers: [RecipeService, ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

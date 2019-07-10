@@ -1,0 +1,11 @@
+<div class="container">
+  <h3 class="text-center">
+    Directives
+  </h3>
+
+  <app-joke
+    *ngFor="let joke of jokes; let i = index"
+    [joke]="joke"
+    [id]="i"
+  ></app-joke>
+</div>
