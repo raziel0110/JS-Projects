@@ -1,0 +1,29 @@
+<div class="row">
+  <div
+    class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8"
+  >
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="titleInput"
+        placeholder="Add a title"
+      />
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="bodyInput"
+        placeholder="Add a body text"
+      />
+      <br />
+      <button
+        type="button"
+        class="btn btn-primary text-center"
+        (click)="onAddItem(titleInput, bodyInput)"
+      >
+        New Post
+      </button>
+    </div>
+  </div>
+</div>

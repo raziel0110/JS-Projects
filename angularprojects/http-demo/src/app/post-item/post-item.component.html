@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    {{ postItem.title }}
+    <span
+      class="pull-right glyphicon glyphicon-trash trash"
+      [style.cursor]="'pointer'"
+      (click)="deletePost(postItem)"
+    ></span>
+  </div>
+  <div class="panel-body">
+    {{ postItem.body }}
+  </div>
+</div>
