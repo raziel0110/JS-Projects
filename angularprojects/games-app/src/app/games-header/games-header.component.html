@@ -1,0 +1,32 @@
+<nav class="navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button
+        class="navbar-toggle collapsed"
+        data-toggle="collapse"
+        data-target="#navbar-button-expanded"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">Best Games</span>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-button-expanded">
+      <ul class="nav navbar-nav navbar-right">
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/">Home</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/newgame">New Game</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

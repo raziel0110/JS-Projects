@@ -21,4 +21,9 @@ export class PostListComponent implements OnInit {
     this.posts = this.posts.filter(p => p.id !== post.id);
     this.postsService.deletePost(post).subscribe();
   }
+
+  addNewPost(post: Post) {
+    this.postsService.addPost(post).subscribe(p => this.posts.push(p));
+    console.log(this.posts);
+  }
 }

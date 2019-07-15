@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <app-game-item
+        *ngFor="let game of gamesList"
+        [game]="game"
+        (onDeleteGame)="onDelItem($event)"
+      ></app-game-item>
+    </div>
+  </div>
+</div>

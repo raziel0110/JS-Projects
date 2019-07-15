@@ -2,6 +2,8 @@
   <div
     class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8"
   >
+    <app-add-post (postEmit)="addNewPost($event)"></app-add-post>
+
     <app-post-item
       *ngFor="let post of posts"
       [postItem]="post"

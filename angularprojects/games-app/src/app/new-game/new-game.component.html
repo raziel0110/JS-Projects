@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <input
+        class="form-control"
+        [(ngModel)]="inputTitle"
+        placeholder="Title game..."
+      />
+      <br />
+      <input
+        class="form-control"
+        [(ngModel)]="inputDescription"
+        placeholder="Game description..."
+      />
+      <br />
+
+      <input
+        class="form-control"
+        [(ngModel)]="inputImageUrl"
+        placeholder="Image url..."
+      />
+      <br />
+
+      <button
+        class="btn btn-primary"
+        (click)="onAdd(inputTitle, inputDescription, inputImageUrl)"
+      >
+        New Game
+      </button>
+    </div>
+  </div>
+</div>
