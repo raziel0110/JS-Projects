@@ -1,0 +1,21 @@
+.gameDetailContainer {
+  margin: 1rem auto;
+  width: 100%;
+}
+
+.title-detail {
+  font-family: "Courier New", Courier, monospace;
+  padding: 5px 10px;
+  font-weight: 500;
+  size: 20px;
+}
+
+.img-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.image-detail {
+  margin: 10px auto;
+  border: 1px solid black;
+}

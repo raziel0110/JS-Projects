@@ -1,13 +1,18 @@
 <div class="panel panel-default">
-  <div class="panel-heading" appCcColorHover>
+  <div class="panel-heading" appCcColorHover (click)="onClick(game._id)">
     <h5 class="text-center" [style.cursor]="'pointer'">
       {{ game.title }}
     </h5>
   </div>
 
-  <div class="panel-body">
-    <p>{{ game.description }}</p>
-    <img [src]="game.imageUrl" />
-    <button class="btn btn-danger" (click)="deleteGame(game)">delete</button>
+  <div class="panel-body display-game">
+    <div>
+      <img [src]="game.imageUrl" class="img-responsive" width="200px" />
+    </div>
+    <div>
+      <p>{{ game.description }}</p>
+    </div>
+
+    <!-- <button class="btn btn-danger" (click)="deleteGame(game)">delete</button> -->
   </div>
 </div>

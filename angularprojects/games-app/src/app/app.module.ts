@@ -12,6 +12,8 @@ import { GamesHeaderComponent } from "./games-header/games-header.component";
 import { GameItemComponent } from "./game-item/game-item.component";
 import { CcColorHoverDirective } from "./cc-color-hover.directive";
 import { NewGameComponent } from "./new-game/new-game.component";
+import { GameDetailComponent } from "./game-detail/game-detail.component";
+import { HomeComponent } from "./home/home.component";
 
 @NgModule({
   declarations: [
@@ -20,14 +22,18 @@ import { NewGameComponent } from "./new-game/new-game.component";
     GamesHeaderComponent,
     GameItemComponent,
     CcColorHoverDirective,
-    NewGameComponent
+    NewGameComponent,
+    GameDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: "", component: GamesListComponent },
+      { path: "", component: HomeComponent },
+      { path: "games", component: GamesListComponent },
+      { path: "games/:id", component: GameDetailComponent },
       { path: "newgame", component: NewGameComponent }
     ]),
     FormsModule
