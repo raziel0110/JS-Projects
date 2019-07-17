@@ -1,0 +1,35 @@
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a
+        routerLink="/"
+        class="nav-link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Home</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        [routerLink]="['user', 1]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+        routerLinkActive="active"
+        >User 1</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        [routerLink]="['user', 2]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+        routerLinkActive="active"
+        >User 2</a
+      >
+    </li>
+  </ul>
+  <br />
+
+  <p *ngIf="userActivated">Activated</p>
+  <router-outlet></router-outlet>
+</div>

@@ -132,5 +132,10 @@
       }
     }
   },
-  "defaultProject": "recepies-app"
+  "defaultProject": "recepies-app",
+  "cli": {
+    "warnings": {
+      "versionMismatch": false
+    }
+  }
 }
