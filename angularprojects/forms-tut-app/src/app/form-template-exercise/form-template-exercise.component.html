@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+      <h5 class="formgroup-header text-center">User Data:</h5>
+      <form class="formgroup" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+          <input
+            class="form-control"
+            placeholder="Email address"
+            ngModel
+            name="email"
+            required
+            #email="ngModel"
+          />
+          <p *ngIf="!email.valid && email.touched" class="alert alert-danger">
+            Must enter a valid e-mail!
+          </p>
+        </div>
+        <div class="form-group">
+          <select
+            name=""
+            class="form-control"
+            placeholder="Subscripsion"
+            ngModel
+            name="subscription"
+            required
+            #subscription="ngModel"
+          >
+            <option>Basic</option>
+            <option>Advanced</option>
+            <option>Pro</option>
+          </select>
+          <p
+            *ngIf="!subscription.valid && subscription.touched"
+            class="alert alert-danger"
+          >
+            Please select one option!
+          </p>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Enter password"
+            ngModel
+            name="password"
+            required
+            #password="ngModel"
+          />
+          <p
+            *ngIf="!password.valid && password.touched"
+            class="alert alert-danger"
+          >
+            Must enter a valid password!
+          </p>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary text-center"
+          [disabled]="!f.valid"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="submited">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+      <h4 class="text-center">User data:</h4>
+      <ul class="list-group" *ngFor="let item of userArr">
+        <li class="list-group-item">{{ item[0] }} - {{ item[1] }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
