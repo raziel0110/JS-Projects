@@ -9,9 +9,46 @@
             class="form-control"
             formControlName="projectName"
           />
+          <p
+            class="text-muted text-height"
+            *ngIf="
+              !signupForm.get('projectName').valid &&
+              signupForm.get('projectName').touched
+            "
+          >
+            **Please enter a valid project name!
+          </p>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email" />
+          <p
+            class="text-muted text-height"
+            *ngIf="
+              !signupForm.get('email').valid && signupForm.get('email').touched
+            "
+          >
+            **Please enter a valid email!
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Status</label>
+          <select class="form-control" formControlName="status">
+            <option [value]="name" *ngFor="let name of status">{{
+              name
+            }}</option>
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!signupForm.valid"
+        >
+          Submit
+        </button>
       </form>
     </div>
   </div>

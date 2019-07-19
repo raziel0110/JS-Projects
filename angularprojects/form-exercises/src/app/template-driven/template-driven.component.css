@@ -1,0 +1,19 @@
+.input-border {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.473);
+  font-size: 1.125rem;
+  margin-top: 2rem;
+}
+
+input:focus {
+  box-shadow: none;
+}
+
+.form {
+  margin-top: 20px;
+}
+
+input.ng-invalid.ng-touched {
+  border-bottom: 1px solid rgba(255, 122, 122, 0.445);
+}

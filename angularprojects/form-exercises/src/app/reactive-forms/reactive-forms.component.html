@@ -1,0 +1,100 @@
+<div class="container component">
+  <div class="row justify-content-center ">
+    <div class="col-10 col-xs-10 col-sm-10 col-md-6 ">
+      <h4 class="header">Register</h4>
+      <hr />
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input
+            type="text"
+            id="username"
+            class="form-control "
+            placeholder="Username"
+            formControlName="username"
+          />
+          <div
+            class="text-muted error-text"
+            *ngIf="
+              !registerForm.get('username').valid &&
+              registerForm.get('username').touched
+            "
+          >
+            ** Username is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <div
+            class="text-muted error-text"
+            *ngIf="
+              !registerForm.get('email').valid &&
+              registerForm.get('email').touched
+            "
+          >
+            <p *ngIf="registerForm.get('email').errors.required">
+              ** Email is required
+            </p>
+            <p *ngIf="registerForm.get('email').errors.email">
+              ** Email must be valid
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <div
+            class="text-muted error-text"
+            *ngIf="
+              !registerForm.get('password').valid &&
+              registerForm.get('password').touched
+            "
+          >
+            <p *ngIf="registerForm.get('password').errors.required">
+              ** Password is required
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            id="confirmPassword"
+            class="form-control"
+            placeholder="Confirm Password"
+            formControlName="passwordConfirm"
+          />
+          <div
+            class="text-muted error-text"
+            *ngIf="
+              !registerForm.get('passwordConfirm').valid &&
+              registerForm.get('passwordConfirm').touched
+            "
+          >
+            <p *ngIf="registerForm.get('passwordConfirm').errors.required">
+              ** Confirmed password is required
+            </p>
+            <p *ngIf="registerForm.errors.mismatch">
+              ** Password doesn't match
+            </p>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-secondary btn-block">
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
