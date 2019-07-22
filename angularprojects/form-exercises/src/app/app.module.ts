@@ -9,7 +9,6 @@ import { AppComponent } from "./app.component";
 import { TemplateDrivenComponent } from "./template-driven/template-driven.component";
 import { ReactiveFormsComponent } from "./reactive-forms/reactive-forms.component";
 import { CustomValidatorDirective } from "./custom-validator.directive";
-import { CustomValidatorsComponent } from "./reactive-forms/custom-validators/custom-validators.component";
 
 @NgModule({
   declarations: [

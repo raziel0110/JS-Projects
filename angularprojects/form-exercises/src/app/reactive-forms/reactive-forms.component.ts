@@ -3,7 +3,9 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  AbstractControl
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn
 } from "@angular/forms";
 //import { CustomValidatorsComponent } from "./custom-validators/custom-validators.component";
 @Component({
@@ -24,7 +26,7 @@ export class ReactiveFormsComponent implements OnInit {
         password: new FormControl(null, Validators.required),
         passwordConfirm: new FormControl(null, [Validators.required])
       },
-      this.passwordConfirming.bind(this)
+      { validators: this.passwordConfirming }
     );
   }
 
@@ -32,10 +34,13 @@ export class ReactiveFormsComponent implements OnInit {
     console.log(this.registerForm);
   }
 
-  passwordConfirming(control: FormGroup) {
-    return control.controls["password"].value ===
-      control.controls["passwordConfirm"].value
-      ? null
-      : { mismatch: true };
-  }
+  passwordConfirming: ValidatorFn = (
+    control: FormGroup
+  ): ValidationErrors | null => {
+    const password = control.get("password").value;
+    const confirm = control.get("passwordConfirm").value;
+    console.warn(control);
+    if (password === confirm) alert("yeee");
+    return password !== confirm ? { mismatch: true } : null;
+  };
 }

@@ -78,15 +78,23 @@
           />
           <div
             class="text-muted error-text"
-            *ngIf="
-              !registerForm.get('passwordConfirm').valid &&
-              registerForm.get('passwordConfirm').touched
-            "
+            *ngIf="registerForm.get('passwordConfirm').invalid"
           >
-            <p *ngIf="registerForm.get('passwordConfirm').errors.required">
+            <p
+              *ngIf="
+                registerForm.get('passwordConfirm').errors.required &&
+                registerForm.get('passwordConfirm').touched
+              "
+            >
               ** Confirmed password is required
             </p>
-            <p *ngIf="registerForm.errors.mismatch">
+            <p
+              *ngIf="
+                registerForm.errors?.mismatch &&
+                (registerForm.get('passwordConfirm').touched ||
+                  registerForm.get('passwordConfirm').dirty)
+              "
+            >
               ** Password doesn't match
             </p>
           </div>

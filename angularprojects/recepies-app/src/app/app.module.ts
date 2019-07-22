@@ -14,6 +14,10 @@ import { DropdownDirective } from "./shared/dropdown.directive";
 import { RainbowDirective } from "./shared/rainbow.directive";
 import { RecipeStartComponent } from "./recipes/recipe-start/recipe-start.component";
 
+import { ReactiveFormsModule } from "@angular/forms";
+
+import { FormsModule } from "@angular/forms";
+
 import { RecipeService } from "./recipes/recipe.service";
 import { ShoppingListService } from "./shopping-list/shopping-list.service";
 import { RouterModule } from "@angular/router";
@@ -50,7 +54,9 @@ import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component
         ]
       },
       { path: "shopping-list", component: ShoppingListComponent }
-    ])
+    ]),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [RecipeService, ShoppingListService],
   bootstrap: [AppComponent]
